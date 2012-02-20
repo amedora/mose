@@ -1,0 +1,43 @@
+%# vim:set ts=2 sw=2 ft=html:
+<div class="accordion" id="carlist">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#ClassB">
+				Class B
+			</a>
+		</div>
+		<div id="ClassB" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<ul>
+					<li><a href="/analysis/stockcars2%20chevy%20cot">Chevrolet Impala SS B COT</a></li>
+					<li><a href="">Chevrolet Impala SS B Nationwide</a></li>
+					<li><a href="">Silver Crown</a></li>
+					<li><a href="">Sprint Car</a></li>
+					<li><a href="">Dallara Indycar</a></li>
+					<li><a href="">Lotus 79</a></li>
+					<li><a href="">Riley Mk XX Daytona Prototype</a></li>
+					<li><a href="">Chevrolet Corvette C6R</a></li>
+					<li><a href="">Ford GT</a></li>
+				</ul>
+			</div> <!-- accordion-inner -->
+		</div> <!-- accordion-body -->
+	</div> <!-- accordion-group -->
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#ClassD">
+				Class D
+			</a>
+		</div>
+		<div id="ClassD" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<ul>
+					<li><a href="/analysis/latemodel">Chevrolet Monte-Carlo SS</a></li>
+					<li><a href="">SK Modified</a></li>
+					<li><a href="">Ford Mustang</a></li>
+					<li><a href="">Skip Barber Formula 2000</a></li>
+				</ul>
+			</div> <!-- accordion-inner -->
+		</div> <!-- accordion-body -->
+	</div> <!-- accordion-group -->
+</div> <!-- accordion -->
+

@@ -1,0 +1,105 @@
+%# vim:set ts=2 sw=2 ft=html:
+% title 'Data & Analysis';
+% layout 'top';
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#tablesetup').dataTable({
+		"sDom": "<'row'<'span4'l><'span4'f>r>t<'row'<'span4'i><'span4'p>>",
+		"sPaginationType": "bootstrap",
+		"oLanguage": {
+			"sLengthMenu": "_MENU_ files per page"
+		}
+	});
+	tableValue = $('#tablevalue').dataTable({
+		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+		"sPaginationType": "bootstrap",
+		"oLanguage": {
+			"sLengthMenu": "_MENU_ records per page"
+		}
+	});
+	$('#show').bind('click', function () {
+		get_value();
+		render('front_rideheight');
+		render('rear_rideheight');
+		render('rideheight_relation');
+		render('trackbar_height');
+		render('left_weight_dist');
+		render('ballast');
+		render('right_weight_dist');
+		render('left_spring_package');
+		render('right_spring_package');
+		render('front_tiretemp');
+		render('left_tiretemp_avg');
+		render('right_tiretemp_avg');
+		render('rear_tiretemp');
+		render('front_tread');
+		render('rear_tread');
+		return false;
+	}); 
+});
+</script>
+
+<div class="page-header">
+	<h1>Data & Analysis</h1>
+</div>
+<div class="row">
+	<div class="span4">
+		<%= include 'carlist' %>
+	</div>
+	<div class="span8">
+		<h2><%= $car %></h2>
+		<form id="form_fileselect" action="#">
+		<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="tablesetup">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th>File Name</th>
+					<th>Folder</th>
+				</tr>
+				</thead>
+				<tbody>
+					<% foreach my $s (@$setups) { %>
+						<tr>
+							<td style="padding: 4px"><input type="checkbox" name="file_selected" value="<%= $s->{dir} . $s->{filename} %>"/></td>
+							<td style="padding: 4px"><%= $s->{filename}%></td>
+							<td style="padding: 4px"><%= $s->{dir} %></td>
+						</tr>
+					<% } %>
+			</tbody>
+		</table>
+		<%= hidden_field car => $car %>
+		</form>
+	</div>
+</div> <!-- row -->
+<div class="row">
+	<div class="span7 offset5">
+		<a href="#" class="btn btn-large btn-primary" id="show">SHOW</a>
+	</div>
+</div> <!-- row -->
+<hr>
+<ul class="nav nav-tabs">
+	<li class="active"><a href="#tab-analysis" data-toggle="tab"><i class="icon-signal"></i> Analysis</a></li>
+	<li><a href="#tab-data" data-toggle="tab"><i class="icon-list"></i> Data</a></li>
+	<li><a href="#tab-laptime" data-toggle="tab"><i class="icon-time"></i> Lap Time</a></li>
+</ul> <!-- tabs -->
+<div class="tab-content">
+	<div class="tab-pane active" id="tab-analysis">
+		<%= include 'analysis-tab-analysis' %>
+	</div> <!-- tab-analysis -->
+	<div class="tab-pane" id="tab-data">
+		<table class="table table-striped table-bordered" id="tablevalue">
+			<thead>
+				<tr>
+					<th>Category</th>
+					<th>Section</th>
+					<th>Component</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div> <!-- tab-data -->
+	<div class="tab-pane" id="tab-laptime">
+	</div> <!-- tab-analysis -->
+</div> <!-- tab-content -->
+

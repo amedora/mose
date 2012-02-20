@@ -1,0 +1,273 @@
+# vim:set sw=4 ts=4 ft=perl:
+#!/usr/bin/env perl
+use Mojolicious::Lite;
+use File::Basename;
+use File::Find::Rule;
+use Data::Dumper;
+
+use lib './lib';
+use IRacing::Setup::Parser;
+
+my $_files_verified = {};
+
+my $render = {
+    front_rideheight     => { latemodel => \&_render_front_rideheight, },
+    rear_rideheight      => { latemodel => \&_render_rear_rideheight, },
+    rideheight_relation  => { latemodel => \&_render_rideheight_relation, },
+    trackbar_height      => { latemodel => \&_render_trackbar_height, },
+    left_weight_dist     => { latemodel => \&_render_left_weight_dist, },
+    right_weight_dist    => { latemodel => \&_render_right_weight_dist, },
+    ballast              => { latemodel => \&_render_ballast, },
+    left_spring_package  => { latemodel => \&_render_left_spring_package, },
+    right_spring_package => { latemodel => \&_render_right_spring_package, },
+    front_tiretemp       => { latemodel => \&_render_front_tiretemp, },
+    rear_tiretemp        => { latemodel => \&_render_rear_tiretemp, },
+    left_tiretemp_avg    => { latemodel => \&_render_left_tiretemp_avg, },
+    right_tiretemp_avg   => { latemodel => \&_render_right_tiretemp_avg, },
+    front_tread          => { latemodel => \&_render_front_tread, },
+    rear_tread           => { latemodel => \&_render_rear_tread, },
+};
+
+sub _render {
+    my ( $graph, $car, @files ) = @_;
+    my $ret = { series => [] };
+    my @setups;
+    push @setups, IRacing::Setup::Parser->new($_) foreach @files;
+    foreach my $s (@setups) {
+        push @{ $ret->{series} },
+          +{
+            name => $s->file_name,
+            data => [ $render->{$graph}->{$car}->($s) ],
+          };
+    }
+    return $ret;
+}
+
+sub _render_front_rideheight {
+    my $s = shift;
+    return (
+        $s->data_wou( 'CHASSIS' => 'LEFT FRONT'  => 'Ride height' ),
+        $s->data_wou( 'CHASSIS' => 'RIGHT FRONT' => 'Ride height' )
+    );
+}
+
+sub _render_rear_rideheight {
+    my $s = shift;
+    return (
+        $s->data_wou( 'CHASSIS' => 'LEFT REAR'  => 'Ride height' ),
+        $s->data_wou( 'CHASSIS' => 'RIGHT REAR' => 'Ride height' )
+    );
+}
+
+sub _render_rideheight_relation {
+    my $s = shift;
+    return (
+        (
+            $s->data_wou( 'CHASSIS' => 'LEFT FRONT' => 'Ride height' ) +
+              $s->data_wou( 'CHASSIS' => 'RIGHT FRONT' => 'Ride height' )
+        ) / 2.000,
+        (
+            $s->data_wou( 'CHASSIS' => 'LEFT REAR' => 'Ride height' ) +
+              $s->data_wou( 'CHASSIS' => 'RIGHT REAR' => 'Ride height' )
+          ) / 2.000
+    );
+}
+
+sub _render_trackbar_height {
+    my $s = shift;
+    return (
+        $s->data_wou( 'CHASSIS' => 'LEFT REAR'  => 'Track bar height' ),
+        $s->data_wou( 'CHASSIS' => 'RIGHT REAR' => 'Track bar height' ),
+    );
+}
+
+sub _render_front_tiretemp {
+    my $s = shift;
+    return (
+        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Last temps O' ),
+        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Last temps M' ),
+        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Last temps I' ),
+        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Last temps I' ),
+        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Last temps M' ),
+        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Last temps O' )
+    );
+}
+
+sub _render_rear_tiretemp {
+    my $s = shift;
+    return (
+        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Last temps O' ),
+        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Last temps M' ),
+        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Last temps I' ),
+        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Last temps I' ),
+        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Last temps M' ),
+        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Last temps O' )
+    );
+}
+
+sub _render_front_tread {
+    my $s = shift;
+    return (
+        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Tread remaining O' ),
+        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Tread remaining M' ),
+        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Tread remaining I' ),
+        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Tread remaining I' ),
+        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Tread remaining M' ),
+        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Tread remaining O' )
+    );
+}
+
+sub _render_rear_tread {
+    my $s = shift;
+    return (
+        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Tread remaining O' ),
+        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Tread remaining M' ),
+        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Tread remaining I' ),
+        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Tread remaining I' ),
+        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Tread remaining M' ),
+        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Tread remaining O' )
+    );
+}
+
+sub _render_left_weight_dist {
+    my $s = shift;
+    return (
+        $s->data_wou( 'CHASSIS' => 'LEFT FRONT' => 'Corner weight' ),
+        $s->data_wou( 'CHASSIS' => 'LEFT REAR'  => 'Corner weight' )
+    );
+}
+
+sub _render_right_weight_dist {
+    my $s = shift;
+    return (
+        $s->data_wou( 'CHASSIS' => 'RIGHT FRONT' => 'Corner weight' ),
+        $s->data_wou( 'CHASSIS' => 'RIGHT REAR'  => 'Corner weight' )
+    );
+}
+
+sub _render_ballast {
+    my $s = shift;
+    return ( [ 1, $s->data_wou( 'CHASSIS' => 'FRONT' => 'Ballast forward' ) ] );
+}
+
+sub _render_left_spring_package {
+    my $s = shift;
+    return (
+        $s->data_wou( 'CHASSIS' => 'LEFT FRONT' => 'Spring rate' ),
+        $s->data_wou( 'CHASSIS' => 'LEFT REAR'  => 'Spring rate' )
+    );
+}
+
+sub _render_right_spring_package {
+    my $s = shift;
+    return (
+        $s->data_wou( 'CHASSIS' => 'RIGHT FRONT' => 'Spring rate' ),
+        $s->data_wou( 'CHASSIS' => 'RIGHT REAR'  => 'Spring rate' )
+    );
+}
+
+sub _render_left_tiretemp_avg {
+    my $s = shift;
+    return (
+        $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'LEFT FRONT' ),
+        $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'LEFT REAR' ),
+        int(
+            (
+                $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'LEFT FRONT' ) +
+                  $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'LEFT REAR' )
+            ) / 2
+        )
+    );
+}
+
+sub _render_right_tiretemp_avg {
+    my $s = shift;
+    return (
+        $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'RIGHT FRONT' ),
+        $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'RIGHT REAR' ),
+        int(
+            (
+                $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'RIGHT FRONT' ) +
+                  $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'RIGHT REAR' )
+            ) / 2
+        )
+    );
+}
+
+sub _render_undef {
+}
+
+plugin Config => { file => 'mose.conf' };
+
+any '/render/:graph' => sub {
+    my $self = shift;
+    $self->render(
+        json => _render(
+            $self->param('graph'),
+            $self->param('car'),
+            map {
+                    $self->stash('config')->{basedir} . '/'
+                  . $self->param('car')
+                  . $_;
+              } $self->param('file_selected')
+        )
+    );
+};
+
+any '/value' => sub {
+    my $self  = shift;
+    my @files = map {
+        $self->stash('config')->{basedir} . '/' . $self->param('car') . $_;
+    } $self->param('file_selected');
+    my @setups;
+    push @setups, IRacing::Setup::Parser->new($_) foreach @files;
+    my $ret = '<thead><tr><th>Category</th><th>Section</th><th>Component</th>';
+    $ret .= '<th style="font-size: 10px;">' . $_->file_name() . '</th>'
+      foreach @setups;
+    $ret .= '</tr></thead><tbody>';
+
+    foreach my $cat ( $setups[0]->categories ) {
+        foreach my $sec ( $setups[0]->sections($cat) ) {
+            foreach my $compo ( $setups[0]->components( $cat, $sec ) ) {
+                $ret .= "<tr><td>$cat</td><td>$sec</td><td>$compo</td>";
+                foreach my $setup (@setups) {
+                    $ret .=
+                      '<td>' . $setup->data( $cat => $sec => $compo ) . '</td>';
+                }
+                $ret .= '</tr>';
+            }
+        }
+    }
+    $ret .= '</tbody>';
+    $self->render( text => $ret );
+};
+
+get '/' => sub {
+    my $self = shift;
+
+    #$self->render('index');
+    $self->redirect_to('analysis/latemodel');
+};
+
+get '/analysis/:car' => sub {
+    my $self      = shift;
+    my $car       = $self->param('car');
+    my $searchdir = $self->stash('config')->{basedir} . '/' . $car;
+    my @files     = File::Find::Rule->file()->name('*.htm')->in($searchdir);
+    my $i;
+    my @setups = map {
+        my $fullpath = $_;
+        my ( $filename, $dir ) = fileparse($fullpath);
+        $dir =~ s/.*?$car//;
+        +{
+            id       => $i++,
+            filename => $filename,
+            dir      => $dir,
+            fullpath => $fullpath
+        };
+    } @files;
+
+    $self->render( 'analysis', setups => \@setups, car => $car );
+};
+
+app->start;

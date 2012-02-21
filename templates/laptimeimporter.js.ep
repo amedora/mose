@@ -1,7 +1,10 @@
+%# vim:set ts=2 sw=2 ft=javascript:
 $('tr td:nth-child(2)').map(function(){
 	$(this).before(
 		'<td><input type="checkbox" value="' + $(this).text() + '" checked/></td>'
 	);
 });
 
-
+$('.laps_table').wrap('<form id="form_lap"></form>');
+alert("<%= $server %>");
+alert("<%= $port %>");

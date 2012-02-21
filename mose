@@ -200,8 +200,8 @@ sub _render_undef {
 plugin Config => { file => 'mose.conf' };
 
 get '/test' => sub {
-	my $self = shift;
-	$self->render(text => $self->tx->local_port());
+    my $self = shift;
+    $self->render( text => $self->tx->local_port() );
 };
 
 any '/render/:graph' => sub {
@@ -276,8 +276,12 @@ get '/analysis/:car' => sub {
 };
 
 get '/laptimeimporter' => sub {
-	my $self = shift;
-	$self->render('laptimeimporter');
+    my $self = shift;
+    $self->render(
+        'laptimeimporter',
+        server => $self->tx->local_address,
+        port   => $self->tx->local_port
+    );
 };
 
 app->start;

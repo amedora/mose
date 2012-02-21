@@ -199,6 +199,11 @@ sub _render_undef {
 
 plugin Config => { file => 'mose.conf' };
 
+get '/test' => sub {
+	my $self = shift;
+	$self->render(text => $self->tx->local_port());
+};
+
 any '/render/:graph' => sub {
     my $self = shift;
     $self->render(
@@ -268,6 +273,11 @@ get '/analysis/:car' => sub {
     } @files;
 
     $self->render( 'analysis', setups => \@setups, car => $car );
+};
+
+get '/laptimeimporter' => sub {
+	my $self = shift;
+	$self->render('laptimeimporter');
 };
 
 app->start;

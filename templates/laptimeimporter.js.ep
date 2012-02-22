@@ -1,10 +1,23 @@
-%# vim:set ts=2 sw=2 ft=javascript:
-$('tr td:nth-child(2)').map(function(){
+%# vim:set ts=4 sw=4 ft=javascript:
+function importlaptime () {
+    $.ajax({
+		type : 'POST',
+		dataType : 'text',
+	  	url : 'http://<%= $server %>:<%= $port %>/importlaptime?setup=' + $('#setup').text() + '&' + $('#form_lap').serialize(),
+		complete : function () {
+		  alert("Done.");
+		}
+    });
+}
+
+$('tr td:nth-child(2)').map(function () {
 	$(this).before(
-		'<td><input type="checkbox" value="' + $(this).text() + '" checked/></td>'
-	);
+		'<td><input type="checkbox" name="laptime" value="' + $(this).text() + '" checked/></td>'
+	); 
 });
 
+$('.laps_table').append(
+	'<input type="button" value="Import" onclick="importlaptime();return false;"/>'
+);
+
 $('.laps_table').wrap('<form id="form_lap"></form>');
-alert("<%= $server %>");
-alert("<%= $port %>");

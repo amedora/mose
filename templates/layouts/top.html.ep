@@ -14,7 +14,6 @@
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
-
     </style>
 		<link href="/css/bootstrap-responsive.css" rel="stylesheet">
 		<script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
@@ -38,10 +37,10 @@
 					<div class="nav-collapse">
             <ul class="nav">
 							<li class="active">
-								<a href="#"><i class="icon-th-list icon-white"></i> Data & Analysis</a>
+								<a href="/analysis/latemodel"><i class="icon-th-list icon-white"></i> Data & Analysis</a>
 							</li>
 							<li>
-								<a href="#about"><i class="icon-time icon-white"></i> Laptime Manager</a>
+								<a href="/laptimemanager/latemodel"><i class="icon-time icon-white"></i> Laptime Manager</a>
 							</li>
 							<li>
 								<a href="#contact"><i class="icon-cog icon-white"></i> Options</a>

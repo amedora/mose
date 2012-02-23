@@ -211,7 +211,7 @@ any '/render/:graph' => sub {
             $self->param('graph'),
             $self->param('car'),
             map {
-                    $self->stash('config')->{basedir} . '/'
+                    $self->stash('config')->{setupdir} . '/'
                   . $self->param('car')
                   . $_;
               } $self->param('file_selected')
@@ -222,7 +222,7 @@ any '/render/:graph' => sub {
 any '/value' => sub {
     my $self  = shift;
     my @files = map {
-        $self->stash('config')->{basedir} . '/' . $self->param('car') . $_;
+        $self->stash('config')->{setupdir} . '/' . $self->param('car') . $_;
     } $self->param('file_selected');
     my @setups;
     push @setups, IRacing::Setup::Parser->new($_) foreach @files;
@@ -257,7 +257,7 @@ get '/' => sub {
 get '/analysis/:car' => sub {
     my $self      = shift;
     my $car       = $self->param('car');
-    my $searchdir = $self->stash('config')->{basedir} . '/' . $car;
+    my $searchdir = $self->stash('config')->{setupdir} . '/' . $car;
     my @files     = File::Find::Rule->file()->name('*.htm')->in($searchdir);
     my $i;
     my @setups = map {
@@ -278,7 +278,7 @@ get '/analysis/:car' => sub {
 get '/laptimemanager/:car' => sub {
     my $self      = shift;
     my $car       = $self->param('car');
-    my $searchdir = $self->stash('config')->{basedir} . '/' . $car;
+    my $searchdir = $self->stash('config')->{setupdir} . '/' . $car;
     my @files     = File::Find::Rule->file()->name('*.htm')->in($searchdir);
     my $i;
     my @setups = map {
@@ -294,6 +294,16 @@ get '/laptimemanager/:car' => sub {
     } @files;
 
     $self->render( 'laptimemanager', setups => \@setups, car => $car );
+};
+
+any '/listlaptime' => sub {
+    my $self = shift;
+    $self->render(
+        'laptimemanager-list',
+        setup  => $self->param('file_selected'),
+        server => $self->tx->local_address,
+        port   => $self->tx->local_port
+    );
 };
 
 get '/laptimeimporter' => sub {

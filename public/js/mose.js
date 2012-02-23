@@ -1,5 +1,6 @@
 /* vim:set ts=4 sw=4: */
 var tableValue;
+var tableLaptime;
 var opt_graph;
 $(function () {
     opt_graph = {
@@ -312,6 +313,23 @@ function get_value() {
 		success : function (html) {
             $('#tablevalue').replaceWith('<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="tablevalue">' + html + '</table>');
 			tableValue = $('#tablevalue').dataTable({
+                "sDom" : "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>", "sPaginationType" : "bootstrap", "oLanguage" : {
+                    "sLengthMenu" : "_MENU_ records per page"
+                }
+            }); 
+        }
+    });
+}
+
+function listlaptime() {
+	if (!!tableLaptime) {
+		tableLaptime.fnDestroy();
+	}
+    $.ajax({
+        url : '/listlaptime?' + $('#form_fileselect').serialize(),
+		success : function (html) {
+            $('#laptime-list').replaceWith('<div id="laptime-list">' + html + '</div>');
+			tableLaptime = $('#tablelaptime').dataTable({
                 "sDom" : "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>", "sPaginationType" : "bootstrap", "oLanguage" : {
                     "sLengthMenu" : "_MENU_ records per page"
                 }

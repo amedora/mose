@@ -4,7 +4,46 @@ var tableLaptime;
 var opt_graph;
 $(function () {
     opt_graph = {
-        front_rideheight : {
+        laptime : {
+            chart : {
+                renderTo : 'render_laptime', defaultSeriesType : 'line'
+            }
+            , title : {
+                text : 'Lap Time'
+            }
+            , tooltip : {
+				formatter : function () {
+					var mil = this.point.y;
+					var min = Math.round(mil / 60000);
+					mil -= (min * 60000);
+					var sec = mil / 1000;
+					return '<b>' + this.series.name + '</b><br/>'
+						+ 'Lap: ' + this.point.x + '<br/>'
+						+ 'Time: ' + min + ':' + sec;
+				}
+			}
+            , xAxis : {
+				title : {
+					text : 'lap'
+				}
+			}
+            , yAxis : {
+                title : {
+                    text : 'time'
+                }
+				, labels : {
+					formatter : function () {
+						var mil = this.value;
+						var min = Math.round(mil / 60000);
+						mil -= (min * 60000);
+						var sec = mil / 1000;
+						return min + ':' + sec;
+					}
+				}
+            }
+            , series : []
+        }
+        , front_rideheight : {
             chart : {
                 renderTo : 'render_front_rideheight', defaultSeriesType : 'line'
             }
@@ -295,6 +334,16 @@ $(function () {
     };
 }
 );
+
+function render_laptime() {
+    $.ajax({
+        url : '/render_laptime?' + $('#form_fileselect').serialize(),
+		success : function (json) {
+            opt_graph['laptime'].series = json.series;
+			graph_laptime = new Highcharts.Chart(opt_graph['laptime']); 
+        }
+    });
+}
 
 function render(graph_type) {
     $.ajax({

@@ -1,9 +1,12 @@
 %# vim:set ts=4 sw=4 ft=javascript:
 function importlaptime () {
     $.ajax({
-		type : 'POST',
+		type : 'GET',
 		dataType : 'text',
-	  	url : 'http://<%= $server %>:<%= $port %>/importlaptime?setup=' + $('#setup').text() + '&' + $('#form_lap').serialize(),
+	  	url : 'http://<%= $server %>:<%= $port %>/importlaptime'
+			+ '?setup=' + encodeURIComponent($('#setup').text())
+			+ '&car=' + encodeURIComponent($('#car').text())
+			+ '&' + $('#form_lap').serialize(),
 		complete : function () {
 		  alert("Done.");
 		}

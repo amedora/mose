@@ -19,6 +19,7 @@ $(document).ready(function () {
 	});
 	$('#show').bind('click', function () {
 		get_value();
+		render_laptime();
 		render('front_rideheight');
 		render('rear_rideheight');
 		render('rideheight_relation');
@@ -100,6 +101,7 @@ $(document).ready(function () {
 		</table>
 	</div> <!-- tab-data -->
 	<div class="tab-pane" id="tab-laptime">
+		<%= include 'analysis-tab-laptime' %>
 	</div> <!-- tab-analysis -->
 </div> <!-- tab-content -->
 

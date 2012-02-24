@@ -3,6 +3,7 @@
 use Mojolicious::Lite;
 use File::Basename;
 use File::Find::Rule;
+use YAML;
 use Data::Dumper;
 
 use lib './lib';
@@ -194,6 +195,43 @@ sub _render_right_tiretemp_avg {
     );
 }
 
+sub _laptime_in_milisec {
+	my $format = shift;
+	my ($min, $sec) = split /:/, $format;
+	$min = $min * 60 * 1000;
+	$sec = $sec * 1000;
+	return $min + $sec;
+}
+
+sub _render_laptime {
+    my ( $dir, $car, @files ) = @_;
+    my $ret = { series => [] };
+    foreach my $filename (@files) {
+        $filename = ( fileparse($filename) )[0] . '.yaml';
+        my $fullpath = $dir . '/' . $car . '/' . $filename;
+        if ( !-f $fullpath ) {
+            push @{ $ret->{series} },
+              +{
+                name => $filename,
+                data => [],
+              };
+        }
+        else {
+            my $record = YAML::LoadFile($fullpath);
+            while ( my ( $s, $r ) = each %{$record} ) {
+                next unless $r->{mark};
+                push @{ $ret->{series} },
+                  +{
+                    name => $filename,
+                    data => [ map { _laptime_in_milisec($_) } @{ $r->{laptime} } ],
+                  };
+                last;
+            }
+        }
+    }
+    return $ret;
+}
+
 sub _render_undef {
 }
 
@@ -202,6 +240,16 @@ plugin Config => { file => 'mose.conf' };
 get '/test' => sub {
     my $self = shift;
     $self->render( text => $self->tx->local_port() );
+};
+
+any '/render_laptime' => sub {
+    my $self = shift;
+    $self->render(
+        json => _render_laptime(
+            $self->stash('config')->{laptimedir}, $self->param('car'),
+            $self->param('file_selected')
+        )
+    );
 };
 
 any '/render/:graph' => sub {
@@ -297,10 +345,18 @@ get '/laptimemanager/:car' => sub {
 };
 
 any '/listlaptime' => sub {
-    my $self = shift;
+    my $self   = shift;
+    my $record = {};
+    my $laptimefile =
+        $self->stash('config')->{laptimedir} . '/'
+      . $self->param('car') . '/'
+      . $self->param('file_selected') . '.yaml';
+    $record = YAML::LoadFile($laptimefile) if -f $laptimefile;
     $self->render(
         'laptimemanager-list',
         setup  => $self->param('file_selected'),
+        car    => $self->param('car'),
+        record => $record,
         server => $self->tx->local_address,
         port   => $self->tx->local_port
     );
@@ -315,10 +371,23 @@ get '/laptimeimporter' => sub {
     );
 };
 
-post '/importlaptime' => sub {
-	my $self = shift;
-	print Dumper $self->param('laptime');
-	$self->render(text => 'finish');
+get '/importlaptime' => sub {
+    my $self   = shift;
+    my $record = {};
+    my $laptimefile =
+        $self->stash('config')->{laptimedir} . '/'
+      . $self->param('car') . '/'
+      . $self->param('setup') . '.yaml';
+    $record = YAML::LoadFile($laptimefile) if -f $laptimefile;
+
+    $record->{123} = {
+        laptime => [ $self->param('laptime') ],
+        fastest => '00:00.000',
+        average => '00:00.000',
+        mark    => 0,
+    };
+    YAML::DumpFile( $laptimefile, $record );
+    $self->render( text => 'finish' );
 };
 
 app->start;

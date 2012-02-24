@@ -39,7 +39,7 @@ $(document).ready(function () {
 				<tbody>
 					<% foreach my $s (@$setups) { %>
 						<tr>
-							<td style="padding: 4px"><input type="radio" name="file_selected" value="$s->{filename} %>"/></td>
+							<td style="padding: 4px"><input type="radio" name="file_selected" value="<%= $s->{filename} %>"/></td>
 							<td style="padding: 4px"><%= $s->{filename}%></td>
 							<td style="padding: 4px"><%= $s->{dir} %></td>
 						</tr>

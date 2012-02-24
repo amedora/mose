@@ -1,5 +1,6 @@
 # vim:set sw=4 ts=4 ft=perl:
 #!/usr/bin/env perl
+use List::Util qw/minstr sum/;
 use Mojolicious::Lite;
 use File::Basename;
 use File::Find::Rule;
@@ -196,11 +197,11 @@ sub _render_right_tiretemp_avg {
 }
 
 sub _laptime_in_milisec {
-	my $format = shift;
-	my ($min, $sec) = split /:/, $format;
-	$min = $min * 60 * 1000;
-	$sec = $sec * 1000;
-	return $min + $sec;
+    my $format = shift;
+    my ( $min, $sec ) = split /:/, $format;
+    $min = $min * 60 * 1000;
+    $sec = $sec * 1000;
+    return $min + $sec;
 }
 
 sub _render_laptime {
@@ -223,7 +224,8 @@ sub _render_laptime {
                 push @{ $ret->{series} },
                   +{
                     name => $filename,
-                    data => [ map { _laptime_in_milisec($_) } @{ $r->{laptime} } ],
+                    data =>
+                      [ map { _laptime_in_milisec($_) } @{ $r->{laptime} } ],
                   };
                 last;
             }
@@ -379,11 +381,16 @@ get '/importlaptime' => sub {
       . $self->param('car') . '/'
       . $self->param('setup') . '.yaml';
     $record = YAML::LoadFile($laptimefile) if -f $laptimefile;
-
+    my @lap = $self->param('laptime');
+    my $avg =
+      int( sum( map { _laptime_in_milisec($_) } @lap ) / ( $#lap + 1 ) );
+    my $min = sprintf "%02d", int( $avg / 60000 );
+    $avg -= $min * 60000;
+    my $sec = $avg / 1000;
     $record->{123} = {
-        laptime => [ $self->param('laptime') ],
-        fastest => '00:00.000',
-        average => '00:00.000',
+        laptime => [@lap],
+        fastest => minstr( map { $_ . "" } @lap ),
+        average => "$min:$sec",
         mark    => 0,
     };
     YAML::DumpFile( $laptimefile, $record );

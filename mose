@@ -239,11 +239,6 @@ sub _render_undef {
 
 plugin Config => { file => 'mose.conf' };
 
-get '/test' => sub {
-    my $self = shift;
-    $self->render( text => $self->tx->local_port() );
-};
-
 any '/render_laptime' => sub {
     my $self = shift;
     $self->render(
@@ -269,7 +264,7 @@ any '/render/:graph' => sub {
     );
 };
 
-any '/value' => sub {
+get '/value' => sub {
     my $self  = shift;
     my @files = map {
         $self->stash('config')->{setupdir} . '/' . $self->param('car') . $_;
@@ -309,13 +304,11 @@ get '/analysis/:car' => sub {
     my $car       = $self->param('car');
     my $searchdir = $self->stash('config')->{setupdir} . '/' . $car;
     my @files     = File::Find::Rule->file()->name('*.htm')->in($searchdir);
-    my $i;
     my @setups = map {
         my $fullpath = $_;
         my ( $filename, $dir ) = fileparse($fullpath);
         $dir =~ s/.*?$car//;
         +{
-            id       => $i++,
             filename => $filename,
             dir      => $dir,
             fullpath => $fullpath

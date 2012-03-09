@@ -358,6 +358,7 @@ function render(graph_type) {
 function get_value() {
     tableValue.fnDestroy();
     $.ajax({
+		type : 'GET',
         url : '/value?' + $('#form_fileselect').serialize(),
 		success : function (html) {
             $('#tablevalue').replaceWith('<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="tablevalue">' + html + '</table>');

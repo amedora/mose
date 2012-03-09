@@ -1,0 +1,29 @@
+%# vim:set ts=2 sw=2 ft=html:
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="tabledata">
+	<thead>
+		<tr>
+			<th>Category</th>
+			<th>Section</th>
+			<th>Component</th>
+			<% foreach (@{$setups}) { %>
+				<th style="font-size: 10px;"><%= $_->file_name() %></th>
+			<% } %>
+		</tr>
+	</thead>
+	<tbody>
+		<% foreach my $cat ( $setups->[0]->categories ) { %>
+			<% foreach my $sec ( $setups->[0]->sections($cat) ) { %>
+				<% foreach my $compo ( $setups->[0]->components( $cat, $sec ) ) { %>
+					<tr>
+						<td><%= $cat %></td>
+						<td><%= $sec %></td>
+						<td><%= $compo %></td>
+						<% foreach my $setup (@{$setups}) { %>
+							<td><%= $setup->data( $cat => $sec => $compo ) %></td>
+						<% } %>
+					</tr>
+				<% } %>
+			<% } %>
+		<% } %>
+	</tbody>
+</table>

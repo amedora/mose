@@ -40,6 +40,7 @@ $(function () {
 						return min + ':' + sec;
 					}
 				}
+				, minorTickInterval: 'auto'
             }
             , series : []
         }
@@ -294,7 +295,7 @@ $(function () {
                 renderTo : 'render_left_spring_package', defaultSeriesType : 'bar'
             }
             , title : {
-                text : 'Spring Package (Left Side)'
+                text : 'Spring Rate (Left Side)'
             }
             , xAxis : {
                 categories : ['Front', 'Rear'],
@@ -316,7 +317,7 @@ $(function () {
                 renderTo : 'render_right_spring_package', defaultSeriesType : 'bar'
             }
             , title : {
-                text : 'Spring Package (Right Side)'
+                text : 'Spring Rate (Right Side)'
             }
             , xAxis : {
                 categories : ['Front', 'Rear']

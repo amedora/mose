@@ -264,32 +264,14 @@ any '/render/:graph' => sub {
     );
 };
 
-get '/value' => sub {
+get '/datatable' => sub {
     my $self  = shift;
     my @files = map {
         $self->stash('config')->{setupdir} . '/' . $self->param('car') . $_;
     } $self->param('file_selected');
     my @setups;
     push @setups, IRacing::Setup::Parser->new($_) foreach @files;
-    my $ret = '<thead><tr><th>Category</th><th>Section</th><th>Component</th>';
-    $ret .= '<th style="font-size: 10px;">' . $_->file_name() . '</th>'
-      foreach @setups;
-    $ret .= '</tr></thead><tbody>';
-
-    foreach my $cat ( $setups[0]->categories ) {
-        foreach my $sec ( $setups[0]->sections($cat) ) {
-            foreach my $compo ( $setups[0]->components( $cat, $sec ) ) {
-                $ret .= "<tr><td>$cat</td><td>$sec</td><td>$compo</td>";
-                foreach my $setup (@setups) {
-                    $ret .=
-                      '<td>' . $setup->data( $cat => $sec => $compo ) . '</td>';
-                }
-                $ret .= '</tr>';
-            }
-        }
-    }
-    $ret .= '</tbody>';
-    $self->render( text => $ret );
+    $self->render( setups => \@setups );
 };
 
 get '/' => sub {
@@ -304,7 +286,7 @@ get '/analysis/:car' => sub {
     my $car       = $self->param('car');
     my $searchdir = $self->stash('config')->{setupdir} . '/' . $car;
     my @files     = File::Find::Rule->file()->name('*.htm')->in($searchdir);
-    my @setups = map {
+    my @setups    = map {
         my $fullpath = $_;
         my ( $filename, $dir ) = fileparse($fullpath);
         $dir =~ s/.*?$car//;

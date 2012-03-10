@@ -333,19 +333,13 @@ any '/listlaptime' => sub {
         'laptimemanager-list',
         setup  => $self->param('file_selected'),
         car    => $self->param('car'),
-        record => $record,
-        server => $self->tx->local_address,
-        port   => $self->tx->local_port
+        record => $record
     );
 };
 
 get '/laptimeimporter' => sub {
     my $self = shift;
-    $self->render(
-        'laptimeimporter',
-        server => $self->tx->local_address,
-        port   => $self->tx->local_port
-    );
+    $self->render( 'laptimeimporter' );
 };
 
 get '/importlaptime' => sub {

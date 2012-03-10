@@ -2,6 +2,21 @@
 <div class="accordion" id="carlist">
 	<div class="accordion-group">
 		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#ClassA">
+				Class A
+			</a>
+		</div>
+		<div id="ClassA" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<ul>
+					<li><a href="">Chevrolet Impala SS</a></li>
+					<li><a href="">Williams FW31</a></li>
+				</ul>
+			</div> <!-- accordion-inner -->
+		</div> <!-- accordion-body -->
+	</div> <!-- accordion-group -->
+	<div class="accordion-group">
+		<div class="accordion-heading">
 			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#ClassB">
 				Class B
 			</a>
@@ -9,7 +24,7 @@
 		<div id="ClassB" class="accordion-body collapse">
 			<div class="accordion-inner">
 				<ul>
-					<li><a href="/analysis/stockcars2%20chevy%20cot">Chevrolet Impala SS B COT</a></li>
+					<li><a href="<%= url_for '/analysis/stockcars2%20chevy%20cot' %>">Chevrolet Impala SS B COT</a></li>
 					<li><a href="">Chevrolet Impala SS B Nationwide</a></li>
 					<li><a href="">Silver Crown</a></li>
 					<li><a href="">Sprint Car</a></li>
@@ -24,6 +39,24 @@
 	</div> <!-- accordion-group -->
 	<div class="accordion-group">
 		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#ClassC">
+				Class C
+			</a>
+		</div>
+		<div id="ClassC" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<ul>
+					<li><a href="">Chevrolet Silverado</a></li>
+					<li><a href="">Tour Modified</a></li>
+					<li><a href="">Radical SR8 V8</a></li>
+					<li><a href="">Ford Falcon V8 Supercar</a></li>
+					<li><a href="">Star Mazda</a></li>
+				</ul>
+			</div> <!-- accordion-inner -->
+		</div> <!-- accordion-body -->
+	</div> <!-- accordion-group -->
+	<div class="accordion-group">
+		<div class="accordion-heading">
 			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#ClassD">
 				Class D
 			</a>
@@ -31,10 +64,28 @@
 		<div id="ClassD" class="accordion-body collapse">
 			<div class="accordion-inner">
 				<ul>
-					<li><a href="/analysis/latemodel">Chevrolet Monte-Carlo SS</a></li>
+					<li><a href="<%= url_for '/analysis/latemodel' %>">Chevrolet Monte-Carlo SS</a></li>
 					<li><a href="">SK Modified</a></li>
 					<li><a href="">Ford Mustang</a></li>
 					<li><a href="">Skip Barber Formula 2000</a></li>
+				</ul>
+			</div> <!-- accordion-inner -->
+		</div> <!-- accordion-body -->
+	</div> <!-- accordion-group -->
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#Rookie">
+				Rookie
+			</a>
+		</div>
+		<div id="Rookie" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<ul>
+					<li><a href="">Legends Ford '34 Coupe</a></li>
+					<li><a href="">Street Stock</a></li>
+					<li><a href="">Mazda MX-5/Roadster</a></li>
+					<li><a href="">Pontiac Solstice</a></li>
+					<li><a href="">SCCA Spec Racer Ford</a></li>
 				</ul>
 			</div> <!-- accordion-inner -->
 		</div> <!-- accordion-body -->

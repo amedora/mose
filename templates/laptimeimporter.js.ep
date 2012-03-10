@@ -3,7 +3,7 @@ function importlaptime () {
     $.ajax({
 		type : 'GET',
 		dataType : 'text',
-	  	url : 'http://<%= $server %>:<%= $port %>/importlaptime'
+	  	url : '<%= url_for '/importlaptime' %>'
 			+ '?setup=' + encodeURIComponent($('#setup').text())
 			+ '&car=' + encodeURIComponent($('#car').text())
 			+ '&' + $('#form_lap').serialize(),

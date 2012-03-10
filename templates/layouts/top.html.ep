@@ -7,20 +7,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/docs.css" rel="stylesheet">
-    <link href="/css/DT_bootstrap.css" rel="stylesheet">
+		<link href="<%= url_for '/css/bootstrap.css' %>" rel="stylesheet">
+		<link href="<%= url_for '/css/docs.css' %>" rel="stylesheet">
+		<link href="<%= url_for '/css/DT_bootstrap.css' %>" rel="stylesheet">
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
     </style>
-		<link href="/css/bootstrap-responsive.css" rel="stylesheet">
-		<script type="text/javascript" src="/js/jquery-1.7.1.min.js"></script>
-		<script type="text/javascript" src="/js/jquery.dataTables.js"></script>
-		<script type="text/javascript" src="/js/DT_bootstrap.js"></script>
-		<script type="text/javascript" src="/js/highcharts.js"></script>
-		<script type="text/javascript" src="/js/mose.js"></script>
+		<link href="<%= url_for '/css/bootstrap-responsive.css' %>" rel="stylesheet">
+		<script type="text/javascript" src="<%= url_for '/js/jquery-1.7.1.min.js' %>"></script>
+		<script type="text/javascript" src="<%= url_for '/js/jquery.dataTables.js' %>"></script>
+		<script type="text/javascript" src="<%= url_for '/js/DT_bootstrap.js' %>"></script>
+		<script type="text/javascript" src="<%= url_for '/js/highcharts.js' %>"></script>
+		<script type="text/javascript" src="<%= url_for '/js/mose.js' %>"></script>
   </head>
 
   <body data-spy="scroll" data-target=".subnav" data-offset="50">
@@ -37,10 +37,10 @@
 					<div class="nav-collapse">
             <ul class="nav">
 							<li class="active">
-								<a href="/analysis/latemodel"><i class="icon-th-list icon-white"></i> Data & Analysis</a>
+								<a href="<%= url_for '/analysis/latemodel' %>"><i class="icon-th-list icon-white"></i> Data & Analysis</a>
 							</li>
 							<li>
-								<a href="/laptimemanager/latemodel"><i class="icon-time icon-white"></i> Laptime Manager</a>
+							<a href="<%= url_for '/laptimemanager/latemodel' %>"><i class="icon-time icon-white"></i> Laptime Manager</a>
 							</li>
 							<li>
 								<a href="#contact"><i class="icon-cog icon-white"></i> Options</a>
@@ -58,7 +58,6 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/js/bootstrap.min.js"></script>
+		<script src="<%= url_for '/js/bootstrap.min.js' %>"></script>
   </body>
 </html>
-<!-- vim:set ts=2 sw=2 ft=html -->

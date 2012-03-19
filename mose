@@ -300,7 +300,10 @@ get '/analysis/:car' => sub {
     $self->render( 'analysis', setups => \@setups, car => $car );
 };
 
-get '/laptimemanager/:car' => sub {
+#----------------------------------------
+# Laptime related functions
+#----------------------------------------
+get '/laptime/manager/:car' => sub {
     my $self      = shift;
     my $car       = $self->param('car');
     my $searchdir = $self->stash('config')->{setupdir} . '/' . $car;
@@ -318,10 +321,10 @@ get '/laptimemanager/:car' => sub {
         };
     } @files;
 
-    $self->render( 'laptimemanager', setups => \@setups, car => $car );
+	$self->render( 'laptime/manager', setups => \@setups, car => $car );
 };
 
-any '/listlaptime' => sub {
+any '/laptime/list' => sub {
     my $self   = shift;
     my $record = {};
     my $laptimefile =
@@ -330,19 +333,22 @@ any '/listlaptime' => sub {
       . $self->param('file_selected') . '.yaml';
     $record = YAML::LoadFile($laptimefile) if -f $laptimefile;
     $self->render(
-        'laptimemanager-list',
+        'laptime/list',
         setup  => $self->param('file_selected'),
         car    => $self->param('car'),
         record => $record
     );
 };
 
-get '/laptimeimporter' => sub {
-    my $self = shift;
-    $self->render( 'laptimeimporter' );
+get '/laptime/importer' => sub {
+	my $self = shift;
+	$self->respond_to (
+		js => {template => 'laptime/importer'},
+		any => { text => '', status => 204},
+	);
 };
 
-get '/importlaptime' => sub {
+get '/laptime/import' => sub {
     my $self   = shift;
     my $record = {};
     my $laptimefile =

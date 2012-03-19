@@ -378,7 +378,7 @@ function listlaptime() {
 		tableLaptime.fnDestroy();
 	}
     $.ajax({
-        url : '/listlaptime?' + $('#form_fileselect').serialize(),
+        url : '/laptime/list?' + $('#form_fileselect').serialize(),
 		success : function (html) {
             $('#laptime-list').replaceWith('<div id="laptime-list">' + html + '</div>');
 			tableLaptime = $('#tablelaptime').dataTable({

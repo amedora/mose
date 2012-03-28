@@ -350,6 +350,7 @@ get '/laptime/importer' => sub {
 
 get '/laptime/modal' => sub {
 	my $self = shift;
+	$self->res->headers->header('Access-Control-Allow-Origin' => '*');
 	$self->render('laptime/modal');
 };
 

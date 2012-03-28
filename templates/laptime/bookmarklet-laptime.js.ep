@@ -1,4 +1,4 @@
-%# vim:set ts=2 sw=2 ft=javascript:
+%# vim:set ts=4 sw=4 ft=javascript:
 javascript:( function(){
 		var j = document.createElement('script');
 		j.charset='UTF-8';

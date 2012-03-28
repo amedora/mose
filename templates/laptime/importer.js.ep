@@ -13,14 +13,54 @@ function importlaptime () {
     });
 }
 
-$('tr td:nth-child(2)').map(function () {
-	$(this).before(
-		'<td><input type="checkbox" name="laptime" value="' + $(this).text() + '" checked/></td>'
-	); 
+/*
+function loadmodal () {
+}
+*/
+$(document).ready(function () {
+	$('head').append('<link>');
+	var css = $('head').children(':last');
+	css.attr({
+		rel: 'stylesheet',
+		type: 'text/css',
+		href: '<%= url_for("/css/bootstrap.css")->to_abs %>'
+	});
+
+	$('body').append('<div id="myModal"></div>');
+
+	$('.laps_table').append(
+		'<a class="btn btn-primary btn-large" href="#myModal" data-toggle="modal">Launch</a>'
+	);
+
+	$('tr td:nth-child(2)').map(function () {
+		$(this).before(
+			'<td><input type="checkbox" name="laptime" value="' + $(this).text() + '" checked/></td>'
+		); 
+	});
+
+	$('.laps_table').append(
+		'<input type="button" value="Import" onclick="importlaptime();return false;"/>'
+	);
+
+	$('.laps_table').wrap('<form id="form_lap"></form>');
+
+	/* loadmodal();*/
+    $.ajax({
+		type : 'GET',
+		dataType : 'text',
+	  	url : '<%= url_for("/laptime/modal")->to_abs %>',
+		complete : function (html) {
+			$('#myModal').replaceWith(html);
+			alert(html);
+		},
+		error : function (x, e, o) {
+			alert(o);
+		}
+    });
 });
 
-$('.laps_table').append(
-	'<input type="button" value="Import" onclick="importlaptime();return false;"/>'
-);
 
-$('.laps_table').wrap('<form id="form_lap"></form>');
+var bootstrap = document.createElement('script');
+bootstrap.charset='UTF-8';
+bootstrap.src='<%= url_for("/js/bootstrap.min.js")->to_abs %>';
+document.body.appendChild(bootstrap);

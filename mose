@@ -348,6 +348,11 @@ get '/laptime/importer' => sub {
 	);
 };
 
+get '/laptime/modal' => sub {
+	my $self = shift;
+	$self->render('laptime/modal');
+};
+
 get '/laptime/import' => sub {
     my $self   = shift;
     my $record = {};

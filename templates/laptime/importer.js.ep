@@ -13,10 +13,18 @@ function importlaptime () {
     });
 }
 
-/*
 function loadmodal () {
+    $.ajax({
+		type : 'GET',
+		dataType : 'html',
+		cache : false,
+	  	url : '<%= url_for("/laptime/modal")->to_abs %>',
+		success : function (html) {
+			$('#myModal').replaceWith(html);
+		}
+    });
 }
-*/
+
 $(document).ready(function () {
 	$('head').append('<link>');
 	var css = $('head').children(':last');
@@ -44,19 +52,7 @@ $(document).ready(function () {
 
 	$('.laps_table').wrap('<form id="form_lap"></form>');
 
-	/* loadmodal();*/
-    $.ajax({
-		type : 'GET',
-		dataType : 'text',
-	  	url : '<%= url_for("/laptime/modal")->to_abs %>',
-		complete : function (html) {
-			$('#myModal').replaceWith(html);
-			alert(html);
-		},
-		error : function (x, e, o) {
-			alert(o);
-		}
-    });
+	loadmodal();
 });
 
 

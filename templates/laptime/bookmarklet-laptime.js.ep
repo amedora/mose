@@ -1,0 +1,20 @@
+%# vim:set ts=2 sw=2 ft=javascript:
+javascript:( function(){
+		var j = document.createElement('script');
+		j.charset='UTF-8';
+		j.src='<%= url_for("/js/jquery-1.7.1.min.js")->to_abs %>';
+		document.body.appendChild(j);
+		var s = document.createElement('script');
+		s.charset='UTF-8';
+		s.src='<%= url_for("/laptime/importer.js")->to_abs %>';
+		document.body.appendChild(s);
+		var f = document.createElement('p');
+		f.id = 'setup';
+		f.innerHTML = '<%= $setup %>';
+		document.body.appendChild(f);
+		var c = document.createElement('p');
+		c.id = 'car';
+		c.innerHTML = '<%= $car %>';
+		document.body.appendChild(c);
+	}
+)();

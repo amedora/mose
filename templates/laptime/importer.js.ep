@@ -20,7 +20,8 @@ function loadmodal () {
 		cache : false,
 	  	url : '<%= url_for("/laptime/modal")->to_abs %>',
 		success : function (html) {
-			$('#myModal').replaceWith(html);
+			$('#modalImporter').replaceWith(html);
+			$('#modalImporter').modal('show');
 		}
     });
 }
@@ -34,11 +35,7 @@ $(document).ready(function () {
 		href: '<%= url_for("/css/bootstrap.css")->to_abs %>'
 	});
 
-	$('body').append('<div id="myModal"></div>');
-
-	$('.laps_table').append(
-		'<a class="btn btn-primary btn-large" href="#myModal" data-toggle="modal">Launch</a>'
-	);
+	$('body').append('<div id="modalImporter"></div>');
 
 	$('tr td:nth-child(2)').map(function () {
 		$(this).before(

@@ -1,39 +1,36 @@
 %# vim:set ts=4 sw=4 ft=javascript:
+var carname;
+
 function importlaptime () {
     $.ajax({
 		type : 'GET',
 		dataType : 'text',
 	  	url : '<%= url_for('/laptime/import')->to_abs %>'
 			+ '?setup=' + encodeURIComponent($('#setup').text())
-			+ '&car=' + encodeURIComponent($('#car').text())
-			+ '&' + $('#form_lap').serialize(),
+			+ '&car=' + encodeURIComponent($('#carName').val())
+			+ '&' + $('#formRecord').serialize(),
 		complete : function () {
 		  alert("Done.");
 		}
     });
 }
 
-function loadmodal () {
-    $.ajax({
-		type : 'GET',
-		dataType : 'html',
-		cache : false,
-	  	url : '<%= url_for("/laptime/modal")->to_abs %>',
-		success : function (html) {
-			$('#modalImporter').replaceWith(html);
-			var numlap = 0;
-			$('div.center table.center tr td:nth-child(2)').map(function () {
-				$('#record').append(
-					'<tr><td><input type="checkbox" checked /></td><td>' + numlap + '</td><td>' + $(this).text() + '</td></tr>'
-				);
-				numlap++;
-			});
-			$('#modalImporter').modal('show');
+function listlaptime () {
+	var numlap = 0;
+	$('div.center table.center tr td:nth-child(2)').map(function () {
+		if (numlap > 0) {
+			$('#record').append(
+				'<tr><td><input type="checkbox" name="laptime" value="'
+					+ $(this).text()
+					+ '" checked /></td><td>' + numlap + '</td><td>' + $(this).text() + '</td></tr>'
+			);
 		}
+		numlap++;
 	});
+	$('#tableRecord').wrap('<form id="formRecord"></form>');
 }
 
-$(document).ready(function () {
+function modal_prepare () {
 	$('head').append('<link>');
 	var css_bs = $('head').children(':last');
 	css_bs.attr({
@@ -51,20 +48,28 @@ $(document).ready(function () {
 	});
 
 	$('body').append('<div id="modalImporter"></div>');
+}
 
-		/*
-		$(this).before(
-			'<td><input type="checkbox" name="laptime" value="' + $(this).text() + '" checked/></td>'
-		); 
-		*/
+function modal_load () {
+    $.ajax({
+		type : 'GET',
+		dataType : 'html',
+		cache : false,
+	  	url : '<%= url_for("/laptime/modal")->to_abs %>',
+		success : function (html) {
+			$('#modalImporter').replaceWith(html);
+			$('.carname').on('click', function () {
+				$('#carName').val($(this).text());
+			});
+			listlaptime();
+			$('#modalImporter').modal('show');
+		}
+	});
+}
 
-	$('.laps_table').append(
-		'<input type="button" value="Import" onclick="importlaptime();return false;"/>'
-	);
-
-	$('.laps_table').wrap('<form id="form_lap"></form>');
-
-	loadmodal();
+$(document).ready(function () {
+	modal_prepare();
+	modal_load();
 });
 
 

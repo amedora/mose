@@ -15,34 +15,35 @@
 			<div class="btn-group">
 				<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"> Class A <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">latemodel</a></li>
+					<li><a href="#" class="carname">latemodel</a></li>
 				</ul>
 			</div>
 			<div class="btn-group">
 				<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"> Class B <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">latemodel</a></li>
+					<li><a href="#" class="carname">latemodel</a></li>
 				</ul>
 			</div>
 			<div class="btn-group">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Class C <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">latemodel</a></li>
+					<li><a href="#" class="carname">latemodel</a></li>
 				</ul>
 			</div>
 			<div class="btn-group">
 				<a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#"> Class D <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">latemodel</a></li>
+					<li><a href="#" class="carname">latemodel</a></li>
 				</ul>
 			</div>
 			<div class="btn-group">
 				<a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#"> Rookie <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">latemodel</a></li>
+					<li><a href="#" class="carname">latemodel</a></li>
 				</ul>
 			</div>
 		</div>
+		<input type="text" disabled="" placeholder="Select the car" id="carName" class="input-xlarge disabled">
 		<h4>Setup</h4>
 		<style>
 			.ui-autocomplete {
@@ -74,7 +75,7 @@
 				<a class="btn" href="#">Unselect All</a>
 			</div>
 		</div>
-		<table class="table table-striped">
+		<table class="table table-striped" id="tableRecord">
 			<thead>
 				<tr>
 					<td> </td>
@@ -87,7 +88,7 @@
 		</table>
 	</div>
 	<div class="modal-footer">
-		<a class="btn btn-primary" href="#">Save changes</a>
+		<a class="btn btn-primary" href="#" onclick="importlaptime();return false;">Import</a>
 		<a data-dismiss="modal" class="btn" href="#">Close</a>
 	</div>
 </div>

@@ -1,18 +1,90 @@
 %# vim:set ts=2 sw=2 ft=html:
+<style>
+	div#modalImporter * {
+		text-align: left;
+	}
+</style>
 <div class="modal hide fade" id="modalImporter">
 	<div class="modal-header">
 		<a data-dismiss="modal" class="close">×</a>
-		<h3 align="left">Import Laptime</h3>
+		<h3>Import Laptime</h3>
 	</div>
 	<div class="modal-body">
-		<h4 align="left">Select Setup File</h4>
-		<input type="file" id="setup" class="input-file">
-		<p class="help-block">Select *.htm file not *.sto file.</p>
-		<h4>Lap Time</h4>
-		<p>This <a data-content="And here's some amazing content. It's very engaging. right?" class="btn popover-test" href="#" data-original-title="A Title">button</a> should trigger a popover on hover.</p>
-
-		<h4>Tooltips in a modal</h4>
-		<p><a class="tooltip-test" href="#" data-original-title="Tooltip">This link</a> and <a class="tooltip-test" href="#" data-original-title="Tooltip">that link</a> should have tooltips on hover.</p>
+		<h4>Car</h4>
+		<div class="btn-toolbar">
+			<div class="btn-group">
+				<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"> Class A <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">latemodel</a></li>
+				</ul>
+			</div>
+			<div class="btn-group">
+				<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"> Class B <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">latemodel</a></li>
+				</ul>
+			</div>
+			<div class="btn-group">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Class C <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">latemodel</a></li>
+				</ul>
+			</div>
+			<div class="btn-group">
+				<a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#"> Class D <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">latemodel</a></li>
+				</ul>
+			</div>
+			<div class="btn-group">
+				<a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#"> Rookie <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">latemodel</a></li>
+				</ul>
+			</div>
+		</div>
+		<h4>Setup</h4>
+		<style>
+			.ui-autocomplete {
+				max-height: 100px;
+				overflow-y: auto;
+				/* prevent horizontal scrollbar */
+				overflow-x: hidden;
+				/* add padding to account for vertical scrollbar */
+				padding-right: 20px;
+				text-align: left;
+			}
+		</style>
+		<script>
+			$(function(){
+				var tags = [ "foo", "bar", "baz", "aaa", "aabcc", "ddef", "efa" ];
+				$("#setup").autocomplete({
+					source : tags
+				});
+			});
+		</script>
+		<p class="help-block">Autocomplete is enabled.</p>
+		<div class="ui-widget">
+			<input id="setup" size="50"/>
+		</div>
+		<h4>Lap time</h4>
+		<div class="btn-toolbar" style="margin-top: 18px;">
+			<div class="btn-group">
+				<a class="btn" href="#">Select All</a>
+				<a class="btn" href="#">Unselect All</a>
+			</div>
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td> </td>
+					<td>Lap</td>
+					<td>Time</td>
+				</tr>
+			</thead>
+			<tbody id="record">
+			</tbody>
+		</table>
 	</div>
 	<div class="modal-footer">
 		<a class="btn btn-primary" href="#">Save changes</a>

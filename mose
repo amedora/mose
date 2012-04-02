@@ -354,6 +354,18 @@ get '/laptime/modal' => sub {
 	$self->render('laptime/modal');
 };
 
+get '/laptime/autocomplete/:car/' => sub {
+	my $self = shift;
+	my $car = $self->param('car');
+	my $term = $self->param('term');
+    my $searchdir = $self->stash('config')->{setupdir} . '/' . $car;
+    my @files     = File::Find::Rule->file()->name("*$term*.htm")->in($searchdir);
+	my $ret = [];
+    @$ret = map { (fileparse($_))[0] } @files;
+	$self->res->headers->header('Access-Control-Allow-Origin' => '*');
+	$self->render(json => $ret);
+};
+
 get '/laptime/import' => sub {
     my $self   = shift;
     my $record = {};

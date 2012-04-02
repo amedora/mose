@@ -36,7 +36,7 @@
           <a class="brand" href="#">mose</a>
 					<div class="nav-collapse">
             <ul class="nav">
-							<li class="active">
+							<li>
 								<a href="<%= url_for '/analysis/latemodel' %>"><i class="icon-th-list icon-white"></i> Data & Analysis</a>
 							</li>
 							<li>

@@ -364,9 +364,10 @@ function get_data() {
 		success : function (html) {
             $('#tabledata').replaceWith(html);
 			tableData = $('#tabledata').dataTable({
+				"iDisplayLength" : 100,
                 "sDom" : "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 				"sPaginationType" : "bootstrap", "oLanguage" : {
-                    "sLengthMenu" : "_MENU_ records per page"
+                    "sLengthMenu" : "_MENU_ components per page"
                 }
             }); 
         }

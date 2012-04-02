@@ -373,18 +373,27 @@ get '/laptime/import' => sub {
         $self->stash('config')->{laptimedir} . '/'
       . $self->param('car') . '/'
       . $self->param('setup') . '.yaml';
-    $record = YAML::LoadFile($laptimefile) if -f $laptimefile;
+
+    # Exctract subsession id
+    $self->param('url') =~ /subsessionid=(\d+)/m;
+    my $subsessionid = $1;
+
+    # Clear 'mark' if laptimes are recorded already.
+    if ( -f $laptimefile ) {
+        $record = YAML::LoadFile($laptimefile);
+        $_->{mark} = 0 foreach ( values %$record );
+    }
     my @lap = $self->param('laptime');
     my $avg =
       int( sum( map { _laptime_in_milisec($_) } @lap ) / ( $#lap + 1 ) );
     my $min = sprintf "%02d", int( $avg / 60000 );
     $avg -= $min * 60000;
     my $sec = $avg / 1000;
-    $record->{123} = {
+    $record->{$subsessionid} = {
         laptime => [@lap],
         fastest => minstr( map { $_ . "" } @lap ),
         average => "$min:$sec",
-        mark    => 0,
+        mark    => 1,
     };
     YAML::DumpFile( $laptimefile, $record );
     $self->render( text => 'finish' );

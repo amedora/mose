@@ -6,7 +6,8 @@ function importlaptime () {
 		type : 'GET',
 		dataType : 'text',
 	  	url : '<%= url_for('/laptime/import')->to_abs %>'
-			+ '?setup=' + encodeURIComponent($('#setup').val())
+			+ '?url=' + encodeURIComponent(document.URL)
+			+ '&setup=' + encodeURIComponent($('#setup').val())
 			+ '&car=' + encodeURIComponent($('#carName').val())
 			+ '&' + $('#formRecord').serialize(),
 		complete : function () {

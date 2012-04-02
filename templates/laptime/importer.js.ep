@@ -28,6 +28,12 @@ function listlaptime () {
 		numlap++;
 	});
 	$('#tableRecord').wrap('<form id="formRecord"></form>');
+	$('#selectAll').on('click', function (){
+		$('#record tr td input').attr('checked', 'checked');
+	});
+	$('#unselectAll').on('click', function (){
+		$('#record tr td input').removeAttr('checked');
+	});
 }
 
 function modal_prepare () {

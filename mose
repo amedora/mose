@@ -321,7 +321,7 @@ get '/laptime/manager/:car' => sub {
         };
     } @files;
 
-	$self->render( 'laptime/manager', setups => \@setups, car => $car );
+    $self->render( 'laptime/manager', setups => \@setups, car => $car );
 };
 
 any '/laptime/list' => sub {
@@ -341,29 +341,29 @@ any '/laptime/list' => sub {
 };
 
 get '/laptime/importer' => sub {
-	my $self = shift;
-	$self->respond_to (
-		js => {template => 'laptime/importer'},
-		any => { text => '', status => 204},
-	);
+    my $self = shift;
+    $self->respond_to(
+        js  => { template => 'laptime/importer' },
+        any => { text     => '', status => 204 },
+    );
 };
 
 get '/laptime/modal' => sub {
-	my $self = shift;
-	$self->res->headers->header('Access-Control-Allow-Origin' => '*');
-	$self->render('laptime/modal');
+    my $self = shift;
+    $self->res->headers->header( 'Access-Control-Allow-Origin' => '*' );
+    $self->render('laptime/modal');
 };
 
 get '/laptime/autocomplete/:car/' => sub {
-	my $self = shift;
-	my $car = $self->param('car');
-	my $term = $self->param('term');
+    my $self      = shift;
+    my $car       = $self->param('car');
+    my $term      = $self->param('term');
     my $searchdir = $self->stash('config')->{setupdir} . '/' . $car;
-    my @files     = File::Find::Rule->file()->name("*$term*.htm")->in($searchdir);
-	my $ret = [];
-    @$ret = map { (fileparse($_))[0] } @files;
-	$self->res->headers->header('Access-Control-Allow-Origin' => '*');
-	$self->render(json => $ret);
+    my @files = File::Find::Rule->file()->name("*$term*.htm")->in($searchdir);
+    my $ret   = [];
+    @$ret = map { ( fileparse($_) )[0] } @files;
+    $self->res->headers->header( 'Access-Control-Allow-Origin' => '*' );
+    $self->render( json => $ret );
 };
 
 get '/laptime/import' => sub {
@@ -390,4 +390,5 @@ get '/laptime/import' => sub {
     $self->render( text => 'finish' );
 };
 
+app->secret('mose');
 app->start;

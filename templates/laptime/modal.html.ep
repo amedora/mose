@@ -70,8 +70,8 @@
 		<h4>Lap time</h4>
 		<div class="btn-toolbar" style="margin-top: 18px;">
 			<div class="btn-group">
-				<a class="btn" href="#">Select All</a>
-				<a class="btn" href="#">Unselect All</a>
+				<a class="btn" href="#" id="selectAll">Select All</a>
+				<a class="btn" href="#" id="unselectAll">Unselect All</a>
 			</div>
 		</div>
 		<table class="table table-striped" id="tableRecord">

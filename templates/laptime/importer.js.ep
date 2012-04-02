@@ -6,7 +6,7 @@ function importlaptime () {
 		type : 'GET',
 		dataType : 'text',
 	  	url : '<%= url_for('/laptime/import')->to_abs %>'
-			+ '?setup=' + encodeURIComponent($('#setup').text())
+			+ '?setup=' + encodeURIComponent($('#setup').val())
 			+ '&car=' + encodeURIComponent($('#carName').val())
 			+ '&' + $('#formRecord').serialize(),
 		complete : function () {
@@ -60,6 +60,7 @@ function modal_load () {
 			$('#modalImporter').replaceWith(html);
 			$('.carname').on('click', function () {
 				$('#carName').val($(this).text());
+				$('#setup').autocomplete('option', 'source', '<%= url_for('/laptime/autocomplete')->to_abs %>' + '/' + $(this).text());
 			});
 			listlaptime();
 			$('#modalImporter').modal('show');

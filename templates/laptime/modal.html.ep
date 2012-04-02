@@ -58,9 +58,8 @@
 		</style>
 		<script>
 			$(function(){
-				var tags = [ "foo", "bar", "baz", "aaa", "aabcc", "ddef", "efa" ];
 				$("#setup").autocomplete({
-					source : tags
+					source : '<%= url_for('/laptime/autocomplete')->to_abs %>/aaa'
 				});
 			});
 		</script>

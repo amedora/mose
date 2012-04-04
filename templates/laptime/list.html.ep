@@ -3,7 +3,6 @@
 	<thead>
 		<tr>
 			<th></th>
-			<th></th>
 			<th>Session ID</th>
 			<th>Fastest</th>
 			<th>Average</th>
@@ -11,14 +10,21 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% while ( my ($s, $r) = each %{$record}) { %>
-			<tr>
-				<td></td><td></td>
-				<td><%= $s %></td>
-				<td><%= $r->{fastest} %></td>
-				<td><%= $r->{average} %></td>
-				<td><%= scalar @{$r->{laptime}} %></td>
-			</tr>
-		<% } %>
+		<form id="form_recordselect" action="#">
+			<% while ( my ($s, $r) = each %{$record}) { %>
+				<tr>
+					<td><input type="radio" name="record_selected" value="<%= $s %>" <%= $r->{mark} ? 'checked' : '' %>></td>
+					<td><%= $s %></td>
+					<td><%= $r->{fastest} %></td>
+					<td><%= $r->{average} %></td>
+					<td><%= scalar @{$r->{laptime}} %></td>
+				</tr>
+			<% } %>
+		</form>
 	</tbody>
 </table>
+<div class="row">
+	<div class="span6 offset3">
+		<p>Select a laptime record which you want to compare other setup's one.</p>
+	</div>
+</div>

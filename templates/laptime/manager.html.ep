@@ -18,6 +18,15 @@ $(document).ready(function () {
 });
 </script>
 
+<div class="row">
+	<div class="span3">
+		<a href="<%= include 'laptime/bookmarklet-laptime', format => 'js' %>" class="btn btn-large btn-warning">Import New Laptime</a>
+	</div>
+	<div class="span9">
+		<h4 class="muted">Note:</h4>
+		<p class="muted">To import laptime, drag & drop this button to bookmark bar then press on the session result page that lists laptimes.</p>
+	</div>
+</div>
 <div class="page-header">
 	<h1>Lap Time Manager</h1>
 </div>

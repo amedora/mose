@@ -391,3 +391,14 @@ function listlaptime() {
         }
     });
 }
+
+function savemark() {
+    $.ajax({
+		type : 'GET',
+        url : '/laptime/savemark?' + $('#form_recordselect').serialize(),
+		success : function () {
+			alert("Done!");
+		}
+	});
+}
+

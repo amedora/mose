@@ -306,6 +306,7 @@ get '/analysis/:car' => sub {
 get '/laptime/manager/:car' => sub {
     my $self      = shift;
     my $car       = $self->param('car');
+	$self->session->{car} = $car if $self->session->{car} ne $car;
     my $searchdir = $self->stash('config')->{setupdir} . '/' . $car;
     my @files     = File::Find::Rule->file()->name('*.htm')->in($searchdir);
     my $i;
@@ -327,6 +328,7 @@ get '/laptime/manager/:car' => sub {
 any '/laptime/list' => sub {
     my $self   = shift;
     my $record = {};
+	$self->session->{file_selected} = $self->param('file_selected');
     my $laptimefile =
         $self->stash('config')->{laptimedir} . '/'
       . $self->param('car') . '/'
@@ -334,7 +336,6 @@ any '/laptime/list' => sub {
     $record = YAML::LoadFile($laptimefile) if -f $laptimefile;
     $self->render(
         'laptime/list',
-        setup  => $self->param('file_selected'),
         car    => $self->param('car'),
         record => $record
     );
@@ -397,6 +398,30 @@ get '/laptime/import' => sub {
     };
     YAML::DumpFile( $laptimefile, $record );
     $self->render( text => 'finish' );
+};
+
+get '/laptime/savemark' => sub {
+    my $self   = shift;
+	my $record = {};
+	my $sid = $self->param('record_selected');
+	$self->app->log->debug("SID: $sid");
+    my $laptimefile =
+        $self->stash('config')->{laptimedir} . '/'
+      . $self->session('car') . '/'
+      . $self->session('file_selected') . '.yaml';
+    if ( -f $laptimefile ) {
+        $record = YAML::LoadFile($laptimefile);
+        $_->{mark} = 0 foreach ( values %$record );
+    } else {
+		die "Can't find file $laptimefile.: $!";
+	}
+	$record->{$sid}->{mark} = 1;
+    YAML::DumpFile( $laptimefile, $record );
+    $self->render(
+        'laptime/list',
+        car    => $self->session('car'),
+        record => $record
+    );
 };
 
 app->secret('mose');

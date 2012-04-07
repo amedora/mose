@@ -8,6 +8,7 @@
 			<th>Fastest</th>
 			<th>Average</th>
 			<th>Laps</th>
+			<th>Link</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -18,6 +19,7 @@
 					<td><%= $r->{fastest} %></td>
 					<td><%= $r->{average} %></td>
 					<td><%= scalar @{$r->{laptime}} %></td>
+					<td><a target="_blank" href="<%= 'http://members.iracing.com/membersite/member/EventResult.do?&subsessionid=' . $s %>"><i class="icon-share-alt"></i></a></td>
 				</tr>
 			<% } %>
 	</tbody>

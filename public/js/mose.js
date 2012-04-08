@@ -369,7 +369,14 @@ function get_data() {
             $('#tabledata').replaceWith(html);
 			tableData = $('#tabledata').dataTable({
 				"iDisplayLength" : 100,
+				"sDom": "<'row'<'span3'l><'span5'T><'span4'f>r>t<'row'<'span6'i><'span6'p>>",
+				"oTableTools": {
+					"sSwfPath": '/swf/copy_cvs_xls_pdf.swf',
+					"aButtons": ['copy', 'csv', 'pdf', 'print']
+				},
+				/*
                 "sDom" : "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+				*/
 				"sPaginationType" : "bootstrap", "oLanguage" : {
                     "sLengthMenu" : "_MENU_ components per page"
                 }

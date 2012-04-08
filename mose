@@ -1,5 +1,7 @@
 # vim:set sw=4 ts=4 ft=perl:
 #!/usr/bin/env perl
+use FindBin;
+use lib "$FindBin::Bin/extlib/lib/perl5";
 use List::Util qw/minstr sum/;
 use Mojolicious::Lite;
 use File::Basename;
@@ -7,7 +9,7 @@ use File::Find::Rule;
 use YAML;
 use Data::Dumper;
 
-use lib './lib';
+use lib "$FindBin::Bin/lib";
 use IRacing::Setup::Parser;
 
 my $_files_verified = {};

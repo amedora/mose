@@ -103,7 +103,7 @@ $(function () {
                 renderTo : 'render_trackbar_height', defaultSeriesType : 'line'
             }
             , title : {
-                text : 'Trackbar Height.'
+                text : 'Trackbar Height'
             }
             , xAxis : {
                 categories : ['LR', 'RR']
@@ -251,6 +251,7 @@ $(function () {
                 title : {
                     text : 'lbs.'
                 },
+				minorTickInterval : 50,
 				reversed: true
             }
             , series : []
@@ -268,7 +269,8 @@ $(function () {
             , yAxis : {
                 title : {
                     text : 'lbs.'
-                }
+                },
+				minorTickInterval : 50,
             }
             , series : []
 		}
@@ -286,7 +288,9 @@ $(function () {
                     text : 'inch'
                 },
 				min : -20,
-				max : 20
+				max : 20,
+				tickInterval : 5,
+				minorTickInterval : 1
             }
             , series : []
 		}
@@ -306,8 +310,8 @@ $(function () {
                     text : 'lbs/in'
                 },
 				min : 100,
-				max : 1200,
-				minorTickInterval : 50,
+				max : 500,
+				minorTickInterval : 25,
 				reversed: true
             }
             , series : []
@@ -327,8 +331,8 @@ $(function () {
                     text : 'lbs/in'
                 },
 				min : 100,
-				max : 1200,
-				minorTickInterval : 50,
+				max : 500,
+				minorTickInterval : 25,
             }
             , series : []
         }

@@ -1,6 +1,0 @@
-Mojolicious::Lite
-File::Basename
-File::Find::Rule
-YAML
-HTML::TreeBuilder
-Web::Scraper

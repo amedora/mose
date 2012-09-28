@@ -6,44 +6,48 @@
 </style>
 <div class="modal hide fade" id="modalImporter">
 	<div class="modal-header">
-		<a data-dismiss="modal" class="close">×</a>
+		<button data-dismiss="modal" class="close" type="button">×</button>
 		<h3>Import Laptime</h3>
 	</div>
 	<div class="modal-body">
 		<h4>Car</h4>
-		<div class="btn-toolbar">
-			<div class="btn-group">
-				<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"> Class A <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#" class="carname">latemodel</a></li>
-				</ul>
+		<p>
+			<div class="btn-toolbar">
+				<div class="btn-group">
+					<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Class A <span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#" class="carname">latemodel</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button class="btn btn-success dropdown-toggle" data-toggle="dropdown"> Class B <span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#" class="carname">latemodel</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button class="btn dropdown-toggle" data-toggle="dropdown"> Class C <span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#" class="carname">latemodel</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"> Class D <span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#" class="carname">latemodel</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> Rookie <span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#" class="carname">latemodel</a></li>
+					</ul>
+				</div>
 			</div>
-			<div class="btn-group">
-				<a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"> Class B <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#" class="carname">latemodel</a></li>
-				</ul>
-			</div>
-			<div class="btn-group">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Class C <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#" class="carname">latemodel</a></li>
-				</ul>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#"> Class D <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#" class="carname">latemodel</a></li>
-				</ul>
-			</div>
-			<div class="btn-group">
-				<a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#"> Rookie <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#" class="carname">latemodel</a></li>
-				</ul>
-			</div>
-		</div>
-		<input type="text" disabled="" placeholder="Select the car" id="carName" class="input-xlarge disabled">
+		</p>
+		<p>
+			<input type="text" disabled="" placeholder="Select the car" id="carName" class="input-xlarge disabled">
+		</p>
 		<h4>Setup</h4>
 		<style>
 			.ui-autocomplete {
@@ -64,27 +68,33 @@
 			});
 		</script>
 		<p class="help-block">Autocomplete is enabled.</p>
-		<div class="ui-widget">
-			<input id="setup" size="50"/>
-		</div>
-		<h4>Lap time</h4>
-		<div class="btn-toolbar" style="margin-top: 18px;">
-			<div class="btn-group">
-				<a class="btn" href="#" id="selectAll">Select All</a>
-				<a class="btn" href="#" id="unselectAll">Unselect All</a>
+		<p>
+			<div class="ui-widget">
+				<input id="setup" size="50"/>
 			</div>
-		</div>
-		<table class="table table-striped" id="tableRecord">
-			<thead>
-				<tr>
-					<td> </td>
-					<td>Lap</td>
-					<td>Time</td>
-				</tr>
-			</thead>
-			<tbody id="record">
-			</tbody>
-		</table>
+		</p>
+		<h4>Lap time</h4>
+		<p>
+			<div class="btn-toolbar" style="margin-top: 18px;">
+				<div class="btn-group">
+					<a class="btn" href="#" id="selectAll">Select All</a>
+					<a class="btn" href="#" id="unselectAll">Unselect All</a>
+				</div>
+			</div>
+		</p>
+		<p>
+			<table class="table table-striped" id="tableRecord">
+				<thead>
+					<tr>
+						<td> </td>
+						<td>Lap</td>
+						<td>Time</td>
+					</tr>
+				</thead>
+				<tbody id="record">
+				</tbody>
+			</table>
+		</p>
 	</div>
 	<div class="modal-footer">
 		<a class="btn btn-primary" href="#" onclick="importlaptime();return false;">Import</a>

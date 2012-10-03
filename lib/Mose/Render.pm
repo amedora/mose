@@ -260,14 +260,4 @@ any '/render/:graph' => sub {
     );
 };
 
-get '/datatable' => sub {
-    my $self  = shift;
-    my @files = map {
-        $self->stash('config')->{setupdir} . '/' . $self->param('car') . $_;
-    } $self->param('file_selected');
-    my @setups;
-    push @setups, IRacing::Setup::Parser->new($_) foreach @files;
-    $self->render( setups => \@setups );
-};
-
 1;

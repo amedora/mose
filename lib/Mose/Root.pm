@@ -6,7 +6,7 @@ sub index {
     my $self = shift;
 
     # XXX: show latemodel setting as default
-    $self->redirect_to('analysis/latemodel');
+    $self->redirect_to('analysis/home/latemodel');
 }
 
 1;

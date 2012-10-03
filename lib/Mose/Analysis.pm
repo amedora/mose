@@ -4,7 +4,9 @@ use Mojo::Base 'Mojolicious::Controller';
 use File::Basename;
 use File::Find::Rule;
 
-sub index {
+use IRacing::Setup::Parser;
+
+sub home {
     my $self      = shift;
     my $car       = $self->param('car');
     my $searchdir = $self->stash->{config}->{setupdir} . '/' . $car;
@@ -21,6 +23,16 @@ sub index {
     } @files;
 	$self->stash->{setups} = \@setups;
 	$self->stash->{car} = $car;
+}
+
+sub datatable {
+    my $self  = shift;
+    my @files = map {
+        $self->stash->{config}->{setupdir} . '/' . $self->param('car') . $_;
+    } $self->param('file_selected');
+    my @setups;
+    push @setups, IRacing::Setup::Parser->new($_) foreach @files;
+	$self->stash->{setups} = \@setups;
 }
 
 1;

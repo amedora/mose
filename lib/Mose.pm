@@ -21,6 +21,9 @@ sub startup {
     # Analysis
     $r->get('/analysis/home/:car')->to('analysis#home');
 	$r->get('/analysis/datatable')->to('analysis#datatable');
+
+	# Render
+	$r->get('/render/graph/:graph_type/:car')->to('render#graph');
 }
 
 1;

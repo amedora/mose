@@ -235,21 +235,21 @@ sub _render_laptime {
 sub _render_undef {
 }
 
-any '/render_laptime' => sub {
-    my $self = shift;
-    $self->render(
-        json => _render_laptime(
-            $self->stash('config')->{laptimedir}, $self->param('car'),
-            $self->param('file_selected')
-        )
-    );
-};
+#any '/render_laptime' => sub {
+#    my $self = shift;
+#    $self->render(
+#        json => _render_laptime(
+#            $self->stash('config')->{laptimedir}, $self->param('car'),
+#            $self->param('file_selected')
+#        )
+#    );
+#};
 
-any '/render/:graph' => sub {
+sub graph {
     my $self = shift;
     $self->render(
         json => _render(
-            $self->param('graph'),
+            $self->param('graph_type'),
             $self->param('car'),
             map {
                     $self->stash('config')->{setupdir} . '/'
@@ -258,6 +258,6 @@ any '/render/:graph' => sub {
               } $self->param('file_selected')
         )
     );
-};
+}
 
 1;

@@ -27,7 +27,7 @@ $(document).ready(function () {
 	});
 	$('#show').bind('click', function () {
 		get_data();
-		render_laptime();
+		render_laptime('<%= $car %>');
 		render('front_rideheight', '<%= $car %>');
 		render('rear_rideheight', '<%= $car %>');
 		render('rideheight_relation', '<%= $car %>');

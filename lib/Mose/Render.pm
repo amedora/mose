@@ -235,15 +235,15 @@ sub _render_laptime {
 sub _render_undef {
 }
 
-#any '/render_laptime' => sub {
-#    my $self = shift;
-#    $self->render(
-#        json => _render_laptime(
-#            $self->stash('config')->{laptimedir}, $self->param('car'),
-#            $self->param('file_selected')
-#        )
-#    );
-#};
+sub laptime {
+    my $self = shift;
+    $self->render(
+        json => _render_laptime(
+            $self->stash('config')->{laptimedir}, $self->param('car'),
+            $self->param('file_selected')
+        )
+    );
+}
 
 sub graph {
     my $self = shift;

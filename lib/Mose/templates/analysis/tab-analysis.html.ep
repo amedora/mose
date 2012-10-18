@@ -8,7 +8,7 @@
 <section id="chassis">
 	<h2>Chassis</h2>
 	<h3>Ride Height</h3>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span6">
 			<div id="render_front_rideheight" style="height: 240px"></div>
 		</div>
@@ -16,7 +16,7 @@
 			<div id="render_rear_rideheight" style="height: 240px"></div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span6">
 			<div id="render_rideheight_relation" style="height: 240px"></div>
 		</div>
@@ -25,7 +25,7 @@
 		</div>
 	</div>
 	<h3>Weight Distribution</h3>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span4">
 			<div id="render_left_weight_dist" style="height: 360px"></div>
 		</div>
@@ -37,7 +37,7 @@
 		</div>
 	</div>
 	<h3>Spring Package</h3>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span4 offset2">
 			<div id="render_left_spring_package" style="height: 360px"></div>
 		</div>
@@ -49,17 +49,17 @@
 <section id="tire">
 	<h2>Tire</h2>
 	<h3>Temps.</h3>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span8 offset2">
 			<div id="render_front_tiretemp" style="height: 240px"></div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span8 offset2">
 			<div id="render_rear_tiretemp" style="height: 240px"></div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span4 offset2">
 			<div id="render_left_tiretemp_avg" style="height: 360px"></div>
 		</div>
@@ -68,12 +68,12 @@
 		</div>
 	</div>
 	<h3>Tread Remaining</h3>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span8 offset2">
 			<div id="render_front_tread" style="height: 240px"></div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span8 offset2">
 			<div id="render_rear_tread" style="height: 240px"></div>
 		</div>

@@ -3,13 +3,16 @@ package Mose;
 use Mojo::Base 'Mojolicious';
 use File::Basename 'dirname';
 use File::Spec::Functions 'catdir';
+use FindBin;
+
+our $VERSION = '1.0';
 
 sub startup {
     my $self = shift;
 
     $self->secret('mose');
 
-    $self->plugin( 'Config', { file => 'mose.conf' } );
+    $self->plugin( 'Config', { file => "$FindBin::Bin/mose.conf" } );
 
     $self->home->parse( catdir( dirname(__FILE__), 'Mose' ) );
     $self->static->paths->[0]   = $self->home->rel_dir('public');
@@ -24,6 +27,7 @@ sub startup {
 
 	# Render
 	$r->get('/render/graph/:graph_type/:car')->to('render#graph');
+	$r->get('/render/laptime/:car')->to('render#laptime');
 }
 
 1;

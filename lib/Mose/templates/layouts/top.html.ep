@@ -9,7 +9,7 @@
 
 		<link href="<%= url_for '/css/bootstrap.min.css' %>" rel="stylesheet">
 		<link href="<%= url_for '/css/docs.css' %>" rel="stylesheet">
-		<link href="<%= url_for '/css/DT_bootstrap.css' %>" rel="stylesheet">
+		<link href="<%= url_for '/css/dataTables.bootstrap.css' %>" rel="stylesheet">
 		<link href="<%= url_for '/css/TableTools.css' %>" rel="stylesheet">
     <style>
       body {
@@ -18,10 +18,10 @@
     </style>
 		<link href="<%= url_for '/css/bootstrap-responsive.min.css' %>" rel="stylesheet">
 		<script type="text/javascript" src="<%= url_for '/js/jquery-1.7.1.min.js' %>"></script>
-		<script type="text/javascript" src="<%= url_for '/js/jquery.dataTables.js' %>"></script>
+		<script type="text/javascript" src="<%= url_for '/js/jquery.dataTables.min.js' %>"></script>
+		<script type="text/javascript" src="<%= url_for '/js/dataTables.bootstrap.js' %>"></script>
 		<script type="text/javascript" src="<%= url_for '/js/TableTools.min.js' %>"></script>
 		<script type="text/javascript" src="<%= url_for '/js/ZeroClipboard.js' %>"></script>
-		<script type="text/javascript" src="<%= url_for '/js/DT_bootstrap.js' %>"></script>
 		<script type="text/javascript" src="<%= url_for '/js/highcharts.js' %>"></script>
 		<script type="text/javascript" src="<%= url_for '/js/mose.js' %>"></script>
   </head>

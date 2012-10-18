@@ -12,9 +12,12 @@ $(document).ready(function () {
 	});
 	tableData = $('#tabledata').dataTable({
 		"iDisplayLength" : 100,
-		"sDom": "<'row'<'span3'l><'span5'T><'span4'f>r>t<'row'<'span6'i><'span6'p>>",
+		/*
+		"sDom": "<'row'<'span12'T>><'row'<'span5'l><'span7'f>r>t<'row'<'span6'i><'span6'p>>",
+		*/
+		"sDom": "<'row'<'span3'l><'span4'T><'span4'f>r>t<'row'<'span6'i><'span6'p>>",
 		"oTableTools": {
-			"sSwfPath": "<%= url_for '/swf/copy_cvs_xls_pdf.swf' %>",
+			"sSwfPath": "<%= url_for '/swf/copy_csv_xls_pdf.swf' %>",
 			"aButtons": ['copy', 'csv', 'pdf', 'print']
 		},
 		/*

@@ -28,6 +28,13 @@ sub startup {
 	# Render
 	$r->get('/render/graph/:graph_type/:car')->to('render#graph');
 	$r->get('/render/laptime/:car')->to('render#laptime');
+	# Laptime
+	$r->get('/laptime/manager/:car')->to('laptime#manager');
+	$r->get('/laptime/importer')->to('laptime#importer');
+	$r->get('/laptime/modal')->to('laptime#modal');
+	$r->get('/laptime/autocomplete/:car')->to('laptime#autocomplete');
+	$r->get('/laptime/import')->to('laptime#doimport');
+	$r->get('/laptime/list')->to('laptime#list');
 }
 
 1;

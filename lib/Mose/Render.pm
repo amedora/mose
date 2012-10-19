@@ -1,11 +1,11 @@
 # vim:set sw=4 ts=4 ft=perl:
 package Mose::Render;
 use Mojo::Base 'Mojolicious::Controller';
-use List::Util qw/minstr sum/;
 use File::Basename;
 use File::Find::Rule;
 use YAML;
 
+use Mose::Util qw/laptime_in_milisec/;
 use IRacing::Setup::Parser;
 
 my $_files_verified = {};
@@ -194,14 +194,6 @@ sub _render_right_tiretemp_avg {
     );
 }
 
-sub _laptime_in_milisec {
-    my $format = shift;
-    my ( $min, $sec ) = split /:/, $format;
-    $min = $min * 60 * 1000;
-    $sec = $sec * 1000;
-    return $min + $sec;
-}
-
 sub _render_laptime {
     my ( $dir, $car, @files ) = @_;
     my $ret = { series => [] };
@@ -223,7 +215,7 @@ sub _render_laptime {
                   +{
                     name => $filename,
                     data =>
-                      [ map { _laptime_in_milisec($_) } @{ $r->{laptime} } ],
+                      [ map { laptime_in_milisec($_) } @{ $r->{laptime} } ],
                   };
                 last;
             }

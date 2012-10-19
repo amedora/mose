@@ -1,8 +1,14 @@
 # vim:set sw=4 ts=4 ft=perl:
 package Mose::Laptime;
 use Mojo::Base 'Mojolicious::Controller';
+use File::Basename;
+use File::Find::Rule;
+use List::Util qw/minstr sum/;
+use YAML;
 
-get '/laptime/manager/:car' => sub {
+use Mose::Util qw/laptime_in_milisec/;
+
+sub manager {
     my $self      = shift;
     my $car       = $self->param('car');
 	$self->session->{car} = $car if $self->session->{car} ne $car;
@@ -21,10 +27,11 @@ get '/laptime/manager/:car' => sub {
         };
     } @files;
 
-    $self->render( 'laptime/manager', setups => \@setups, car => $car );
-};
+	$self->stash->{setups} = \@setups;
+	$self->stash->{car} = $car;
+}
 
-any '/laptime/list' => sub {
+sub list {
     my $self   = shift;
     my $record = {};
 	$self->session->{file_selected} = $self->param('file_selected');
@@ -38,23 +45,22 @@ any '/laptime/list' => sub {
         car    => $self->param('car'),
         record => $record
     );
-};
+}
 
-get '/laptime/importer' => sub {
+sub importer {
     my $self = shift;
     $self->respond_to(
         js  => { template => 'laptime/importer' },
         any => { text     => '', status => 204 },
     );
-};
+}
 
-get '/laptime/modal' => sub {
+sub modal {
     my $self = shift;
     $self->res->headers->header( 'Access-Control-Allow-Origin' => '*' );
-    $self->render('laptime/modal');
-};
+}
 
-get '/laptime/autocomplete/:car/' => sub {
+sub autocomplete {
     my $self      = shift;
     my $car       = $self->param('car');
     my $term      = $self->param('term');
@@ -64,9 +70,10 @@ get '/laptime/autocomplete/:car/' => sub {
     @$ret = map { ( fileparse($_) )[0] } @files;
     $self->res->headers->header( 'Access-Control-Allow-Origin' => '*' );
     $self->render( json => $ret );
-};
+}
 
-get '/laptime/import' => sub {
+#XXX: change function name 'import' to another.
+sub doimport {
     my $self   = shift;
     my $record = {};
     my $laptimefile =
@@ -85,7 +92,7 @@ get '/laptime/import' => sub {
     }
     my @lap = $self->param('laptime');
     my $avg =
-      int( sum( map { _laptime_in_milisec($_) } @lap ) / ( $#lap + 1 ) );
+      int( sum( map { laptime_in_milisec($_) } @lap ) / ( $#lap + 1 ) );
     my $min = sprintf "%02d", int( $avg / 60000 );
     $avg -= $min * 60000;
     my $sec = $avg / 1000;
@@ -97,9 +104,9 @@ get '/laptime/import' => sub {
     };
     YAML::DumpFile( $laptimefile, $record );
     $self->render( text => 'finish' );
-};
+}
 
-get '/laptime/savemark' => sub {
+sub savemark {
     my $self   = shift;
 	my $record = {};
 	my $sid = $self->param('record_selected');
@@ -121,7 +128,6 @@ get '/laptime/savemark' => sub {
         car    => $self->session('car'),
         record => $record
     );
-};
+}
 
 1;
-

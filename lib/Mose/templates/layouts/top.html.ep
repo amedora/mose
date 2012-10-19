@@ -40,10 +40,10 @@
 					<div class="nav-collapse">
             <ul class="nav">
 							<li>
-								<a href="<%= url_for '/analysis/latemodel' %>"><i class="icon-th-list icon-white"></i> Data & Analysis</a>
+								<a href="<%= url_for '/analysis/home/latemodel' %>"><i class="icon-th-list icon-white"></i> Data & Analysis</a>
 							</li>
 							<li>
-							<a href="<%= url_for '/laptime/manager/latemodel' %>"><i class="icon-time icon-white"></i> Laptime Manager</a>
+								<a href="<%= url_for '/laptime/manager/latemodel' %>"><i class="icon-time icon-white"></i> Laptime Manager</a>
 							</li>
 							<li>
 								<a href="#contact"><i class="icon-cog icon-white"></i> Options</a>

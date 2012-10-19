@@ -43,16 +43,16 @@ function modal_prepare () {
 	css_bs.attr({
 		rel: 'stylesheet',
 		type: 'text/css',
-		href: '<%= url_for("/css/bootstrap.css")->to_abs %>'
+		href: '<%= url_for("/css/bootstrap.min.css")->to_abs %>'
 	});
 
-	$('head').append('<link>');
-	var css_ui = $('head').children(':last');
-	css_ui.attr({
-		rel: 'stylesheet',
-		type: 'text/css',
-		href: '<%= url_for("/css/jquery-ui-1.8.18.custom.css")->to_abs %>'
-	});
+//	$('head').append('<link>');
+//	var css_ui = $('head').children(':last');
+//	css_ui.attr({
+//		rel: 'stylesheet',
+//		type: 'text/css',
+//		href: '<%= url_for("/css/jquery-ui-1.8.18.custom.css")->to_abs %>'
+//	});
 
 	$('body').append('<div id="modalImporter"></div>');
 }

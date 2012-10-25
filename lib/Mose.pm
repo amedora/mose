@@ -1,7 +1,8 @@
 # vim:set sw=4 ts=4 ft=perl:
 package Mose;
 use Mojo::Base 'Mojolicious';
-use File::Basename 'dirname';
+use File::Basename;
+use File::Find::Rule;
 use File::Spec::Functions 'catdir';
 use FindBin;
 
@@ -12,32 +13,59 @@ sub startup {
 
     $self->secret('mose');
 
-    $self->plugin( 'Config', { file => "$FindBin::Bin/mose.conf" } );
+    my $config = $self->plugin( 'Config', { file => "$FindBin::Bin/mose.conf" } );
 
     $self->home->parse( catdir( dirname(__FILE__), 'Mose' ) );
     $self->static->paths->[0]   = $self->home->rel_dir('public');
     $self->renderer->paths->[0] = $self->home->rel_dir('templates');
 
+    #
+    # Helpers
+    $self->helper(
+        setups => sub {
+            my $self = shift;
+            my $car  = shift;
+            my $search_basedir =
+              $config->{setupdir} . '/' . $car;
+            my @files = File::Find::Rule->file()->name('*.htm')->in($search_basedir);
+            my @setups = map {
+                my $fullpath = $_;
+                my ( $filename, $dir ) = fileparse($fullpath);
+                $dir =~ s/.*?$car//;
+                +{
+                    filename => $filename,
+                    dir      => $dir,
+                    fullpath => $fullpath
+                };
+            } @files;
+			return \@setups;
+        }
+    );
+    #
+    # Routes
     my $r = $self->routes;
     $r->get('/')->to('root#index');
 
     # Analysis
     $r->get('/analysis/home/:car')->to('analysis#home');
-	$r->get('/analysis/datatable')->to('analysis#datatable');
+    $r->get('/analysis/datatable')->to('analysis#datatable');
 
-	# Render
-	$r->get('/render/graph/:graph_type/:car')->to('render#graph');
-	$r->get('/render/laptime/:car')->to('render#laptime');
-	# Laptime
-	$r->get('/laptime/manager/:car')->to('laptime#manager');
-	#$r->get('/laptime/importer')->to('laptime#importer');
-	$r->get('/laptime/modal')->to('laptime#modal');
-	$r->get('/laptime/autocomplete/:car')->to('laptime#autocomplete');
-	$r->get('/laptime/import')->to('laptime#doimport');
-	$r->get('/laptime/list')->to('laptime#list');
-	# Laptime gather
-	$r->post('/laptime/importer/prepare')->to('laptime-importer#prepare');
-	$r->get('/laptime/importer/import')->to('laptime-importer#import');
+    # Render
+    $r->get('/render/graph/:graph_type/:car')->to('render#graph');
+    $r->get('/render/laptime/:car')->to('render#laptime');
+
+    # Laptime
+    $r->get('/laptime/manager/:car')->to('laptime#manager');
+
+    #$r->get('/laptime/importer')->to('laptime#importer');
+    $r->get('/laptime/modal')->to('laptime#modal');
+    $r->get('/laptime/autocomplete/:car')->to('laptime#autocomplete');
+    $r->get('/laptime/import')->to('laptime#doimport');
+    $r->get('/laptime/list')->to('laptime#list');
+
+    # Laptime gather
+    $r->post('/laptime/importer/prepare')->to('laptime-importer#prepare');
+    $r->get('/laptime/importer/import')->to('laptime-importer#import');
 }
 
 1;

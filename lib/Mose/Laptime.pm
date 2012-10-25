@@ -11,23 +11,8 @@ use Mose::Util qw/laptime_in_milisec/;
 sub manager {
     my $self      = shift;
     my $car       = $self->param('car');
-	$self->session->{car} = $car if $self->session->{car} ne $car;
-    my $searchdir = $self->stash('config')->{setupdir} . '/' . $car;
-    my @files     = File::Find::Rule->file()->name('*.htm')->in($searchdir);
-    my $i;
-    my @setups = map {
-        my $fullpath = $_;
-        my ( $filename, $dir ) = fileparse($fullpath);
-        $dir =~ s/.*?$car//;
-        +{
-            id       => $i++,
-            filename => $filename,
-            dir      => $dir,
-            fullpath => $fullpath
-        };
-    } @files;
 
-	$self->stash->{setups} = \@setups;
+	$self->stash->{setups} = $self->app->setups($car);
 	$self->stash->{car} = $car;
 }
 
@@ -72,7 +57,6 @@ sub autocomplete {
     $self->render( json => $ret );
 }
 
-#XXX: change function name 'import' to another.
 sub doimport {
     my $self   = shift;
     my $record = {};

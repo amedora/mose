@@ -1,0 +1,5 @@
+%# vim:set ts=2 sw=2 ft=html:
+% title 'Lap Time Importer';
+% layout 'top';
+<%= dumper $laptimes %>
+<%= $subsessionid %>

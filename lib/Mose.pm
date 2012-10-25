@@ -30,11 +30,14 @@ sub startup {
 	$r->get('/render/laptime/:car')->to('render#laptime');
 	# Laptime
 	$r->get('/laptime/manager/:car')->to('laptime#manager');
-	$r->get('/laptime/importer')->to('laptime#importer');
+	#$r->get('/laptime/importer')->to('laptime#importer');
 	$r->get('/laptime/modal')->to('laptime#modal');
 	$r->get('/laptime/autocomplete/:car')->to('laptime#autocomplete');
 	$r->get('/laptime/import')->to('laptime#doimport');
 	$r->get('/laptime/list')->to('laptime#list');
+	# Laptime gather
+	$r->post('/laptime/importer/prepare')->to('laptime-importer#prepare');
+	$r->get('/laptime/importer/import')->to('laptime-importer#import');
 }
 
 1;

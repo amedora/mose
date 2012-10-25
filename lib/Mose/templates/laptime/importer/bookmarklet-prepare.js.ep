@@ -1,0 +1,13 @@
+%# vim:set ts=4 sw=4 ft=javascript:
+javascript:( function(){
+	var form = document.createElement('form');
+	document.body.appendChild(form);
+	var input = document.createElement('input');
+	input.setAttribute('type', 'hidden');
+	input.setAttribute('name', 'pagecontent');
+	input.setAttribute('value', document.body.innerHTML);
+	form.appendChild(input);
+	form.setAttribute('action', '<%= url_for('/laptime/importer/prepare')->to_abs %>');
+	form.setAttribute('method', 'post');
+	form.submit();
+})();

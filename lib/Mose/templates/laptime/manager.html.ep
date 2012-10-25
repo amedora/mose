@@ -20,7 +20,7 @@ $(document).ready(function () {
 
 <div class="row">
 	<div class="span3">
-		<a href="<%= include 'laptime/bookmarklet-laptime', format => 'js' %>" class="btn btn-large btn-warning">Import New Laptime</a>
+		<a href="<%= include 'laptime/importer/bookmarklet-prepare', format => 'js' %>" class="btn btn-large btn-warning">Import New Laptime</a>
 	</div>
 	<div class="span9">
 		<h4 class="muted">Note:</h4>

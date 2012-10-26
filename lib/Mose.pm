@@ -47,7 +47,7 @@ sub startup {
     $r->get('/')->to('root#index');
 
     # Analysis
-    $r->get('/analysis/home/:car')->to('analysis#home');
+    $r->get('/analysis/home/:car')->to('analysis#home', car => '');
     $r->get('/analysis/datatable')->to('analysis#datatable');
 
     # Render

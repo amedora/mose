@@ -13,7 +13,7 @@ sub prepare {
     $self->stash->{subsessionid} = $1;
 
     # Retrieve laptimes
-    my $skip_count = 2;
+    my $skip_count = 2; # 0 = table header, 1 = lap 0
     my @laptimes;
     for my $l ( $dom->find('table')->[1]->find('tr')->each ) {
         if ( $skip_count > 0 ) {
@@ -22,8 +22,8 @@ sub prepare {
         }
         push @laptimes,
           {
-            lap  => $l->td->[0]->text,
-            time => $l->td->[1]->text,
+            lap_no  => $l->td->[0]->text,
+            laptime => $l->td->[1]->text,
             inc  => $l->td->[2]->text,
           };
     }

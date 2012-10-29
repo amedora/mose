@@ -46,6 +46,8 @@ sub startup {
     my $r = $self->routes;
     $r->get('/')->to('root#index');
 
+	$r->get('/ajax/setuplist/:car')->to('root#setuplist');
+
     # Analysis
     $r->get('/analysis/home/:car')->to('analysis#home', car => '');
     $r->get('/analysis/datatable')->to('analysis#datatable');

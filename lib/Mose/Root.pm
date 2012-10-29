@@ -9,4 +9,12 @@ sub index {
     $self->redirect_to('analysis/home/latemodel');
 }
 
+sub setuplist {
+	my $self = shift;
+	$self->render(
+		'setuplist',
+		setups => $self->app->setups($self->param('car')),
+	);
+}
+
 1;

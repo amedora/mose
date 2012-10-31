@@ -3,18 +3,19 @@
 % layout 'top';
 <div class="row">
 	<div class="span8 offset2">
-			<input name="subsessionid" value="<%= $subsessionid %>" type="hidden" />
-			<h2>Laptimes</h2>
-			<p>Select laptimes you want to import.</p>
-			<p>
-				<div class="btn-toolbar">
-					<div class="btn-group">
-						<a class="btn" href="#" id="selectAll">Select All</a>
-						<a class="btn" href="#" id="unselectAll">Unselect All</a>
-					</div>
+		<input id="subsessionid" name="subsessionid" value="<%= $subsessionid %>" type="hidden" />
+		<input id="url" name="url" value="<%= $url %>" type="hidden" />
+		<h2>Laptimes</h2>
+		<p>Select laptimes you want to import.</p>
+		<p>
+			<div class="btn-toolbar">
+				<div class="btn-group">
+					<a class="btn" href="#" id="selectAll">Select All</a>
+					<a class="btn" href="#" id="unselectAll">Unselect All</a>
 				</div>
-			</p>
-			<form id="formRecord">
+			</div>
+		</p>
+		<form id="formRecord">
 			<table class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
@@ -31,51 +32,53 @@
 							<td><%= $l->{lap_no} %></td>
 							<td><%= $l->{laptime} %></td>
 							<td><em><%= $l->{inc} %></em></td>
+						</tr>
 					<% } %>
 				</tbody>
 			</table>
-			</form>
-			<h2>Car & Setup</h2>
-			<p>Which car & setup do you want to import with those laptimes?</p>
-			<div class="btn-toolbar">
-				<div class="btn-group">
-					<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Class A <span class="caret"></span></button>
-					<ul class="dropdown-menu">
-						<li><a class="carname">latemodel</a></li>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<button class="btn btn-success dropdown-toggle" data-toggle="dropdown"> Class B <span class="caret"></span></button>
-					<ul class="dropdown-menu">
-						<li><a class="carname">latemodel</a></li>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<button class="btn dropdown-toggle" data-toggle="dropdown"> Class C <span class="caret"></span></button>
-					<ul class="dropdown-menu">
-						<li><a class="carname">latemodel</a></li>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"> Class D <span class="caret"></span></button>
-					<ul class="dropdown-menu">
-						<li><a class="carname">latemodel</a></li>
-					</ul>
-				</div>
-				<div class="btn-group">
-					<button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> Rookie <span class="caret"></span></button>
-					<ul class="dropdown-menu">
-						<li><a class="carname">latemodel</a></li>
-					</ul>
-				</div>
+		</form>
+		<h2>Car & Setup</h2>
+		<p>Which car & setup do you want to import with those laptimes?</p>
+		<div class="btn-toolbar">
+			<div class="btn-group">
+				<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Class A <span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a class="carname">latemodel</a></li>
+				</ul>
 			</div>
-			<p>
-				<input type="text" disabled="" placeholder="car name" id="carName" class="input-xlarge disabled">
-			</p>
-			<div id="setuplist">
-				<pre>Please select the car.</pre>
+			<div class="btn-group">
+				<button class="btn btn-success dropdown-toggle" data-toggle="dropdown"> Class B <span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a class="carname">latemodel</a></li>
+				</ul>
 			</div>
-			<a class="btn btn-large btn-primary" id="import">Import</a>
+			<div class="btn-group">
+				<button class="btn dropdown-toggle" data-toggle="dropdown"> Class C <span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a class="carname">latemodel</a></li>
+				</ul>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"> Class D <span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a class="carname">latemodel</a></li>
+				</ul>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> Rookie <span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><a class="carname">latemodel</a></li>
+				</ul>
+			</div>
+		</div>
+		<p>
+			<input type="text" disabled="" placeholder="car name" id="carName" class="input-xlarge disabled">
+		</p>
+		<div id="setuplist">
+			<pre>Please select the car.</pre>
+		</div>
+		<a class="btn btn-large btn-primary" id="import">Import</a>
+		<div id="importResult"></div>
 	</div> <!-- span8 offset2 -->
 </div> <!-- row -->
 <%= javascript begin %>
@@ -94,9 +97,28 @@ $(document).ready(function () {
 			type : 'GET',
 			dataType : 'html',
 			cache : false,
-			url : '<%= url_for("/ajax/setuplist")->to_abs %>' + '/' + $(this).text(),
+			url : '<%= url_for("/ajax/setuplist")->to_abs %>'
+			    + '/' + $(this).text()
+			    + '?st=radio',
 			success : function (html) {
 				$('#setuplist').replaceWith(html);
+			}
+		});
+	});
+
+	$('#import').on('click', function (){
+		$.ajax({
+			type : 'GET',
+			dataType : 'html',
+			cache : false,
+			url : '<%= url_for("/laptime/importer/import")->to_abs %>'
+			    + '?url=' + encodeURIComponent($('#url').val())
+			    + '&subsessionid=' + encodeURIComponent($('#subsessionid').val())
+			    + '&car=' + encodeURIComponent($('#carName').val())
+			    + '&setup=' + encodeURIComponent()
+			    + '&' + $('#formRecord').serialize(),
+			success : function (html) {
+				$('#importResult').replaceWith(html);
 			}
 		});
 	});

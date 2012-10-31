@@ -8,6 +8,9 @@ sub prepare {
     my $self = shift;
     my $dom  = Mojo::DOM->new( $self->param('pagecontent') );
 
+	# Retrieve original page URL
+	$self->stash->{url} = $self->param('url');
+
     # Retrieve subsessionid
     $dom->find('table')->[0]->find('div')->[3]->text =~ m!/(\d+)!;
     $self->stash->{subsessionid} = $1;
@@ -33,6 +36,19 @@ sub prepare {
 sub import {
     my $self = shift;
 
+	my $laptimefile = $self->app->laptimefile(
+		car => $self->param('car'),
+		setup => $self->param('setup'),
+	);
+
+	my $message;
+	if ($laptimefile->save_record($self->param('laptime'))) {
+		$message = '<p class="text-success">Import succeed.</p>';
+	} else {
+		$message = '<p class="text-error">Import failed.</p>';
+	}
+
+	$self->render(inline => "<div id='importResult'>$message</div>");
 }
 
 1;

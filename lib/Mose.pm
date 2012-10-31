@@ -6,6 +6,8 @@ use File::Find::Rule;
 use File::Spec::Functions 'catdir';
 use FindBin;
 
+use Mose::Util::LaptimeFile;
+
 our $VERSION = '1.0';
 
 sub startup {
@@ -40,6 +42,13 @@ sub startup {
             } @files;
 			return \@setups;
         }
+	);
+	$self->helper(
+		laptimefile => sub {
+			my $self = shift;
+			my $laptimefile = Mose::Util::LaptimeFile->new(shift);
+			return $laptimefile;
+		}
     );
     #
     # Routes

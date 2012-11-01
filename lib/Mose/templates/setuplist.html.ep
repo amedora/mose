@@ -11,7 +11,7 @@
 		<tbody>
 			<% foreach my $s (@$setups) { %>
 				<tr>
-					<td><input type="checkbox" name="file_selected" value="<%= $s->{dir} . $s->{filename} %>"/></td>
+					<td><input type="<%= $st %>" name="file_selected" value="<%= $s->{dir} . $s->{filename} %>"/></td>
 					<td><%= $s->{filename}%></td>
 					<td><%= $s->{dir} %></td>
 				</tr>

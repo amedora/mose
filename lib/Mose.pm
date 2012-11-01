@@ -3,7 +3,7 @@ package Mose;
 use Mojo::Base 'Mojolicious';
 use File::Basename;
 use File::Find::Rule;
-use File::Spec::Functions 'catdir';
+use File::Spec::Functions qw/catdir rel2abs/;
 use FindBin;
 
 use Mose::Util::LaptimeFile;
@@ -15,7 +15,8 @@ sub startup {
 
     $self->secret('mose');
 
-    my $config = $self->plugin( 'Config', { file => "$FindBin::Bin/mose.conf" } );
+    my $config =
+      $self->plugin( 'Config', { file => "$FindBin::Bin/mose.conf" } );
 
     $self->home->parse( catdir( dirname(__FILE__), 'Mose' ) );
     $self->static->paths->[0]   = $self->home->rel_dir('public');
@@ -25,11 +26,11 @@ sub startup {
     # Helpers
     $self->helper(
         setups => sub {
-            my $self = shift;
-            my $car  = shift;
-            my $search_basedir =
-              $config->{setupdir} . '/' . $car;
-            my @files = File::Find::Rule->file()->name('*.htm')->in($search_basedir);
+            my $self           = shift;
+            my $car            = shift;
+            my $search_basedir = catdir( $config->{setupdir}, $car );
+            my @files =
+              File::Find::Rule->file()->name('*.htm')->in($search_basedir);
             my @setups = map {
                 my $fullpath = $_;
                 my ( $filename, $dir ) = fileparse($fullpath);
@@ -40,25 +41,28 @@ sub startup {
                     fullpath => $fullpath
                 };
             } @files;
-			return \@setups;
+            return \@setups;
         }
-	);
-	$self->helper(
-		laptimefile => sub {
-			my $self = shift;
-			my $laptimefile = Mose::Util::LaptimeFile->new(shift);
-			return $laptimefile;
-		}
+    );
+    $self->helper(
+        laptimefile => sub {
+            my $self = shift;
+            my $arg  = {@_};
+            $arg->{basedir} =
+              rel2abs( catdir( dirname(__FILE__), '..\laptime' ) );
+            my $laptimefile = Mose::Util::LaptimeFile->new($arg);
+            return $laptimefile;
+        }
     );
     #
     # Routes
     my $r = $self->routes;
     $r->get('/')->to('root#index');
 
-	$r->get('/ajax/setuplist/:car')->to('root#setuplist');
+    $r->get('/ajax/setuplist/:car')->to('root#setuplist');
 
     # Analysis
-    $r->get('/analysis/home/:car')->to('analysis#home', car => '');
+    $r->get('/analysis/home/:car')->to( 'analysis#home', car => '' );
     $r->get('/analysis/datatable')->to('analysis#datatable');
 
     # Render
@@ -67,11 +71,6 @@ sub startup {
 
     # Laptime
     $r->get('/laptime/manager/:car')->to('laptime#manager');
-
-    #$r->get('/laptime/importer')->to('laptime#importer');
-    $r->get('/laptime/modal')->to('laptime#modal');
-    $r->get('/laptime/autocomplete/:car')->to('laptime#autocomplete');
-    $r->get('/laptime/import')->to('laptime#doimport');
     $r->get('/laptime/list')->to('laptime#list');
 
     # Laptime gather

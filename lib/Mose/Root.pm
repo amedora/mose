@@ -10,11 +10,13 @@ sub index {
 }
 
 sub setuplist {
-	my $self = shift;
-	$self->render(
-		'setuplist',
-		setups => $self->app->setups($self->param('car')),
-	);
+    my $self = shift;
+
+    $self->render(
+        'setuplist',
+        setups => $self->app->setups( $self->param('car') ),
+        st     => $self->param('st')
+    );
 }
 
 1;

@@ -10,8 +10,8 @@
 		<p>
 			<div class="btn-toolbar">
 				<div class="btn-group">
-					<a class="btn" href="#" id="selectAll">Select All</a>
-					<a class="btn" href="#" id="unselectAll">Unselect All</a>
+					<a class="btn" id="selectAll">Select All</a>
+					<a class="btn" id="unselectAll">Unselect All</a>
 				</div>
 			</div>
 		</p>
@@ -28,7 +28,7 @@
 				<tbody id="record">
 					<% foreach my $l (@$laptimes) { %>
 						<tr>
-							<td><center><input type="checkbox" name="laptime" value="<%= $l->{laptime} %>" checked /></center></td>
+							<td><center><input type="checkbox" name="laptime[]" value="<%= $l->{laptime} %>" checked /></center></td>
 							<td><%= $l->{lap_no} %></td>
 							<td><%= $l->{laptime} %></td>
 							<td><em><%= $l->{inc} %></em></td>
@@ -115,7 +115,7 @@ $(document).ready(function () {
 			    + '?url=' + encodeURIComponent($('#url').val())
 			    + '&subsessionid=' + encodeURIComponent($('#subsessionid').val())
 			    + '&car=' + encodeURIComponent($('#carName').val())
-			    + '&setup=' + encodeURIComponent()
+			    + '&setup=' + encodeURIComponent($("[name='file_selected']").val())
 			    + '&' + $('#formRecord').serialize(),
 			success : function (html) {
 				$('#importResult').replaceWith(html);

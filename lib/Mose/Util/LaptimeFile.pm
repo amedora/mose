@@ -1,6 +1,8 @@
 # vim:set sw=4 ts=4 ft=perl:
 package Mose::Util::LaptimeFile;
+use File::Basename 'fileparse';
 use File::Spec::Functions qw/catdir/;
+use File::Path 'make_path';
 use List::Util qw/minstr sum/;
 use YAML;
 
@@ -48,6 +50,8 @@ sub save_record {
         url     => $arg->{url},
         mark    => 1,
     };
+    my $dir = ( fileparse( $self->_filename ) )[1];
+    make_path($dir) unless -d $dir;
     YAML::DumpFile( $self->_filename, $record );
     return 1;
 }

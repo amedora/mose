@@ -4,6 +4,10 @@ use Mojo::Base 'Mojolicious::Controller';
 
 use IRacing::Setup::Parser;
 
+sub index {
+	my $self = shift;
+}
+
 sub home {
     my $self      = shift;
     my $car       = $self->param('car');

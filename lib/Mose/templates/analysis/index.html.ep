@@ -1,0 +1,106 @@
+%# vim:set ts=2 sw=2 ft=html:
+% title 'Data & Analysis';
+% layout 'top';
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#tablesetup').dataTable({
+		"sDom": "<'row'<'span4'l><'span4'f>r>t<'row'<'span4'i><'span4'p>>",
+		"sPaginationType": "bootstrap",
+		"oLanguage": {
+			"sLengthMenu": "_MENU_ files per page"
+		}
+	});
+	tableData = $('#tabledata').dataTable({
+		"iDisplayLength" : 100,
+		/*
+		"sDom": "<'row'<'span12'T>><'row'<'span5'l><'span7'f>r>t<'row'<'span6'i><'span6'p>>",
+		*/
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r><'row-fluid'<'span12't>><'row-fluid'<'span5'i><'span7'p>>",
+		"oTableTools": {
+			"sSwfPath": "<%= url_for '/swf/copy_csv_xls_pdf.swf' %>",
+			"aButtons": ['copy', 'csv', 'pdf', 'print']
+		},
+		/*
+		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+		*/
+		"sPaginationType": "bootstrap",
+		"oLanguage": {
+			"sLengthMenu": "_MENU_ components per page"
+		}
+	});
+});
+</script>
+
+<div class="row">
+	<div class="span12">
+		<div class="page-header">
+			<h1>Data & Analysis</h1>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="span4">
+		<%= include 'carlist' %>
+	</div>
+	<div class="span8">
+		<div id="setuplist">
+			<pre>Please select the car.</pre>
+		</div>
+	</div>
+</div> <!-- row -->
+<div class="row">
+	<div class="span7 offset5">
+		<a href="#" class="btn btn-large btn-primary" id="show">SHOW</a>
+	</div>
+</div> <!-- row -->
+<hr>
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab-analysis" data-toggle="tab"><i class="icon-signal"></i> Analysis</a></li>
+		<li><a href="#tab-data" data-toggle="tab"><i class="icon-list"></i> Data</a></li>
+		<li><a href="#tab-laptime" data-toggle="tab"><i class="icon-time"></i> Lap Time</a></li>
+	</ul> <!-- tabs -->
+	<style>
+		.tab-content {
+			overflow: visible;
+		}
+	</style>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab-analysis">
+			<%= include 'analysis/tab-analysis' %>
+		</div> <!-- tab-analysis -->
+		<div class="tab-pane" id="tab-data">
+			<table class="table table-striped table-bordered" id="tabledata">
+				<thead>
+					<tr>
+						<th>Category</th>
+						<th>Section</th>
+						<th>Component</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div> <!-- tab-data -->
+		<div class="tab-pane" id="tab-laptime">
+			<%= include 'analysis/tab-laptime' %>
+		</div> <!-- tab-analysis -->
+	</div> <!-- tab-content -->
+</div> <!-- tabbable -->
+<%= javascript begin %>
+$(document).ready(function () {
+	$('.carname').on('click', function () {
+		$.ajax({
+			type : 'GET',
+			dataType : 'html',
+			cache : false,
+			url : '<%= url_for("/ajax/setuplist")->to_abs %>'
+			    + '/' + $(this).attr('name')
+			    + '?st=checkbox',
+			success : function (html) {
+				$('#setuplist').replaceWith(html);
+			}
+		});
+	});
+});
+<% end %>

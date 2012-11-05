@@ -64,7 +64,7 @@
 		<div id="ClassD" class="accordion-body collapse">
 			<div class="accordion-inner">
 				<ul>
-					<li><a href="<%= url_for '/analysis/latemodel' %>">Chevrolet Monte-Carlo SS</a></li>
+					<li class="carname" name="latemodel"><a>Chevrolet Monte-Carlo SS</a></li>
 					<li><a href="">SK Modified</a></li>
 					<li><a href="">Ford Mustang</a></li>
 					<li><a href="">Skip Barber Formula 2000</a></li>

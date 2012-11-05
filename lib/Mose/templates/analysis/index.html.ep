@@ -3,13 +3,6 @@
 % layout 'top';
 <script type="text/javascript">
 $(document).ready(function () {
-	$('#tablesetup').dataTable({
-		"sDom": "<'row'<'span4'l><'span4'f>r>t<'row'<'span4'i><'span4'p>>",
-		"sPaginationType": "bootstrap",
-		"oLanguage": {
-			"sLengthMenu": "_MENU_ files per page"
-		}
-	});
 	tableData = $('#tabledata').dataTable({
 		"iDisplayLength" : 100,
 		/*
@@ -50,12 +43,12 @@ $(document).ready(function () {
 </div> <!-- row -->
 <div class="row">
 	<div class="span7 offset5">
-		<a href="#" class="btn btn-large btn-primary" id="show">SHOW</a>
+		<a class="btn btn-large btn-primary" id="show">SHOW</a>
 	</div>
 </div> <!-- row -->
 <hr>
 <div class="tabbable">
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs" id="analysis-tab">
 		<li class="active"><a href="#tab-analysis" data-toggle="tab"><i class="icon-signal"></i> Analysis</a></li>
 		<li><a href="#tab-data" data-toggle="tab"><i class="icon-list"></i> Data</a></li>
 		<li><a href="#tab-laptime" data-toggle="tab"><i class="icon-time"></i> Lap Time</a></li>
@@ -67,7 +60,7 @@ $(document).ready(function () {
 	</style>
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab-analysis">
-			<%= include 'analysis/tab-analysis' %>
+			<pre>Select setup(s).</pre>
 		</div> <!-- tab-analysis -->
 		<div class="tab-pane" id="tab-data">
 			<table class="table table-striped table-bordered" id="tabledata">
@@ -101,6 +94,21 @@ $(document).ready(function () {
 				$('#setuplist').replaceWith(html);
 			}
 		});
+	});
+
+	$('#show').on('click', function () {
+    $.ajax({
+			type : 'GET',
+			dataType : 'html',
+			cache : false,
+			url : '/render/graphindex/'
+		      + $("[name='car']").val()
+			    + '?' + $('#form_fileselect').serialize(),
+			success : function (html) {
+				$('#tab-analysis').replaceWith(html);
+			}
+		});
+		$('#analysis-tab a[href="#tab-analysis"]').tab('show');
 	});
 });
 <% end %>

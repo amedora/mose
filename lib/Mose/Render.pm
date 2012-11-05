@@ -252,4 +252,10 @@ sub graph {
     );
 }
 
+sub graphindex {
+	my $self = shift;
+	my $car = $self->param('car');
+	$self->render("analysis/tab-analysis-$car", car => $car);
+}
+
 1;

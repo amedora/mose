@@ -6,6 +6,7 @@ use File::Find::Rule;
 use File::Spec::Functions qw/catdir rel2abs/;
 use FindBin;
 
+use Mose::Util qw/graph_list/;
 use Mose::Util::LaptimeFile;
 
 our $VERSION = '1.0';
@@ -54,6 +55,13 @@ sub startup {
             return $laptimefile;
         }
     );
+	$self->helper(
+		graph_list => sub {
+			my $self = shift;
+			my $car = shift;
+			return graph_list($car);
+		}
+	);
     #
     # Routes
     my $r = $self->routes;
@@ -63,10 +71,10 @@ sub startup {
 
     # Analysis
     $r->get('/analysis')->to('analysis#index');
-    $r->get('/analysis/home/:car')->to( 'analysis#home', car => '' );
     $r->get('/analysis/datatable')->to('analysis#datatable');
 
     # Render
+    $r->get('/render/graphindex/:car')->to('render#graphindex');
     $r->get('/render/graph/:graph_type/:car')->to('render#graph');
     $r->get('/render/laptime/:car')->to('render#laptime');
 

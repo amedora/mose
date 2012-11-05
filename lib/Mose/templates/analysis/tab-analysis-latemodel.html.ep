@@ -1,5 +1,5 @@
 %# vim:set ts=2 sw=2 ft=html:
-<div class="tab-pane" id="tab-analysis">
+<div class="tab-pane active" id="tab-analysis">
 <div class="subnav">
 	<ul class="nav nav-pills">
 		<li><a href="#chassis">Chassis</a></li>
@@ -81,3 +81,14 @@
 	</div>
 </section>
 </div>
+<%= javascript begin %>
+	<% foreach my $g ( graph_list($car)) { %>
+		$.ajax({
+			url : '/render/graph/<%= $g %>/<%= $car %>' + '?' + $('#form_fileselect').serialize(),
+		  success : function (json) {
+				opt_graph["<%= $g %>"].series = json.series;
+				this["graph_<%= $g %>"] = new Highcharts.Chart(opt_graph["<%= $g %>"]); 
+			}
+		});
+	<% } %>
+<% end %>

@@ -108,6 +108,18 @@ $(document).ready(function () {
 				$('#tab-analysis').replaceWith(html);
 			}
 		});
+
+    $.ajax({
+			type : 'GET',
+			dataType : 'html',
+			cache : false,
+			url : '/analysis/datatable/'
+			    + '?' + $('#form_fileselect').serialize(),
+			success : function (html) {
+				$('#tabledata').replaceWith(html);
+			}
+		});
+
 		$('#analysis-tab a[href="#tab-analysis"]').tab('show');
 	});
 });

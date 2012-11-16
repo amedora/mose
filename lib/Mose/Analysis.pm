@@ -8,13 +8,6 @@ sub index {
 	my $self = shift;
 }
 
-sub home {
-    my $self      = shift;
-    my $car       = $self->param('car');
-	$self->stash->{setups} = $self->app->setups($car);
-	$self->stash->{car} = $car;
-}
-
 sub datatable {
     my $self  = shift;
     my @files = map {

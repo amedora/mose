@@ -21,6 +21,62 @@ $(document).ready(function () {
 			"sLengthMenu": "_MENU_ components per page"
 		}
 	});
+
+	$('.carname').on('click', function () {
+		$.ajax({
+			type : 'GET',
+			dataType : 'html',
+			cache : false,
+			url : '<%= url_for("/ajax/setuplist")->to_abs %>'
+			    + '/' + $(this).attr('name')
+			    + '?st=checkbox',
+			success : function (html) {
+				$('#setuplist').replaceWith(html);
+			}
+		});
+	});
+
+	$('#show').on('click', function () {
+    $.ajax({
+			type : 'GET',
+			dataType : 'html',
+			cache : false,
+			url : '/render/graphindex/'
+		      + $("[name='car']").val()
+			    + '?' + $('#form_fileselect').serialize(),
+			success : function (html) {
+				$('#tab-analysis').replaceWith(html);
+			}
+		});
+
+		get_data();
+		/*
+    $.ajax({
+			type : 'GET',
+			dataType : 'html',
+			cache : false,
+			url : '/analysis/datatable/'
+			    + '?' + $('#form_fileselect').serialize(),
+			success : function (html) {
+				$('#tabledata').replaceWith(html);
+			}
+		});
+		*/
+		$('#analysis-tab a[href="#tab-analysis"]').tab('show');
+	});
+
+	/* Trick for TableTools */
+	$('.nav-tabs a[data-toggle="tab"]').on('shown', function(e) {
+    var ttInstances = TableTools.fnGetMasters();
+    for (var i in ttInstances) {
+			if (ttInstances[i].fnResizeRequired())
+				ttInstances[i].fnResizeButtons();
+    }
+		var table = $.fn.dataTable.fnTables(true);
+		if (table.length > 0) {
+			$(table).dataTable().fnAdjustColumnSizing();
+		}
+	});
 });
 </script>
 
@@ -82,45 +138,5 @@ $(document).ready(function () {
 </div> <!-- tabbable -->
 <%= javascript begin %>
 $(document).ready(function () {
-	$('.carname').on('click', function () {
-		$.ajax({
-			type : 'GET',
-			dataType : 'html',
-			cache : false,
-			url : '<%= url_for("/ajax/setuplist")->to_abs %>'
-			    + '/' + $(this).attr('name')
-			    + '?st=checkbox',
-			success : function (html) {
-				$('#setuplist').replaceWith(html);
-			}
-		});
-	});
-
-	$('#show').on('click', function () {
-    $.ajax({
-			type : 'GET',
-			dataType : 'html',
-			cache : false,
-			url : '/render/graphindex/'
-		      + $("[name='car']").val()
-			    + '?' + $('#form_fileselect').serialize(),
-			success : function (html) {
-				$('#tab-analysis').replaceWith(html);
-			}
-		});
-
-    $.ajax({
-			type : 'GET',
-			dataType : 'html',
-			cache : false,
-			url : '/analysis/datatable/'
-			    + '?' + $('#form_fileselect').serialize(),
-			success : function (html) {
-				$('#tabledata').replaceWith(html);
-			}
-		});
-
-		$('#analysis-tab a[href="#tab-analysis"]').tab('show');
-	});
 });
 <% end %>

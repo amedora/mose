@@ -8,27 +8,24 @@
     <meta name="author" content="">
 
 		<link href="<%= url_for '/css/bootstrap.min.css' %>" rel="stylesheet">
+		<link href="<%= url_for '/css/bootstrap-responsive.min.css' %>" rel="stylesheet">
 		<link href="<%= url_for '/css/docs.css' %>" rel="stylesheet">
 		<link href="<%= url_for '/css/dataTables.bootstrap.css' %>" rel="stylesheet">
 		<link href="<%= url_for '/css/TableTools.css' %>" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-		<link href="<%= url_for '/css/bootstrap-responsive.min.css' %>" rel="stylesheet">
-		<script type="text/javascript" src="<%= url_for '/js/jquery-1.7.1.min.js' %>"></script>
-		<script type="text/javascript" src="<%= url_for '/js/jquery.dataTables.min.js' %>"></script>
-		<script type="text/javascript" src="<%= url_for '/js/dataTables.bootstrap.js' %>"></script>
-		<script type="text/javascript" src="<%= url_for '/js/TableTools.min.js' %>"></script>
-		<script type="text/javascript" src="<%= url_for '/js/ZeroClipboard.js' %>"></script>
-		<script type="text/javascript" src="<%= url_for '/js/highcharts.js' %>"></script>
-		<script type="text/javascript" src="<%= url_for '/js/mose.js' %>"></script>
+
+		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/jquery.js' %>"></script>
+		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/mose.js' %>"></script>
+		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/highcharts.js' %>"></script>
+		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/jquery.dataTables.min.js' %>"></script>
+		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/bootstrap.min.js' %>"></script>
+		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/ZeroClipboard.js' %>"></script>
+		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/TableTools.min.js' %>"></script>
+		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/dataTables.bootstrap.js' %>"></script>
   </head>
 
   <body data-spy="scroll" data-target=".subnav" data-offset="50">
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -61,6 +58,5 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-		<script src="<%= url_for '/js/bootstrap.min.js' %>"></script>
   </body>
 </html>

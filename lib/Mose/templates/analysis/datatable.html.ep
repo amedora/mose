@@ -1,5 +1,5 @@
 %# vim:set ts=2 sw=2 ft=html:
-<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="tabledata">
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed" id="tabledata">
 	<thead>
 		<tr>
 			<th>Category</th>
@@ -14,12 +14,22 @@
 		<% foreach my $cat ( $setups->[0]->categories ) { %>
 			<% foreach my $sec ( $setups->[0]->sections($cat) ) { %>
 				<% foreach my $compo ( $setups->[0]->components( $cat, $sec ) ) { %>
+					%# if there is differences, highlight it.
+					% my $diff = {}; my $hl;
+					% foreach my $setup (@{$setups}) {
+					% 	$diff->{$setup->data( $cat => $sec => $compo )} = 1;
+					% }
+					% $hl = 1 if 2 != @{[(%$diff)]};
 					<tr>
 						<td><%= $cat %></td>
 						<td><%= $sec %></td>
 						<td><%= $compo %></td>
 						<% foreach my $setup (@{$setups}) { %>
-							<td><%= $setup->data( $cat => $sec => $compo ) %></td>
+							<% if ($hl) { %>
+								<td><p class="text-error"><%= $setup->data( $cat => $sec => $compo ) %></p></td>
+							<% } else { %>
+								<td><p><%= $setup->data( $cat => $sec => $compo ) %></p></td>
+							<% } %>
 						<% } %>
 					</tr>
 				<% } %>

@@ -26,9 +26,9 @@
 						<td><%= $compo %></td>
 						<% foreach my $setup (@{$setups}) { %>
 							<% if ($hl) { %>
-								<td><p class="text-error"><%= $setup->data( $cat => $sec => $compo ) %></p></td>
+								<td style="color:#B94A48;"><%= $setup->data( $cat => $sec => $compo ) %></td>
 							<% } else { %>
-								<td><p><%= $setup->data( $cat => $sec => $compo ) %></p></td>
+								<td><%= $setup->data( $cat => $sec => $compo ) %></td>
 							<% } %>
 						<% } %>
 					</tr>

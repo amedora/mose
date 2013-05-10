@@ -371,77 +371,176 @@ CHASSIS:
       latemodel: '/html/body/u[45]'
   LEFT FRONT:
     Corner weight:
+      stockcars fordfusion: '/html/body/u[39]'
       latemodel: '/html/body/u[46]'
     Ride height:
+      stockcars fordfusion: '/html/body/u[40]'
       latemodel: '/html/body/u[47]'
+    Shock deflection:
+      stockcars fordfusion: '/html/body/u[41]'
+    Shock deflection (of):
+      stockcars fordfusion: '/html/body/u[42]'
+    Spring deflection:
+      stockcars fordfusion: '/html/body/u[43]'
+    Spring deflection (of):
+      stockcars fordfusion: '/html/body/u[44]'
     Shock collar offset:
       latemodel: '/html/body/u[48]'
+    Spring perch offset:
+      stockcars fordfusion: '/html/body/u[45]'
     Spring rate:
+      stockcars fordfusion: '/html/body/u[46]'
       latemodel: '/html/body/u[49]'
+    Bumpstop:
+      stockcars fordfusion: '/html/body/u[47]'
+    Packer:
+      stockcars fordfusion: '/html/body/u[48]'
     Bump stiffness:
+      stockcars fordfusion: '/html/body/u[49]'
       latemodel: '/html/body/u[50]'
     Rebound stiffness:
+      stockcars fordfusion: '/html/body/u[50]'
       latemodel: '/html/body/u[51]'
     Camber:
+      stockcars fordfusion: '/html/body/u[51]'
       latemodel: '/html/body/u[52]'
     Caster:
+      stockcars fordfusion: '/html/body/u[52]'
       latemodel: '/html/body/u[53]'
+    Toe-in:
+      stockcars fordfusion: '/html/body/u[53]'
   LEFT REAR:
     Corner weight:
+      stockcars fordfusion: '/html/body/u[54]'
       latemodel: '/html/body/u[54]'
     Ride height:
+      stockcars fordfusion: '/html/body/u[55]'
       latemodel: '/html/body/u[55]'
+    Shock deflection:
+      stockcars fordfusion: '/html/body/u[56]'
+    Shock deflection (of):
+      stockcars fordfusion: '/html/body/u[57]'
+    Spring deflection:
+      stockcars fordfusion: '/html/body/u[58]'
+    Spring deflection (of):
+      stockcars fordfusion: '/html/body/u[59]'
     Shock collar offset:
       latemodel: '/html/body/u[56]'
+    Spring perch offset:
+      stockcars fordfusion: '/html/body/u[60]'
     Spring rate:
+      stockcars fordfusion: '/html/body/u[61]'
       latemodel: '/html/body/u[57]'
     Bump stiffness:
+      stockcars fordfusion: '/html/body/u[62]'
       latemodel: '/html/body/u[58]'
     Rebound stiffness:
+      stockcars fordfusion: '/html/body/u[63]'
       latemodel: '/html/body/u[59]'
+    Camber:
+      stockcars fordfusion: '/html/body/u[64]'
+    Toe-in:
+      stockcars fordfusion: '/html/body/u[65]'
     Track bar height:
+      stockcars fordfusion: '/html/body/u[66]'
       latemodel: '/html/body/u[60]'
     Truck arm mount:
+      stockcars fordfusion: '/html/body/u[67]'
       latemodel: '/html/body/u[61]'
+  FRONT ARB:
+    Diameter:
+      stockcars fordfusion: '/html/body/u[68]'
+    Arm asynmetry:
+      stockcars fordfusion: '/html/body/u[69]'
+    Preload:
+      stockcars fordfusion: '/html/body/u[70]'
+    Attach:
+      stockcars fordfusion: '/html/body/u[71]'
   RIGHT FRONT:
     Corner weight:
+      stockcars fordfusion: '/html/body/u[72]'
       latemodel: '/html/body/u[62]'
     Ride height:
+      stockcars fordfusion: '/html/body/u[73]'
       latemodel: '/html/body/u[63]'
+    Shock deflection:
+      stockcars fordfusion: '/html/body/u[74]'
+    Shock deflection (of):
+      stockcars fordfusion: '/html/body/u[75]'
+    Spring deflection:
+      stockcars fordfusion: '/html/body/u[76]'
+    Spring deflection (of):
+      stockcars fordfusion: '/html/body/u[77]'
     Shock collar offset:
       latemodel: '/html/body/u[64]'
+    Spring perch offset:
+      stockcars fordfusion: '/html/body/u[78]'
     Spring rate:
+      stockcars fordfusion: '/html/body/u[79]'
       latemodel: '/html/body/u[65]'
+    Bumpstop:
+      stockcars fordfusion: '/html/body/u[80]'
+    Packer:
+      stockcars fordfusion: '/html/body/u[81]'
     Bump stiffness:
+      stockcars fordfusion: '/html/body/u[82]'
       latemodel: '/html/body/u[66]'
     Rebound stiffness:
+      stockcars fordfusion: '/html/body/u[83]'
       latemodel: '/html/body/u[67]'
     Camber:
+      stockcars fordfusion: '/html/body/u[84]'
       latemodel: '/html/body/u[68]'
     Caster:
+      stockcars fordfusion: '/html/body/u[85]'
       latemodel: '/html/body/u[69]'
+    Toe-in:
+      stockcars fordfusion: '/html/body/u[86]'
   RIGHT REAR:
     Corner weight:
+      stockcars fordfusion: '/html/body/u[87]'
       latemodel: '/html/body/u[70]'
     Ride height:
+      stockcars fordfusion: '/html/body/u[88]'
       latemodel: '/html/body/u[71]'
+    Shock deflection:
+      stockcars fordfusion: '/html/body/u[89]'
+    Shock deflection (of):
+      stockcars fordfusion: '/html/body/u[90]'
+    Spring deflection:
+      stockcars fordfusion: '/html/body/u[91]'
+    Spring deflection (of):
+      stockcars fordfusion: '/html/body/u[92]'
     Shock collar offset:
       latemodel: '/html/body/u[72]'
+    Spring perch offset:
+      stockcars fordfusion: '/html/body/u[93]'
     Spring rate:
+      stockcars fordfusion: '/html/body/u[94]'
       latemodel: '/html/body/u[73]'
     Bump stiffness:
+      stockcars fordfusion: '/html/body/u[95]'
       latemodel: '/html/body/u[74]'
     Rebound stiffness:
+      stockcars fordfusion: '/html/body/u[96]'
       latemodel: '/html/body/u[75]'
+    Camber:
+      stockcars fordfusion: '/html/body/u[97]'
+    Toe-in:
+      stockcars fordfusion: '/html/body/u[98]'
     Track bar height:
+      stockcars fordfusion: '/html/body/u[99]'
       latemodel: '/html/body/u[76]'
     Truck arm mount:
+      stockcars fordfusion: '/html/body/u[100]'
       latemodel: '/html/body/u[77]'
     Truck arm preload:
+      stockcars fordfusion: '/html/body/u[101]'
       latemodel: '/html/body/u[78]'
   REAR:
     Fuel Fill To:
       latemodel: '/html/body/u[79]'
     Rear end ratio:
+      stockcars fordfusion: '/html/body/u[102]'
       latemodel: '/html/body/u[80]'
 

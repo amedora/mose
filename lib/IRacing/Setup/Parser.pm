@@ -83,6 +83,22 @@ sub _analyze {
             ) / 2
         ) . 'F';
     }
+    #
+    # available shock/spring travel
+    foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
+        $self->{data}->{ANALYSIS}->{'Available shock travel'}
+          ->{ $side . ' FRONT' } =
+          $self->data_wou(
+            'CHASSIS' => "$side FRONT" => 'Shock deflection (of)' ) -
+          $self->data_wou( 'CHASSIS' => "$side FRONT" => 'Shock deflection' );
+    }
+    foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
+        $self->{data}->{ANALYSIS}->{'Available spring travel'}
+          ->{ $side . ' FRONT' } =
+          $self->data_wou(
+            'CHASSIS' => "$side FRONT" => 'Spring deflection (of)' ) -
+          $self->data_wou( 'CHASSIS' => "$side FRONT" => 'Spring deflection' );
+    }
 }
 
 sub new {

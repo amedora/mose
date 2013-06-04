@@ -19,7 +19,7 @@ sub _build_scraper {
         process "/html/body/h2[1]", car => sub {
             my $elem = shift;
             my $text = $elem->as_trimmed_text;
-            $text =~ /iRacing\.com Motorsport Simulations (.*) setup:\s?(.*)/m;
+            $text =~ /iRacing\.com Motorsport Simulations (.*) setup:\s?(.*)track:/m;
             $self->{info}->{car_name} = $1;
             $self->{info}->{file_name} = $2 if $2;
         };

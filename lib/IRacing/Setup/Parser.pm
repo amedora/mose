@@ -19,7 +19,8 @@ sub _build_scraper {
         process "/html/body/h2[1]", car => sub {
             my $elem = shift;
             my $text = $elem->as_trimmed_text;
-            $text =~ /iRacing\.com Motorsport Simulations (.*) setup:\s?(.*)track:/m;
+            $text =~
+              /iRacing\.com Motorsport Simulations (.*) setup:\s?(.*)track:/m;
             $self->{info}->{car_name} = $1;
             $self->{info}->{file_name} = $2 if $2;
         };
@@ -85,19 +86,24 @@ sub _analyze {
     }
     #
     # available shock/spring travel
-    foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
-        $self->{data}->{ANALYSIS}->{'Available shock travel'}
-          ->{ $side . ' FRONT' } =
-          $self->data_wou(
-            'CHASSIS' => "$side FRONT" => 'Shock deflection (of)' ) -
-          $self->data_wou( 'CHASSIS' => "$side FRONT" => 'Shock deflection' );
-    }
-    foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
-        $self->{data}->{ANALYSIS}->{'Available spring travel'}
-          ->{ $side . ' FRONT' } =
-          $self->data_wou(
-            'CHASSIS' => "$side FRONT" => 'Spring deflection (of)' ) -
-          $self->data_wou( 'CHASSIS' => "$side FRONT" => 'Spring deflection' );
+    # only for Top3 NASCAR cars
+    if ( $self->{info}->{car_name} =~ /stockcars/ ) {
+        foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
+            $self->{data}->{ANALYSIS}->{'Available shock travel'}
+              ->{ $side . ' FRONT' } =
+              $self->data_wou(
+                'CHASSIS' => "$side FRONT" => 'Shock deflection (of)' ) -
+              $self->data_wou(
+                'CHASSIS' => "$side FRONT" => 'Shock deflection' );
+        }
+        foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
+            $self->{data}->{ANALYSIS}->{'Available spring travel'}
+              ->{ $side . ' FRONT' } =
+              $self->data_wou(
+                'CHASSIS' => "$side FRONT" => 'Spring deflection (of)' ) -
+              $self->data_wou(
+                'CHASSIS' => "$side FRONT" => 'Spring deflection' );
+        }
     }
 }
 

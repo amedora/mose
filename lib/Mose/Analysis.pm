@@ -2,7 +2,7 @@
 package Mose::Analysis;
 use Mojo::Base 'Mojolicious::Controller';
 
-use IRacing::Setup::Parser;
+use IRacing::Setup;
 
 sub index {
 	my $self = shift;
@@ -14,7 +14,7 @@ sub datatable {
         $self->stash->{config}->{setupdir} . '/' . $self->param('car') . $_;
     } $self->param('file_selected');
     my @setups;
-    push @setups, IRacing::Setup::Parser->new($_) foreach @files;
+    push @setups, IRacing::Setup->new($_) foreach @files;
 	$self->stash->{setups} = \@setups;
 }
 

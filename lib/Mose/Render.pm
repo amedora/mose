@@ -6,7 +6,7 @@ use File::Find::Rule;
 use YAML;
 
 use Mose::Util qw/laptime_in_milisec/;
-use IRacing::Setup::Parser;
+use IRacing::Setup;
 
 my $_files_verified = {};
 
@@ -77,7 +77,7 @@ sub _render {
     my ( $graph, $car, @files ) = @_;
     my $ret = { series => [] };
     my @setups;
-    push @setups, IRacing::Setup::Parser->new($_) foreach @files;
+    push @setups, IRacing::Setup->new($_) foreach @files;
     foreach my $s (@setups) {
         push @{ $ret->{series} },
           +{
@@ -91,16 +91,16 @@ sub _render {
 sub _render_front_rideheight {
     my $s = shift;
     return (
-        $s->data_wou( 'CHASSIS' => 'LEFT FRONT'  => 'Ride height' ),
-        $s->data_wou( 'CHASSIS' => 'RIGHT FRONT' => 'Ride height' )
+        $s->data( component => ['CHASSIS' => 'LEFT FRONT'  => 'Ride height'] ),
+        $s->data( component => ['CHASSIS' => 'RIGHT FRONT' => 'Ride height'] )
     );
 }
 
 sub _render_rear_rideheight {
     my $s = shift;
     return (
-        $s->data_wou( 'CHASSIS' => 'LEFT REAR'  => 'Ride height' ),
-        $s->data_wou( 'CHASSIS' => 'RIGHT REAR' => 'Ride height' )
+        $s->data( component => ['CHASSIS' => 'LEFT REAR'  => 'Ride height'] ),
+        $s->data( component => ['CHASSIS' => 'RIGHT REAR' => 'Ride height'] )
     );
 }
 
@@ -108,12 +108,12 @@ sub _render_rideheight_relation {
     my $s = shift;
     return (
         (
-            $s->data_wou( 'CHASSIS' => 'LEFT FRONT' => 'Ride height' ) +
-              $s->data_wou( 'CHASSIS' => 'RIGHT FRONT' => 'Ride height' )
+            $s->data( component => ['CHASSIS' => 'LEFT FRONT' => 'Ride height'] ) +
+              $s->data( component => ['CHASSIS' => 'RIGHT FRONT' => 'Ride height'] )
         ) / 2.000,
         (
-            $s->data_wou( 'CHASSIS' => 'LEFT REAR' => 'Ride height' ) +
-              $s->data_wou( 'CHASSIS' => 'RIGHT REAR' => 'Ride height' )
+            $s->data( component => ['CHASSIS' => 'LEFT REAR' => 'Ride height'] ) +
+              $s->data( component => ['CHASSIS' => 'RIGHT REAR' => 'Ride height'] )
         ) / 2.000
     );
 }
@@ -121,105 +121,105 @@ sub _render_rideheight_relation {
 sub _render_trackbar_height {
     my $s = shift;
     return (
-        $s->data_wou( 'CHASSIS' => 'LEFT REAR'  => 'Track bar height' ),
-        $s->data_wou( 'CHASSIS' => 'RIGHT REAR' => 'Track bar height' ),
+        $s->data( component => ['CHASSIS' => 'LEFT REAR'  => 'Track bar height'] ),
+        $s->data( component => ['CHASSIS' => 'RIGHT REAR' => 'Track bar height'] ),
     );
 }
 
 sub _render_front_tiretemp {
     my $s = shift;
     return (
-        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Last temps O' ),
-        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Last temps M' ),
-        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Last temps I' ),
-        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Last temps I' ),
-        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Last temps M' ),
-        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Last temps O' )
+        $s->data( component => ['TIRE' => 'LEFT FRONT'  => 'Last temps O'] ),
+        $s->data( component => ['TIRE' => 'LEFT FRONT'  => 'Last temps M'] ),
+        $s->data( component => ['TIRE' => 'LEFT FRONT'  => 'Last temps I'] ),
+        $s->data( component => ['TIRE' => 'RIGHT FRONT' => 'Last temps I'] ),
+        $s->data( component => ['TIRE' => 'RIGHT FRONT' => 'Last temps M'] ),
+        $s->data( component => ['TIRE' => 'RIGHT FRONT' => 'Last temps O'] )
     );
 }
 
 sub _render_rear_tiretemp {
     my $s = shift;
     return (
-        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Last temps O' ),
-        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Last temps M' ),
-        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Last temps I' ),
-        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Last temps I' ),
-        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Last temps M' ),
-        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Last temps O' )
+        $s->data( component => ['TIRE' => 'LEFT REAR'  => 'Last temps O'] ),
+        $s->data( component => ['TIRE' => 'LEFT REAR'  => 'Last temps M'] ),
+        $s->data( component => ['TIRE' => 'LEFT REAR'  => 'Last temps I'] ),
+        $s->data( component => ['TIRE' => 'RIGHT REAR' => 'Last temps I'] ),
+        $s->data( component => ['TIRE' => 'RIGHT REAR' => 'Last temps M'] ),
+        $s->data( component => ['TIRE' => 'RIGHT REAR' => 'Last temps O'] )
     );
 }
 
 sub _render_front_tread {
     my $s = shift;
     return (
-        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Tread remaining O' ),
-        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Tread remaining M' ),
-        $s->data_wou( 'TIRE' => 'LEFT FRONT'  => 'Tread remaining I' ),
-        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Tread remaining I' ),
-        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Tread remaining M' ),
-        $s->data_wou( 'TIRE' => 'RIGHT FRONT' => 'Tread remaining O' )
+        $s->data( component => ['TIRE' => 'LEFT FRONT'  => 'Tread remaining O'] ),
+        $s->data( component => ['TIRE' => 'LEFT FRONT'  => 'Tread remaining M'] ),
+        $s->data( component => ['TIRE' => 'LEFT FRONT'  => 'Tread remaining I'] ),
+        $s->data( component => ['TIRE' => 'RIGHT FRONT' => 'Tread remaining I'] ),
+        $s->data( component => ['TIRE' => 'RIGHT FRONT' => 'Tread remaining M'] ),
+        $s->data( component => ['TIRE' => 'RIGHT FRONT' => 'Tread remaining O'] )
     );
 }
 
 sub _render_rear_tread {
     my $s = shift;
     return (
-        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Tread remaining O' ),
-        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Tread remaining M' ),
-        $s->data_wou( 'TIRE' => 'LEFT REAR'  => 'Tread remaining I' ),
-        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Tread remaining I' ),
-        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Tread remaining M' ),
-        $s->data_wou( 'TIRE' => 'RIGHT REAR' => 'Tread remaining O' )
+        $s->data( component => ['TIRE' => 'LEFT REAR'  => 'Tread remaining O'] ),
+        $s->data( component => ['TIRE' => 'LEFT REAR'  => 'Tread remaining M'] ),
+        $s->data( component => ['TIRE' => 'LEFT REAR'  => 'Tread remaining I'] ),
+        $s->data( component => ['TIRE' => 'RIGHT REAR' => 'Tread remaining I'] ),
+        $s->data( component => ['TIRE' => 'RIGHT REAR' => 'Tread remaining M'] ),
+        $s->data( component => ['TIRE' => 'RIGHT REAR' => 'Tread remaining O'] )
     );
 }
 
 sub _render_left_weight_dist {
     my $s = shift;
     return (
-        $s->data_wou( 'CHASSIS' => 'LEFT FRONT' => 'Corner weight' ),
-        $s->data_wou( 'CHASSIS' => 'LEFT REAR'  => 'Corner weight' )
+        $s->data( component => ['CHASSIS' => 'LEFT FRONT' => 'Corner weight'] ),
+        $s->data( component => ['CHASSIS' => 'LEFT REAR'  => 'Corner weight'] )
     );
 }
 
 sub _render_right_weight_dist {
     my $s = shift;
     return (
-        $s->data_wou( 'CHASSIS' => 'RIGHT FRONT' => 'Corner weight' ),
-        $s->data_wou( 'CHASSIS' => 'RIGHT REAR'  => 'Corner weight' )
+        $s->data( component => ['CHASSIS' => 'RIGHT FRONT' => 'Corner weight'] ),
+        $s->data( component => ['CHASSIS' => 'RIGHT REAR'  => 'Corner weight'] )
     );
 }
 
 sub _render_ballast {
     my $s = shift;
-    return ( [ 1, $s->data_wou( 'CHASSIS' => 'FRONT' => 'Ballast forward' ) ] );
+    return ( [ 1, $s->data( component => ['CHASSIS' => 'FRONT' => 'Ballast forward'] ) ] );
 }
 
 sub _render_left_spring_package {
     my $s = shift;
     return (
-        $s->data_wou( 'CHASSIS' => 'LEFT FRONT' => 'Spring rate' ),
-        $s->data_wou( 'CHASSIS' => 'LEFT REAR'  => 'Spring rate' )
+        $s->data( component => ['CHASSIS' => 'LEFT FRONT' => 'Spring rate'] ),
+        $s->data( component => ['CHASSIS' => 'LEFT REAR'  => 'Spring rate'] )
     );
 }
 
 sub _render_right_spring_package {
     my $s = shift;
     return (
-        $s->data_wou( 'CHASSIS' => 'RIGHT FRONT' => 'Spring rate' ),
-        $s->data_wou( 'CHASSIS' => 'RIGHT REAR'  => 'Spring rate' )
+        $s->data( component => ['CHASSIS' => 'RIGHT FRONT' => 'Spring rate'] ),
+        $s->data( component => ['CHASSIS' => 'RIGHT REAR'  => 'Spring rate'] )
     );
 }
 
 sub _render_left_tiretemp_avg {
     my $s = shift;
     return (
-        $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'LEFT FRONT' ),
-        $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'LEFT REAR' ),
+        $s->data( component => ['ANALYSIS' => 'Avg. temps' => 'LEFT FRONT'] ),
+        $s->data( component => ['ANALYSIS' => 'Avg. temps' => 'LEFT REAR'] ),
         int(
             (
-                $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'LEFT FRONT' ) +
-                  $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'LEFT REAR' )
+                $s->data( component => ['ANALYSIS' => 'Avg. temps' => 'LEFT FRONT'] ) +
+                  $s->data( component => ['ANALYSIS' => 'Avg. temps' => 'LEFT REAR'] )
             ) / 2
         )
     );
@@ -228,12 +228,12 @@ sub _render_left_tiretemp_avg {
 sub _render_right_tiretemp_avg {
     my $s = shift;
     return (
-        $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'RIGHT FRONT' ),
-        $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'RIGHT REAR' ),
+        $s->data( component => ['ANALYSIS' => 'Avg. temps' => 'RIGHT FRONT'] ),
+        $s->data( component => ['ANALYSIS' => 'Avg. temps' => 'RIGHT REAR'] ),
         int(
             (
-                $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'RIGHT FRONT' ) +
-                  $s->data_wou( 'ANALYSIS' => 'Avg. temps' => 'RIGHT REAR' )
+                $s->data( component => ['ANALYSIS' => 'Avg. temps' => 'RIGHT FRONT'] ) +
+                  $s->data( component => ['ANALYSIS' => 'Avg. temps' => 'RIGHT REAR'] )
             ) / 2
         )
     );

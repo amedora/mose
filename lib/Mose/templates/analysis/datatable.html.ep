@@ -11,29 +11,20 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% foreach my $cat ( $setups->[0]->categories ) { %>
-			<% foreach my $sec ( $setups->[0]->sections($cat) ) { %>
-				<% foreach my $compo ( $setups->[0]->components( $cat, $sec ) ) { %>
-					%# if there is differences, highlight it.
-					% my $diff = {}; my $hl;
-					% foreach my $setup (@{$setups}) {
-					% 	$diff->{$setup->data( $cat => $sec => $compo )} = 1;
-					% }
-					% $hl = 1 if 2 != @{[(%$diff)]};
-					<tr>
-						<td><%= $cat %></td>
-						<td><%= $sec %></td>
-						<td><%= $compo %></td>
-						<% foreach my $setup (@{$setups}) { %>
-							<% if ($hl) { %>
-								<td style="color:#B94A48;"><%= $setup->data( $cat => $sec => $compo ) %></td>
-							<% } else { %>
-								<td><%= $setup->data( $cat => $sec => $compo ) %></td>
-							<% } %>
-						<% } %>
-					</tr>
+		<% for (my $i = 0; $i < $#{$setups->[0]->data}; $i++) { %>
+			<tr>
+				<td><%= $setups->[0]->data->[$i][0] %></td>
+				<td><%= $setups->[0]->data->[$i][1] %></td>
+				<td><%= $setups->[0]->data->[$i][2] %></td>
+				%# if there is differences, highlight it.
+				<% foreach my $s (@{$setups}) { %>
+%#							<% if ($hl) { %>
+%#								<td style="color:#B94A48;"><%= $setup->data( $cat => $sec => $compo ) %></td>
+%#							<% } else { %>
+%#								<td><%= $setup->data( $cat => $sec => $compo ) %></td>
+					<td><%= $s->data->[$i][3] %></td>
 				<% } %>
-			<% } %>
+			</tr>
 		<% } %>
 	</tbody>
 </table>

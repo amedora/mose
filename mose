@@ -1,9 +1,28 @@
 # vim:set sw=4 ts=4 ft=perl:
 #!/usr/bin/env perl
+use lib 'lib';
+use FindBin;
+use Mojolicious::Commands;
+use Win32::SysTray;
 
 use strict;
 
-use lib 'lib';
-use Mojolicious::Commands;
+my $pid = fork();
+if ( $pid == 0 ) {
+    unless ( defined( $ENV{MOJO_MODE} )
+        && ( $ENV{MOJO_MODE} eq 'development' ) )
+    {
+        $ENV{MOJO_MODE} = 'production';
+    }
+    Mojolicious::Commands->start_app( 'Mose', 'daemon' );
+}
+else {
+    my $systray = Win32::SysTray->new(
+        name   => 'mose',
+        icon   => $FindBin::Bin . '\mose.ico',
+        single => 1,
+    ) or exit 0;
 
-Mojolicious::Commands->start_app('Mose', 'daemon');
+    $systray->setMenu( "> E&xit" => sub { kill 9, $pid; return -1 }, );
+    $systray->runApplication;
+}

@@ -14,13 +14,11 @@ sub new {
         car_name  => '',
         file_name => $f,
         data      => [],
-        data_hash => {},
         parser    => IRacing::Setup::Parser->new($file),
     };
     bless $self, $class;
 
     $self->_parse();
-    $self->_make_data_hash();
     $self->_analyze();
     $Cache->{$f} = $self;
     return $self;
@@ -30,13 +28,6 @@ sub _parse {
     my $self = shift;
     $self->{car_name} = $self->{parser}->car_name;
     $self->{data}     = $self->{parser}->data;
-}
-
-sub _make_data_hash {
-    my $self = shift;
-    foreach my $i ( @{ $self->{data} } ) {
-        $self->{data_hash}->{ $i->[0] . $i->[1] . $i->[2] } = $i->[3];
-    }
 }
 
 sub _analyze {

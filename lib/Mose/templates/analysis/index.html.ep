@@ -4,7 +4,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
 	tableData = $('#tabledata').dataTable({
-		"iDisplayLength" : 100,
+		"iDisplayLength" : 150,
 		"aaSorting" : [],
 		/*
 		"sDom": "<'row'<'span12'T>><'row'<'span5'l><'span7'f>r>t<'row'<'span6'i><'span6'p>>",

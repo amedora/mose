@@ -11,6 +11,12 @@ use Mose::Util::LaptimeFile;
 
 our $VERSION = '1.0';
 
+sub production_mode {
+    my $log = "$FindBin::Bin/mose.log";
+    -f $log && unlink $log;
+    shift->log->path($log);
+}
+
 sub startup {
     my $self = shift;
 
@@ -18,7 +24,6 @@ sub startup {
 
     my $config =
       $self->plugin( 'Config', { file => "$FindBin::Bin/mose.conf" } );
-
     $self->home->parse( catdir( dirname(__FILE__), 'Mose' ) );
     $self->static->paths->[0]   = $self->home->rel_dir('public');
     $self->renderer->paths->[0] = $self->home->rel_dir('templates');
@@ -55,13 +60,13 @@ sub startup {
             return $laptimefile;
         }
     );
-	$self->helper(
-		graph_list => sub {
-			my $self = shift;
-			my $car = shift;
-			return graph_list($car);
-		}
-	);
+    $self->helper(
+        graph_list => sub {
+            my $self = shift;
+            my $car  = shift;
+            return graph_list($car);
+        }
+    );
     #
     # Routes
     my $r = $self->routes;

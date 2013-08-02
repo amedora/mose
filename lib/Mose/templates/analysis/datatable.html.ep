@@ -17,12 +17,17 @@
 				<td><%= $setups->[0]->data->[$i][1] %></td>
 				<td><%= $setups->[0]->data->[$i][2] %></td>
 				%# if there is differences, highlight it.
+				% my $diff = {};
+				% foreach my $s (@{$setups}) {
+				% 	$diff->{$s->data->[$i][3]} = 1;
+				% }
+				% my $hl_flag = @{[(%$diff)]} != 2 ? 1 : 0;
 				<% foreach my $s (@{$setups}) { %>
-%#							<% if ($hl) { %>
-%#								<td style="color:#B94A48;"><%= $setup->data( $cat => $sec => $compo ) %></td>
-%#							<% } else { %>
-%#								<td><%= $setup->data( $cat => $sec => $compo ) %></td>
-					<td><%= $s->data->[$i][3] %></td>
+					<% if ($hl_flag) { %>
+						<td style="color:#B94A48;"><%= $s->data->[$i][3] %></td>
+  				<% } else { %>
+						<td><%= $s->data->[$i][3] %></td>
+					<% } %>
 				<% } %>
 			</tr>
 		<% } %>

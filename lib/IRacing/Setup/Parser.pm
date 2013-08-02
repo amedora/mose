@@ -98,62 +98,6 @@ sub _scrape {
 }
 
 =pod
-sub _analyze {
-    my $self = shift;
-
-    #
-    # Tire temps
-
-    foreach
-      my $tire ( ( 'RIGHT FRONT', 'RIGHT REAR', 'LEFT REAR', 'LEFT FRONT' ) )
-    {
-        $self->{data}->{ANALYSIS}->{'Avg. temps'}->{$tire} = int(
-            (
-                $self->data_wou( 'TIRE' => $tire => 'Last temps I' ) +
-                  $self->data_wou( 'TIRE' => $tire => 'Last temps M' ) +
-                  $self->data_wou( 'TIRE' => $tire => 'Last temps O' )
-            ) / 3
-        ) . 'F';
-    }
-
-    foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
-        $self->{data}->{ANALYSIS}->{'Avg. temps'}->{ $side . ' SIDE' } = int(
-            (
-                $self->data_wou(
-                    'ANALYSIS' => 'Avg. temps' => "${side} FRONT"
-                  ) + $self->data_wou(
-                    'ANALYSIS' => 'Avg. temps' => "${side} REAR"
-                  )
-            ) / 2
-        ) . 'F';
-    }
-    #
-    # available shock/spring travel
-    # only for Top3 NASCAR cars
-    if ( $self->{info}->{car_name} =~ /stockcars/ ) {
-        foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
-            $self->{data}->{ANALYSIS}->{'Available shock travel'}
-              ->{ $side . ' FRONT' } =
-              $self->data_wou(
-                'CHASSIS' => "$side FRONT" => 'Shock deflection (of)' ) -
-              $self->data_wou(
-                'CHASSIS' => "$side FRONT" => 'Shock deflection' );
-        }
-        foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
-            $self->{data}->{ANALYSIS}->{'Available spring travel'}
-              ->{ $side . ' FRONT' } =
-              $self->data_wou(
-                'CHASSIS' => "$side FRONT" => 'Spring deflection (of)' ) -
-              $self->data_wou(
-                'CHASSIS' => "$side FRONT" => 'Spring deflection' );
-        }
-    }
-}
-sub dump {
-    my $self = shift;
-    return $self->{data};
-}
-
 sub categories {
     my $self = shift;
     return keys %{ $self->{data} };

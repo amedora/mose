@@ -11,7 +11,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% for (my $i = 0; $i < $#{$setups->[0]->data}; $i++) { %>
+		<% for (my $i = 0; $i <= $#{$setups->[0]->data}; $i++) { %>
 			<tr>
 				<td><%= $setups->[0]->data->[$i][0] %></td>
 				<td><%= $setups->[0]->data->[$i][1] %></td>

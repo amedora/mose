@@ -2,9 +2,9 @@ use YAML qw/LoadFile DumpFile/;
 use Data::Dumper;
 my $new = [];
 
-my $orig = YAML::LoadFile('stockcars fordfusion.yaml');
-print Dumper $orig;
-__DATA__
+my $orig = YAML::LoadFile('latemodel.yaml');
+#print Dumper $orig;
+#__DATA__
 foreach my $k ( keys %$orig ) {
     foreach my $v ( keys %{ $orig->{$k} } ) {
         foreach my $l ( keys %{ $orig->{$k}->{$v} } ) {

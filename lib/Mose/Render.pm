@@ -243,7 +243,7 @@ sub _render_laptime {
     my ( $dir, $car, @files ) = @_;
     my $ret = { series => [] };
     foreach my $filename (@files) {
-        $filename = ( fileparse($filename) )[0] . '.yaml';
+        $filename = ( fileparse($filename) )[0] . '.laps';
         my $fullpath = $dir . '/' . $car . '/' . $filename;
         if ( !-f $fullpath ) {
             push @{ $ret->{series} },

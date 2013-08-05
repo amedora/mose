@@ -54,8 +54,7 @@ sub startup {
         laptimefile => sub {
             my $self = shift;
             my $arg  = {@_};
-            $arg->{basedir} =
-              rel2abs( catdir( dirname(__FILE__), '..\laptime' ) );
+            $arg->{basedir} = $config->{laptimedir};
             my $laptimefile = Mose::Util::LaptimeFile->new($arg);
             return $laptimefile;
         }

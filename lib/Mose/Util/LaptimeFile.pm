@@ -7,7 +7,6 @@ use List::Util qw/minstr sum/;
 use YAML;
 
 use Mose::Util qw/laptime_in_milisec/;
-use Data::Dumper;
 
 sub new {
     my $proto = shift;
@@ -26,7 +25,6 @@ sub basedir {
 sub save_record {
     my $self = shift;
     my $arg  = {@_};
-    print Dumper $arg;
     my @new_laptimes = @{ $arg->{laptime} };
     my $record       = {};
 
@@ -58,8 +56,8 @@ sub save_record {
 
 sub _filename {
     my $self = shift;
-    my $filename = catdir( $self->{basedir}, $self->{car}, $self->{setup} );
-    $filename =~ s/\.htm$/.laps/;
+    my $filename = catdir( $self->{basedir}, $self->{car}, $self->{setup} . '.laps' );
+	#$filename =~ s/\.htm$/.laps/;
     return $filename;
 }
 

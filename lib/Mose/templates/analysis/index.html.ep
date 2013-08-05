@@ -51,6 +51,7 @@ $(document).ready(function () {
 		});
 
 		get_data();
+		render_laptime($("[name='car']").val());
 		/*
     $.ajax({
 			type : 'GET',
@@ -137,7 +138,3 @@ $(document).ready(function () {
 		</div> <!-- tab-analysis -->
 	</div> <!-- tab-content -->
 </div> <!-- tabbable -->
-<%= javascript begin %>
-$(document).ready(function () {
-});
-<% end %>

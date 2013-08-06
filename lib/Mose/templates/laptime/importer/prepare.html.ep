@@ -115,7 +115,7 @@ $(document).ready(function () {
 			    + '?url=' + encodeURIComponent($('#url').val())
 			    + '&subsessionid=' + encodeURIComponent($('#subsessionid').val())
 			    + '&car=' + encodeURIComponent($('#carName').val())
-			    + '&setup=' + encodeURIComponent($("[name='file_selected']").val())
+			    + '&setup=' + encodeURIComponent($("input[name='file_selected']:checked").val())
 			    + '&' + $('#formRecord').serialize(),
 			success : function (html) {
 				$('#importResult').replaceWith(html);

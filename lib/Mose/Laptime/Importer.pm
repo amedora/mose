@@ -39,7 +39,6 @@ sub import {
         car   => $self->param('car'),
         setup => $self->param('setup'),
     );
-
     my $message;
     if (
         $laptimefile->save_record(

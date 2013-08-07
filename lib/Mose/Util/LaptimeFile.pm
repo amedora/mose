@@ -4,9 +4,8 @@ use File::Basename 'fileparse';
 use File::Spec::Functions qw/catdir/;
 use File::Path 'make_path';
 use List::Util qw/minstr sum/;
-use YAML;
-
 use Mose::Util qw/laptime_in_milisec/;
+use YAML;
 
 sub new {
     my $proto = shift;
@@ -23,8 +22,8 @@ sub basedir {
 }
 
 sub save_record {
-    my $self = shift;
-    my $arg  = {@_};
+    my $self         = shift;
+    my $arg          = {@_};
     my @new_laptimes = @{ $arg->{laptime} };
     my $record       = {};
 
@@ -56,8 +55,8 @@ sub save_record {
 
 sub _filename {
     my $self = shift;
-    my $filename = catdir( $self->{basedir}, $self->{car}, $self->{setup} . '.laps' );
-	#$filename =~ s/\.htm$/.laps/;
+    my $filename =
+      catdir( $self->{basedir}, $self->{car}, $self->{setup} . '.laps' );
     return $filename;
 }
 

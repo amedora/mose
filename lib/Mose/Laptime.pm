@@ -23,7 +23,7 @@ sub list {
         $self->stash('config')->{laptimedir} . '/'
       . $self->param('car') . '/'
       . $self->param('file_selected') . '.laps';
-	$self->app->log->debug("Loading: $laptimefile");
+    $self->app->log->debug("Loading: $laptimefile");
     $record = YAML::LoadFile($laptimefile) if -f $laptimefile;
     $self->render(
         'laptime/list',

@@ -9,7 +9,7 @@ use FindBin;
 use Mose::Util qw/graph_list/;
 use Mose::Util::LaptimeFile;
 
-our $VERSION = '1.0';
+our $VERSION = '0.2';
 
 sub production_mode {
     my $log = "$FindBin::Bin/mose.log";
@@ -23,7 +23,7 @@ sub startup {
     $self->secret('mose');
 
     my $config =
-      $self->plugin( 'Config', { file => "$FindBin::Bin/mose.conf" } );
+      $self->plugin( 'Config', { file => "$FindBin::Bin/mose.ini" } );
     $self->home->parse( catdir( dirname(__FILE__), 'Mose' ) );
     $self->static->paths->[0]   = $self->home->rel_dir('public');
     $self->renderer->paths->[0] = $self->home->rel_dir('templates');

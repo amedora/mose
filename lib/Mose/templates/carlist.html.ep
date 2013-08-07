@@ -9,6 +9,7 @@
 		<div id="ClassA" class="accordion-body collapse">
 			<div class="accordion-inner">
 				<ul>
+					<li class="carname" name="stockcars chevyss"><a>Chevrolet SS Gen6</a></li>
 					<li class="carname" name="stockcars fordfusion"><a>Ford Fusion Gen6</a></li>
 					<li><a href="">Chevrolet Impala SS</a></li>
 					<li><a href="">Williams FW31</a></li>

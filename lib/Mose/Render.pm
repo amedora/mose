@@ -14,62 +14,77 @@ my $render = {
     front_rideheight => {
         latemodel              => \&_render_front_rideheight,
         'stockcars fordfusion' => \&_render_front_rideheight,
+        'stockcars chevyss' => \&_render_front_rideheight,
     },
     rear_rideheight => {
         latemodel              => \&_render_rear_rideheight,
         'stockcars fordfusion' => \&_render_rear_rideheight,
+        'stockcars chevyss' => \&_render_rear_rideheight,
     },
     rideheight_relation => {
         latemodel              => \&_render_rideheight_relation,
         'stockcars fordfusion' => \&_render_rideheight_relation,
+        'stockcars chevyss' => \&_render_rideheight_relation,
     },
     trackbar_height => {
         latemodel              => \&_render_trackbar_height,
         'stockcars fordfusion' => \&_render_trackbar_height,
+        'stockcars chevyss' => \&_render_trackbar_height,
     },
     left_weight_dist => {
         latemodel              => \&_render_left_weight_dist,
         'stockcars fordfusion' => \&_render_left_weight_dist,
+        'stockcars chevyss' => \&_render_left_weight_dist,
     },
     right_weight_dist => {
         latemodel              => \&_render_right_weight_dist,
         'stockcars fordfusion' => \&_render_right_weight_dist,
+        'stockcars chevyss' => \&_render_right_weight_dist,
     },
     ballast => {
         latemodel              => \&_render_ballast,
         'stockcars fordfusion' => \&_render_ballast,
+        'stockcars chevyss' => \&_render_ballast,
     },
     left_spring_package => {
         latemodel              => \&_render_left_spring_package,
         'stockcars fordfusion' => \&_render_left_spring_package,
+        'stockcars chevyss' => \&_render_left_spring_package,
     },
     right_spring_package => {
         latemodel              => \&_render_right_spring_package,
         'stockcars fordfusion' => \&_render_right_spring_package,
+        'stockcars chevyss' => \&_render_right_spring_package,
     },
     front_tiretemp => {
         latemodel              => \&_render_front_tiretemp,
         'stockcars fordfusion' => \&_render_front_tiretemp,
+        'stockcars chevyss' => \&_render_front_tiretemp,
     },
     rear_tiretemp => {
         latemodel              => \&_render_rear_tiretemp,
         'stockcars fordfusion' => \&_render_rear_tiretemp,
+        'stockcars chevyss' => \&_render_rear_tiretemp,
     },
     left_tiretemp_avg => {
         latemodel              => \&_render_left_tiretemp_avg,
         'stockcars fordfusion' => \&_render_left_tiretemp_avg,
+        'stockcars chevyss' => \&_render_left_tiretemp_avg,
     },
     right_tiretemp_avg => {
         latemodel              => \&_render_right_tiretemp_avg,
         'stockcars fordfusion' => \&_render_right_tiretemp_avg,
+        'stockcars chevyss' => \&_render_right_tiretemp_avg,
     },
     front_tread => {
         latemodel              => \&_render_front_tread,
         'stockcars fordfusion' => \&_render_front_tread,
+        'stockcars chevyss' => \&_render_front_tread,
     },
     rear_tread => {
         latemodel              => \&_render_rear_tread,
         'stockcars fordfusion' => \&_render_rear_tread,
+        'stockcars chevyss' => \&_render_rear_tread,
     },
 };
 

@@ -1,0 +1,94 @@
+%# vim:set ts=2 sw=2 ft=html:
+<div class="tab-pane active" id="tab-analysis">
+<div class="subnav">
+	<ul class="nav nav-pills">
+		<li><a href="#chassis">Chassis</a></li>
+		<li><a href="#tire">Tire</a></li>
+	</ul>
+</div>
+<section id="chassis">
+	<h2>Chassis</h2>
+	<h3>Ride Height</h3>
+	<div class="row-fluid">
+		<div class="span6">
+			<div id="render_front_rideheight" style="height: 240px"></div>
+		</div>
+		<div class="span6">
+			<div id="render_rear_rideheight" style="height: 240px"></div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span6">
+			<div id="render_rideheight_relation" style="height: 240px"></div>
+		</div>
+		<div class="span6">
+			<div id="render_trackbar_height" style="height: 240px"></div>
+		</div>
+	</div>
+	<h3>Weight Distribution</h3>
+	<div class="row-fluid">
+		<div class="span4">
+			<div id="render_left_weight_dist" style="height: 360px"></div>
+		</div>
+		<div class="span4">
+			<div id="render_ballast" style="height: 360px"></div>
+		</div>
+		<div class="span4">
+			<div id="render_right_weight_dist" style="height: 360px"></div>
+		</div>
+	</div>
+	<h3>Spring Package</h3>
+	<div class="row-fluid">
+		<div class="span4 offset2">
+			<div id="render_left_spring_package" style="height: 360px"></div>
+		</div>
+		<div class="span4">
+			<div id="render_right_spring_package" style="height: 360px"></div>
+		</div>
+	</div>
+</section>
+<section id="tire">
+	<h2>Tire</h2>
+	<h3>Temps.</h3>
+	<div class="row-fluid">
+		<div class="span8 offset2">
+			<div id="render_front_tiretemp" style="height: 240px"></div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span8 offset2">
+			<div id="render_rear_tiretemp" style="height: 240px"></div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4 offset2">
+			<div id="render_left_tiretemp_avg" style="height: 360px"></div>
+		</div>
+		<div class="span4">
+			<div id="render_right_tiretemp_avg" style="height: 360px"></div>
+		</div>
+	</div>
+	<h3>Tread Remaining</h3>
+	<div class="row-fluid">
+		<div class="span8 offset2">
+			<div id="render_front_tread" style="height: 240px"></div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span8 offset2">
+			<div id="render_rear_tread" style="height: 240px"></div>
+		</div>
+	</div>
+</section>
+</div>
+<%= javascript begin %>
+	<% foreach my $g ( graph_list($car)) { %>
+		$.ajax({
+			url : '/render/graph/<%= $g %>/<%= $car %>' + '?' + $('#form_fileselect').serialize(),
+		  success : function (json) {
+				opt_graph["<%= $g %>"].series = json.series;
+				this["graph_<%= $g %>"] = new Highcharts.Chart(opt_graph["<%= $g %>"]); 
+			}
+		});
+	<% } %>
+<% end %>

@@ -6,7 +6,7 @@
 			<th>Section</th>
 			<th>Component</th>
 			<% foreach (@{$setups}) { %>
-				<th style="font-size: 10px;"><%= $_->file_name() %></th>
+				<th><%= $_->file_name() %></th>
 			<% } %>
 		</tr>
 	</thead>

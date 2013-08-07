@@ -5,7 +5,7 @@ use Mojo::Base 'Mojolicious::Controller';
 use IRacing::Setup;
 
 sub index {
-	my $self = shift;
+    my $self = shift;
 }
 
 sub datatable {
@@ -15,7 +15,7 @@ sub datatable {
     } $self->param('file_selected');
     my @setups;
     push @setups, IRacing::Setup->new($_) foreach @files;
-	$self->stash->{setups} = \@setups;
+    $self->stash->{setups} = \@setups;
 }
 
 1;

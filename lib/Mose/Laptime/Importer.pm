@@ -1,7 +1,6 @@
 # vim:set sw=4 ts=4 ft=perl:
 package Mose::Laptime::Importer;
 use Mojo::Base 'Mojolicious::Controller';
-
 use Mojo::DOM;
 
 sub prepare {
@@ -34,7 +33,7 @@ sub prepare {
 }
 
 sub import {
-    my $self = shift;
+    my $self        = shift;
     my $laptimefile = $self->app->laptimefile(
         car   => $self->param('car'),
         setup => $self->param('setup'),
@@ -44,7 +43,7 @@ sub import {
         $laptimefile->save_record(
             subsessionid => $self->param('subsessionid'),
             url          => $self->param('url'),
-            laptime      => [$self->param('laptime[]')]
+            laptime      => [ $self->param('laptime[]') ]
         )
       )
     {

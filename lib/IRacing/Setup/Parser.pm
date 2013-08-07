@@ -79,7 +79,7 @@ sub _build_scraper {
         }
 
         unless ($yaml) {
-            die "Can't find a setup component list for $self->{car_name}: $!";
+            die "Can't find a setup component list for [$self->{car_name}]: $!";
         }
 
         foreach my $l ( @{ YAML::LoadFile($yaml) } ) {

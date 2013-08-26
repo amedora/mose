@@ -24,5 +24,6 @@ is(
     '71',
     'Front brake bias without unit'
 );
+is($s->unit, 'ENGLISH', 'the setup has English unit');
 done_testing();
 

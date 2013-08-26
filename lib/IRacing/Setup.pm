@@ -28,6 +28,7 @@ sub _parse {
     my $self = shift;
     $self->{car_name} = $self->{parser}->car_name;
     $self->{data}     = $self->{parser}->data;
+    $self->{unit}     = $self->_get_unit;
 }
 
 sub _analyze {
@@ -59,7 +60,7 @@ sub _analyze {
     foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
         my $avgtemp = int(
             ( ( $temp{ $side . ' FRONT' } + $temp{ $side . ' REAR' } ) ) / 2 );
-          push @analyzed_data,
+        push @analyzed_data,
           [ 'ANALYSIS', 'Avg. temps', $side . ' SIDE', $avgtemp . 'F' ];
     }
     #
@@ -94,6 +95,22 @@ sub _analyze {
     unshift @{ $self->{data} }, @analyzed_data;
 }
 
+sub _get_unit {
+    my $self = shift;
+
+    # All cars should have left front tire.
+    my $pressure = $self->data(
+        component => [ 'TIRE' => 'LEFT FRONT' => 'Cold pressure' ],
+        unit      => 1
+    );
+    if ( $pressure =~ /psi/ ) {
+        $self->{unit} = 'ENGLISH';
+    }
+    else {
+        $self->{unit} = 'METRIC';
+    }
+}
+
 sub car_name {
     my $self = shift;
     return $self->{car_name};
@@ -102,6 +119,11 @@ sub car_name {
 sub file_name {
     my $self = shift;
     return $self->{file_name};
+}
+
+sub unit {
+    my $self = shift;
+    return $self->{unit};
 }
 
 sub data {

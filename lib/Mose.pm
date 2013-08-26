@@ -75,10 +75,10 @@ sub startup {
 
     # Analysis
     $r->get('/analysis')->to('analysis#index');
+	$r->get('/analysis/analysis/:car')->to('analysis#analysis');
     $r->get('/analysis/datatable')->to('analysis#datatable');
 
     # Render
-    $r->get('/render/graphindex/:car')->to('render#graphindex');
     $r->get('/render/graph/:graph_type/:car')->to('render#graph');
     $r->get('/render/laptime/:car')->to('render#laptime');
 

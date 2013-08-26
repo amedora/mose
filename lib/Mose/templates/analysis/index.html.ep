@@ -43,7 +43,7 @@ $(document).ready(function () {
 			dataType : 'html',
 			cache : false,
 			async : false,
-			url : '/render/graphindex/'
+			url : '/analysis/analysis/'
 		      + $("[name='car']").val()
 			    + '?' + $('#form_fileselect').serialize(),
 			success : function (html) {

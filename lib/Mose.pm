@@ -2,11 +2,9 @@
 package Mose;
 use Mojo::Base 'Mojolicious';
 use File::Basename;
-use File::Find::Rule;
-use File::Spec::Functions qw/catdir rel2abs/;
+use File::Spec::Functions qw/catdir/;
 use FindBin;
 
-use Mose::Util qw/graph_list/;
 use Mose::Util::LaptimeFile;
 
 our $VERSION = '0.2';
@@ -30,42 +28,7 @@ sub startup {
 
     #
     # Helpers
-    $self->helper(
-        setups => sub {
-            my $self           = shift;
-            my $car            = shift;
-            my $search_basedir = catdir( $config->{setupdir}, $car );
-            my @files =
-              File::Find::Rule->file()->name('*.htm')->in($search_basedir);
-            my @setups = map {
-                my $fullpath = $_;
-                my ( $filename, $dir ) = fileparse($fullpath);
-                $dir =~ s/.*?$car//;
-                +{
-                    filename => $filename,
-                    dir      => $dir,
-                    fullpath => $fullpath
-                };
-            } @files;
-            return \@setups;
-        }
-    );
-    $self->helper(
-        laptimefile => sub {
-            my $self = shift;
-            my $arg  = {@_};
-            $arg->{basedir} = $config->{laptimedir};
-            my $laptimefile = Mose::Util::LaptimeFile->new($arg);
-            return $laptimefile;
-        }
-    );
-    $self->helper(
-        graph_list => sub {
-            my $self = shift;
-            my $car  = shift;
-            return graph_list($car);
-        }
-    );
+    $self->plugin('Mose::Helper');
     #
     # Routes
     my $r = $self->routes;
@@ -75,7 +38,7 @@ sub startup {
 
     # Analysis
     $r->get('/analysis')->to('analysis#index');
-	$r->get('/analysis/analysis/:car')->to('analysis#analysis');
+    $r->get('/analysis/analysis/:car')->to('analysis#analysis');
     $r->get('/analysis/datatable')->to('analysis#datatable');
 
     # Render

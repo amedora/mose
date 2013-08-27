@@ -9,12 +9,12 @@ use File::Spec::Functions qw/catdir/;
 sub register {
     my ( $self, $app ) = @_;
 
-    $app->helper( setups      => \&_setups );
+    $app->helper( setupfiles_by_car      => \&_setupfiles_by_car );
     $app->helper( laptimefile => \&_laptimefile );
     $app->helper( graph_list  => \&_graph_list );
 }
 
-sub _setups {
+sub _setupfiles_by_car {
     my $self           = shift;
     my $car            = shift;
     my $search_basedir = catdir( $self->config->{setupdir}, $car );

@@ -8,7 +8,7 @@ sub setuplist {
     $self->render(
         'setuplist',
 		car    => $self->param('car'),
-        setups => $self->app->setups( $self->param('car') ),
+        setups => $self->app->setupfiles_by_car( $self->param('car') ),
         st     => $self->param('st')
     );
 }

@@ -12,6 +12,25 @@
 	<div class="row-fluid">
 		<div class="span6">
 			<div id="render_front_rideheight" style="height: 240px"></div>
+				<%= javascript begin %>
+				$('#render_front_rideheight').highcharts({
+            chart : {
+                defaultSeriesType : 'line'
+            }
+            , title : {
+                text : 'Front Ride Height'
+            }
+            , xAxis : {
+                categories : ['LF', 'RF']
+            }
+            , yAxis : {
+                title : {
+                    text : 'inch'
+                }
+            }
+						, series : <%= $graph_data->{front_rideheight} %>
+				});
+				<% end %>
 		</div>
 		<div class="span6">
 			<div id="render_rear_rideheight" style="height: 240px"></div>
@@ -81,14 +100,3 @@
 	</div>
 </section>
 </div>
-<%= javascript begin %>
-	<% foreach my $g ( graph_list($car)) { %>
-		$.ajax({
-			url : '/render/graph/<%= $g %>/<%= $car %>' + '?' + $('#form_fileselect').serialize(),
-		  success : function (json) {
-				opt_graph["<%= $g %>"].series = json.series;
-				this["graph_<%= $g %>"] = new Highcharts.Chart(opt_graph["<%= $g %>"]); 
-			}
-		});
-	<% } %>
-<% end %>

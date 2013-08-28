@@ -42,7 +42,6 @@ sub startup {
     $r->get('/analysis/datatable')->to('analysis#datatable');
 
     # Render
-    $r->get('/render/graph/:graph_type/:car')->to('render#graph');
     $r->get('/render/laptime/:car')->to('render#laptime');
 
     # Laptime

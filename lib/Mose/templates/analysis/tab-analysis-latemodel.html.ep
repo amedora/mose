@@ -13,7 +13,7 @@
 		<div class="span6">
 			<div id="render_front_rideheight" style="height: 240px"></div>
 				<%= javascript begin %>
-				$('#render_front_rideheight').highcharts({
+					$('#render_front_rideheight').highcharts({
             chart : {
                 defaultSeriesType : 'line'
             }
@@ -29,40 +29,207 @@
                 }
             }
 						, series : <%= $graph_data->{front_rideheight} %>
-				});
+					});
 				<% end %>
 		</div>
 		<div class="span6">
 			<div id="render_rear_rideheight" style="height: 240px"></div>
+				<%= javascript begin %>
+					$('#render_rear_rideheight').highcharts({
+            chart : {
+                defaultSeriesType : 'line'
+            }
+            , title : {
+                text : 'Rear Ride Height'
+            }
+            , xAxis : {
+                categories : ['LR', 'RR']
+            }
+            , yAxis : {
+                title : {
+                    text : 'inch'
+                }
+            }
+						, series : <%= $graph_data->{rear_rideheight} %>
+					});
+				<% end %>
 		</div>
 	</div>
 	<div class="row-fluid">
 		<div class="span6">
 			<div id="render_rideheight_relation" style="height: 240px"></div>
+				<%= javascript begin %>
+					$('#render_rideheight_relation').highcharts({
+            chart : {
+                defaultSeriesType : 'line'
+            }
+            , title : {
+                text : 'Front Ride Height Avg. vs Rear Ride Height Avg.'
+            }
+            , xAxis : {
+                categories : ['Front', 'Rear']
+            }
+            , yAxis : {
+                title : {
+                    text : 'inch'
+                }
+            }
+						, series : <%= $graph_data->{rideheight_relation} %>
+					});
+				<% end %>
 		</div>
 		<div class="span6">
 			<div id="render_trackbar_height" style="height: 240px"></div>
+				<%= javascript begin %>
+					$('#render_trackbar_height').highcharts({
+            chart : {
+                defaultSeriesType : 'line'
+            }
+            , title : {
+                text : 'Trackbar Height'
+            }
+            , xAxis : {
+                categories : ['LR', 'RR']
+            }
+            , yAxis : {
+                title : {
+                    text : 'inch'
+                }
+            }
+						, series : <%= $graph_data->{trackbar_height} %>
+					});
+				<% end %>
 		</div>
 	</div>
 	<h3>Weight Distribution</h3>
 	<div class="row-fluid">
 		<div class="span4">
 			<div id="render_left_weight_dist" style="height: 360px"></div>
+				<%= javascript begin %>
+					$('#render_left_weight_dist').highcharts({
+            chart : {
+                defaultSeriesType : 'bar'
+            }
+            , title : {
+                text : 'Left Side Weight'
+            }
+            , xAxis : {
+                categories : ['Front', 'Rear'],
+                opposite: true
+            }
+            , yAxis : {
+                title : {
+                    text : 'lbs.'
+                },
+                minorTickInterval : 50,
+                reversed: true
+            }
+						, series : <%= $graph_data->{left_weight_dist} %>
+					});
+				<% end %>
 		</div>
 		<div class="span4">
 			<div id="render_ballast" style="height: 360px"></div>
+				<%= javascript begin %>
+					$('#render_ballast').highcharts({
+            chart : {
+                defaultSeriesType : 'scatter'
+            }
+            , title : {
+                text : 'Ballast Forward'
+            }
+            , xAxis : {
+            }
+            , yAxis : {
+                title : {
+                    text : 'inch'
+                },
+								min : -20,
+								max : 20,
+								tickInterval : 5,
+								minorTickInterval : 1
+            }
+						, series : <%= $graph_data->{ballast} %>
+					});
+				<% end %>
 		</div>
 		<div class="span4">
 			<div id="render_right_weight_dist" style="height: 360px"></div>
+				<%= javascript begin %>
+					$('#render_right_weight_dist').highcharts({
+            chart : {
+                defaultSeriesType : 'bar'
+            }
+            , title : {
+                text : 'Right Side Weight'
+            }
+            , xAxis : {
+                categories : ['Front', 'Rear']
+            }
+            , yAxis : {
+                title : {
+                    text : 'lbs.'
+                },
+								minorTickInterval : 50,
+            }
+						, series : <%= $graph_data->{right_weight_dist} %>
+					});
+				<% end %>
 		</div>
 	</div>
 	<h3>Spring Package</h3>
 	<div class="row-fluid">
 		<div class="span4 offset2">
 			<div id="render_left_spring_package" style="height: 360px"></div>
+				<%= javascript begin %>
+					$('#render_left_spring_package').highcharts({
+            chart : {
+                defaultSeriesType : 'bar'
+            }
+            , title : {
+                text : 'Spring Rate (Left Side)'
+            }
+            , xAxis : {
+                categories : ['Front', 'Rear'],
+								opposite: true
+            }
+            , yAxis : {
+                title : {
+                    text : 'lbs/in'
+                },
+								min : 100,
+								max : 500,
+								minorTickInterval : 25,
+								reversed: true
+            }
+						, series : <%= $graph_data->{left_spring_package} %>
+					});
+				<% end %>
 		</div>
 		<div class="span4">
 			<div id="render_right_spring_package" style="height: 360px"></div>
+				<%= javascript begin %>
+					$('#render_right_spring_package').highcharts({
+            chart : {
+                defaultSeriesType : 'bar'
+            }
+            , title : {
+                text : 'Spring Rate (Right Side)'
+            }
+            , xAxis : {
+                categories : ['Front', 'Rear']
+            }
+            , yAxis : {
+                title : {
+                    text : 'lbs/in'
+                },
+								min : 100,
+								max : 500,
+								minorTickInterval : 25,
+            }
+						, series : <%= $graph_data->{right_spring_package} %>
+					});
+				<% end %>
 		</div>
 	</div>
 </section>
@@ -72,30 +239,162 @@
 	<div class="row-fluid">
 		<div class="span8 offset2">
 			<div id="render_front_tiretemp" style="height: 240px"></div>
+				<%= javascript begin %>
+					$('#render_front_tiretemp').highcharts({
+            chart : {
+                defaultSeriesType : 'column'
+            }
+            , title : {
+                text : 'Front Tire Temp'
+            }
+            , xAxis : {
+                categories : ['LF(O)', 'LF(M)', 'LF(I)', 'RF(I)', 'RF(M)', 'RF(O)']
+            }
+            , yAxis : {
+                title : {
+                    text : 'F'
+                },
+								min : 100,
+								max : 300,
+								minorTickInterval : 10
+            }
+						, series : <%= $graph_data->{front_tiretemp} %>
+					});
+				<% end %>
 		</div>
 	</div>
 	<div class="row-fluid">
 		<div class="span8 offset2">
 			<div id="render_rear_tiretemp" style="height: 240px"></div>
+				<%= javascript begin %>
+					$('#render_rear_tiretemp').highcharts({
+            chart : {
+                defaultSeriesType : 'column'
+            }
+            , title : {
+                text : 'Rear Tire Temp'
+            }
+            , xAxis : {
+                categories : ['LR(O)', 'LR(M)', 'LR(I)', 'RR(I)', 'RR(M)', 'RR(O)']
+            }
+            , yAxis : {
+                title : {
+                    text : 'F'
+                },
+								min : 100,
+								max : 300,
+								minorTickInterval : 10
+            }
+						, series : <%= $graph_data->{rear_tiretemp} %>
+					});
+				<% end %>
 		</div>
 	</div>
 	<div class="row-fluid">
 		<div class="span4 offset2">
 			<div id="render_left_tiretemp_avg" style="height: 360px"></div>
+				<%= javascript begin %>
+					$('#render_left_tiretemp_avg').highcharts({
+            chart : {
+                defaultSeriesType : 'bar'
+            }
+            , title : {
+                text : 'Tire Temp Avg. (Left Side)'
+            }
+            , xAxis : {
+                categories : ['Front', 'Rear', 'Front & Rear'],
+								opposite: true
+            }
+            , yAxis : {
+                title : {
+                    text : 'F'
+                },
+								min : 100,
+								max : 300,
+								minorTickInterval : 10,
+								reversed: true
+            }
+						, series : <%= $graph_data->{left_tiretemp_avg} %>
+					});
+				<% end %>
 		</div>
 		<div class="span4">
 			<div id="render_right_tiretemp_avg" style="height: 360px"></div>
+				<%= javascript begin %>
+					$('#render_right_tiretemp_avg').highcharts({
+            chart : {
+                defaultSeriesType : 'bar'
+            }
+            , title : {
+                text : 'Tire Temp Avg. (Right Side)'
+            }
+            , xAxis : {
+                categories : ['Front', 'Rear', 'Front & Rear'],
+            }
+            , yAxis : {
+                title : {
+                    text : 'F'
+                },
+								min : 100,
+								max : 300,
+								minorTickInterval : 10,
+            }
+						, series : <%= $graph_data->{right_tiretemp_avg} %>
+					});
+				<% end %>
 		</div>
 	</div>
 	<h3>Tread Remaining</h3>
 	<div class="row-fluid">
 		<div class="span8 offset2">
 			<div id="render_front_tread" style="height: 240px"></div>
+				<%= javascript begin %>
+					$('#render_front_tread').highcharts({
+            chart : {
+                defaultSeriesType : 'column'
+            }
+            , title : {
+                text : 'Front Tire Tread'
+            }
+            , xAxis : {
+                categories : ['LF(O)', 'LF(M)', 'LF(I)', 'RF(I)', 'RF(M)', 'RF(O)']
+            }
+            , yAxis : {
+                title : {
+                    text : '%'
+                },
+								max : 100,
+								min : 50
+            }
+						, series : <%= $graph_data->{front_tread} %>
+					});
+				<% end %>
 		</div>
 	</div>
 	<div class="row-fluid">
 		<div class="span8 offset2">
 			<div id="render_rear_tread" style="height: 240px"></div>
+				<%= javascript begin %>
+					$('#render_rear_tread').highcharts({
+            chart : {
+                defaultSeriesType : 'column'
+            }
+            , title : {
+                text : 'Rear Tire Tread'
+            }
+            , xAxis : {
+                categories : ['LR(O)', 'LR(M)', 'LR(I)', 'RR(I)', 'RR(M)', 'RR(O)']
+            }
+            , yAxis : {
+                title : {
+                    text : '%'
+                },
+								max : 100,
+								min : 50
+            }
+						, series : <%= $graph_data->{rear_tread} %>
+					});
+				<% end %>
 		</div>
 	</div>
 </section>

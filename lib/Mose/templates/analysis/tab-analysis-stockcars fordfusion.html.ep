@@ -124,6 +124,16 @@
                 minorTickInterval : 50,
                 reversed: true
             }
+						, plotOptions: {
+								series: {
+									dataLabels: {
+											enabled: true,
+											align: 'left',
+											color: 'white',
+											crop: false
+									}
+								}
+						}
 						, series : <%= $graph_data->{left_weight_dist} %>
 					});
 				<% end %>
@@ -172,6 +182,16 @@
                 },
 								minorTickInterval : 50,
             }
+						, plotOptions: {
+								series: {
+									dataLabels: {
+											enabled: true,
+											align: 'right',
+											color: 'white',
+											crop: false
+									}
+								}
+						}
 						, series : <%= $graph_data->{right_weight_dist} %>
 					});
 				<% end %>
@@ -202,6 +222,16 @@
 								minorTickInterval : 25,
 								reversed: true
             }
+						, plotOptions: {
+								series: {
+									dataLabels: {
+											enabled: true,
+											align: 'left',
+											color: 'white',
+											crop: false
+									}
+								}
+						}
 						, series : <%= $graph_data->{left_spring_package} %>
 					});
 				<% end %>
@@ -227,6 +257,16 @@
 								max : 500,
 								minorTickInterval : 25,
             }
+						, plotOptions: {
+								series: {
+									dataLabels: {
+											enabled: true,
+											align: 'right',
+											color: 'white',
+											crop: false
+									}
+								}
+						}
 						, series : <%= $graph_data->{right_spring_package} %>
 					});
 				<% end %>
@@ -258,6 +298,18 @@
 								max : 300,
 								minorTickInterval : 10
             }
+						, plotOptions: {
+								series: {
+									dataLabels: {
+											enabled: true,
+											align: 'right',
+											verticalAlign: 'middle',
+											color: 'white',
+											crop: false,
+											rotation: 270,
+									}
+								}
+						}
 						, series : <%= $graph_data->{front_tiretemp} %>
 					});
 				<% end %>
@@ -285,6 +337,18 @@
 								max : 300,
 								minorTickInterval : 10
             }
+						, plotOptions: {
+								series: {
+									dataLabels: {
+											enabled: true,
+											align: 'right',
+											verticalAlign: 'middle',
+											color: 'white',
+											crop: false,
+											rotation: 270,
+									}
+								}
+						}
 						, series : <%= $graph_data->{rear_tiretemp} %>
 					});
 				<% end %>
@@ -314,6 +378,16 @@
 								minorTickInterval : 10,
 								reversed: true
             }
+						, plotOptions: {
+								series: {
+									dataLabels: {
+											enabled: true,
+											align: 'left',
+											color: 'white',
+											crop: false
+									}
+								}
+						}
 						, series : <%= $graph_data->{left_tiretemp_avg} %>
 					});
 				<% end %>
@@ -339,6 +413,16 @@
 								max : 300,
 								minorTickInterval : 10,
             }
+						, plotOptions: {
+								series: {
+									dataLabels: {
+											enabled: true,
+											align: 'right',
+											color: 'white',
+											crop: false
+									}
+								}
+						}
 						, series : <%= $graph_data->{right_tiretemp_avg} %>
 					});
 				<% end %>
@@ -366,6 +450,18 @@
 								max : 100,
 								min : 50
             }
+						, plotOptions: {
+								series: {
+									dataLabels: {
+											enabled: true,
+											align: 'right',
+											verticalAlign: 'middle',
+											color: 'white',
+											crop: false,
+											rotation: 270,
+									}
+								}
+						}
 						, series : <%= $graph_data->{front_tread} %>
 					});
 				<% end %>
@@ -392,6 +488,18 @@
 								max : 100,
 								min : 50
             }
+						, plotOptions: {
+								series: {
+									dataLabels: {
+											enabled: true,
+											align: 'right',
+											verticalAlign: 'middle',
+											color: 'white',
+											crop: false,
+											rotation: 270,
+									}
+								}
+						}
 						, series : <%= $graph_data->{rear_tread} %>
 					});
 				<% end %>

@@ -24,6 +24,44 @@ my $GraphList = {
           trackbar_height
           /
     ],
+    'stockcars chevyss' => [
+        qw/
+          ballast
+          front_rideheight
+          front_tiretemp
+          front_tread
+          left_spring_package
+          left_tiretemp_avg
+          left_weight_dist
+          rear_rideheight
+          rear_tiretemp
+          rear_tread
+          rideheight_relation
+          right_spring_package
+          right_tiretemp_avg
+          right_weight_dist
+          trackbar_height
+          /
+    ],
+    'stockcars fordfusion' => [
+        qw/
+          ballast
+          front_rideheight
+          front_tiretemp
+          front_tread
+          left_spring_package
+          left_tiretemp_avg
+          left_weight_dist
+          rear_rideheight
+          rear_tiretemp
+          rear_tread
+          rideheight_relation
+          right_spring_package
+          right_tiretemp_avg
+          right_weight_dist
+          trackbar_height
+          /
+    ],
 };
 
 my $GraphData = {

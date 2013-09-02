@@ -103,6 +103,11 @@
 	</div>
 	<h3>Weight Distribution</h3>
 	<div class="row-fluid">
+		<div class="span8 offset2">
+			%= include 'analysis/partial-data', components => [[CHASSIS => FRONT => 'Cross weight'],[CHASSIS => FRONT => 'Nose weight']]
+		</div>
+	</div>
+	<div class="row-fluid">
 		<div class="span4">
 			<div id="render_left_weight_dist" style="height: 360px"></div>
 				<%= javascript begin %>

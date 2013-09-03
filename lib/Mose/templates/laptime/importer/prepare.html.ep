@@ -43,19 +43,20 @@
 			<div class="btn-group">
 				<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Class A <span class="caret"></span></button>
 				<ul class="dropdown-menu">
-					<li><a class="carname">latemodel</a></li>
+					<li><a class="carname">stockcars chevyss</a></li>
+					<li><a class="carname">stockcars fordfusion</a></li>
 				</ul>
 			</div>
 			<div class="btn-group">
 				<button class="btn btn-success dropdown-toggle" data-toggle="dropdown"> Class B <span class="caret"></span></button>
 				<ul class="dropdown-menu">
-					<li><a class="carname">latemodel</a></li>
+					<li><a class="carname">x</a></li>
 				</ul>
 			</div>
 			<div class="btn-group">
 				<button class="btn dropdown-toggle" data-toggle="dropdown"> Class C <span class="caret"></span></button>
 				<ul class="dropdown-menu">
-					<li><a class="carname">latemodel</a></li>
+					<li><a class="carname">x</a></li>
 				</ul>
 			</div>
 			<div class="btn-group">
@@ -67,7 +68,7 @@
 			<div class="btn-group">
 				<button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> Rookie <span class="caret"></span></button>
 				<ul class="dropdown-menu">
-					<li><a class="carname">latemodel</a></li>
+					<li><a class="carname">x</a></li>
 				</ul>
 			</div>
 		</div>

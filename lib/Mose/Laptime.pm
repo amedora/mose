@@ -11,7 +11,7 @@ sub manager {
     my $self = shift;
     my $car  = $self->param('car');
 
-    $self->stash->{setups} = $self->app->setups($car);
+    $self->stash->{setups} = $self->app->setupfiles_by_car($car);
     $self->stash->{car}    = $car;
 }
 

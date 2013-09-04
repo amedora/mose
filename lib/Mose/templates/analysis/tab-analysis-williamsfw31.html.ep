@@ -37,13 +37,13 @@
 				<%= javascript begin %>
 					$('#render_rear_rideheight').highcharts({
             chart : {
-                defaultSeriesType : 'line'
+                defaultSeriesType : 'scatter'
             }
             , title : {
                 text : 'Rear Ride Height'
             }
             , xAxis : {
-                categories : ['LR', 'RR']
+                categories : ['REAR']
             }
             , yAxis : {
                 title : {
@@ -79,32 +79,12 @@
 				<% end %>
 		</div>
 		<div class="span6">
-			<div id="render_trackbar_height" style="height: 240px"></div>
-				<%= javascript begin %>
-					$('#render_trackbar_height').highcharts({
-            chart : {
-                defaultSeriesType : 'line'
-            }
-            , title : {
-                text : 'Trackbar Height'
-            }
-            , xAxis : {
-                categories : ['LR', 'RR']
-            }
-            , yAxis : {
-                title : {
-                    text : 'inch'
-                }
-            }
-						, series : <%= $graph_data->{trackbar_height} %>
-					});
-				<% end %>
 		</div>
 	</div>
 	<h3>Weight Distribution</h3>
 	<div class="row-fluid">
 		<div class="span8 offset2">
-			%= include 'analysis/partial-data', components => [[CHASSIS => FRONT => 'Cross weight'],[CHASSIS => FRONT => 'Nose weight']]
+			%= include 'analysis/partial-data', components => [[CHASSIS => GENERAL => 'Cross weight'],[CHASSIS => GENERAL => 'Nose weight']]
 		</div>
 	</div>
 	<div class="row-fluid">
@@ -151,7 +131,7 @@
                 defaultSeriesType : 'scatter'
             }
             , title : {
-                text : 'Ballast Forward'
+                text : 'Ballast'
             }
             , xAxis : {
             }
@@ -198,81 +178,6 @@
 								}
 						}
 						, series : <%= $graph_data->{right_weight_dist} %>
-					});
-				<% end %>
-		</div>
-	</div>
-	<h3>Spring Package</h3>
-	<div class="row-fluid">
-		<div class="span4 offset2">
-			<div id="render_left_spring_package" style="height: 360px"></div>
-				<%= javascript begin %>
-					$('#render_left_spring_package').highcharts({
-            chart : {
-                defaultSeriesType : 'bar'
-            }
-            , title : {
-                text : 'Spring Rate (Left Side)'
-            }
-            , xAxis : {
-                categories : ['Front', 'Rear'],
-								opposite: true
-            }
-            , yAxis : {
-                title : {
-                    text : 'lbs/in'
-                },
-								min : 100,
-								max : 500,
-								minorTickInterval : 25,
-								reversed: true
-            }
-						, plotOptions: {
-								series: {
-									dataLabels: {
-											enabled: true,
-											align: 'left',
-											color: 'white',
-											crop: false
-									}
-								}
-						}
-						, series : <%= $graph_data->{left_spring_package} %>
-					});
-				<% end %>
-		</div>
-		<div class="span4">
-			<div id="render_right_spring_package" style="height: 360px"></div>
-				<%= javascript begin %>
-					$('#render_right_spring_package').highcharts({
-            chart : {
-                defaultSeriesType : 'bar'
-            }
-            , title : {
-                text : 'Spring Rate (Right Side)'
-            }
-            , xAxis : {
-                categories : ['Front', 'Rear']
-            }
-            , yAxis : {
-                title : {
-                    text : 'lbs/in'
-                },
-								min : 100,
-								max : 500,
-								minorTickInterval : 25,
-            }
-						, plotOptions: {
-								series: {
-									dataLabels: {
-											enabled: true,
-											align: 'right',
-											color: 'white',
-											crop: false
-									}
-								}
-						}
-						, series : <%= $graph_data->{right_spring_package} %>
 					});
 				<% end %>
 		</div>

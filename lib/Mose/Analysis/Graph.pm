@@ -62,6 +62,22 @@ my $GraphList = {
           trackbar_height
           /
     ],
+    williamsfw31 => [
+        qw/
+          ballast
+          front_rideheight
+          front_tiretemp
+          front_tread
+          left_tiretemp_avg
+          left_weight_dist
+          rear_rideheight
+          rear_tiretemp
+          rear_tread
+          rideheight_relation
+          right_tiretemp_avg
+          right_weight_dist
+          /
+    ],
 };
 
 my $GraphData = {
@@ -78,33 +94,45 @@ my $GraphData = {
     },
     rear_rideheight => sub {
         my $s = shift;
-        return (
-            $s->data(
-                component => [ 'CHASSIS' => 'LEFT REAR' => 'Ride height' ]
-            ),
-            $s->data(
-                component => [ 'CHASSIS' => 'RIGHT REAR' => 'Ride height' ]
-            )
-        );
+        if ( $s->car_name == 'williamsfw31' ) {
+            return $s->data(
+                component => [ 'CHASSIS' => 'REAR' => 'Ride height' ] );
+        }
+        else {
+            return (
+                $s->data(
+                    component => [ 'CHASSIS' => 'LEFT REAR' => 'Ride height' ]
+                ),
+                $s->data(
+                    component => [ 'CHASSIS' => 'RIGHT REAR' => 'Ride height' ]
+                )
+            );
+        }
     },
     rideheight_relation => sub {
-        my $s = shift;
-        return (
-            (
-                $s->data(
-                    component => [ 'CHASSIS' => 'LEFT FRONT' => 'Ride height' ]
-                  ) + $s->data(
-                    component => [ 'CHASSIS' => 'RIGHT FRONT' => 'Ride height' ]
-                  )
-            ) / 2.000,
-            (
+        my $s     = shift;
+        my $front = (
+            $s->data(
+                component => [ 'CHASSIS' => 'LEFT FRONT' => 'Ride height' ]
+              ) + $s->data(
+                component => [ 'CHASSIS' => 'RIGHT FRONT' => 'Ride height' ]
+              )
+        ) / 2.000;
+        my $rear;
+        if ( $s->car_name == 'williamsfw31' ) {
+            $rear =
+              $s->data( component => [ 'CHASSIS' => 'REAR' => 'Ride height' ] );
+        }
+        else {
+            $rear = (
                 $s->data(
                     component => [ 'CHASSIS' => 'LEFT REAR' => 'Ride height' ]
                   ) + $s->data(
                     component => [ 'CHASSIS' => 'RIGHT REAR' => 'Ride height' ]
                   )
-            ) / 2.000
-        );
+            ) / 2.000;
+        }
+        return ( $front, $rear );
     },
     trackbar_height => sub {
         my $s = shift;
@@ -233,14 +261,17 @@ my $GraphData = {
     },
     ballast => sub {
         my $s = shift;
-        return (
-            [
-                1,
-                $s->data(
-                    component => [ 'CHASSIS' => 'FRONT' => 'Ballast forward' ]
-                )
-            ]
-        );
+        my $ballast;
+        if ( $s->car_name == 'williamsfw31' ) {
+            $ballast =
+              $s->data( component => [ 'CHASSIS' => 'GENERAL' => 'Ballast' ] );
+        }
+        else {
+            $ballast =
+              $s->data(
+                component => [ 'CHASSIS' => 'FRONT' => 'Ballast forward' ] );
+        }
+        return ( [ 1, $ballast ] );
     },
     left_spring_package => sub {
         my $s = shift;
@@ -309,21 +340,23 @@ my $GraphData = {
         );
     },
 };
+
 sub available_graph {
     my $car = shift;
     return @{ $GraphList->{$car} };
 }
 
 sub data {
-	my ($graph_name, @setups) = @_;
-	my $ret = [];
-	foreach my $s (@setups) {
-		push @{$ret}, +{
+    my ( $graph_name, @setups ) = @_;
+    my $ret = [];
+    foreach my $s (@setups) {
+        push @{$ret},
+          +{
             name => $s->file_name,
             data => [ $GraphData->{$graph_name}->($s) ],
-		};
-	}
-	return $ret;
+          };
+    }
+    return $ret;
 }
 
 1;

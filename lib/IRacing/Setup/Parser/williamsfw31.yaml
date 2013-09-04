@@ -1,0 +1,586 @@
+---
+-
+  - AERO
+  - AERO PACKAGE
+  - Downforce trim
+  - '/html/body/u[33]'
+-
+  - AERO
+  - AERO PACKAGE
+  - Base front flap
+  - '/html/body/u[34]'
+-
+  - AERO
+  - AERO PACKAGE
+  - Flap adjuster dial
+  - '/html/body/u[35]'
+-
+  - AERO
+  - AERO PACKAGE
+  - Total front flap
+  - '/html/body/u[36]'
+-
+  - AERO
+  - AERO PACKAGE
+  - Rear wing wicker
+  - '/html/body/u[37]'
+-
+  - AERO
+  - AERO CALCULATOR
+  - Front RH at speeed
+  - '/html/body/u[38]'
+-
+  - AERO
+  - AERO CALCULATOR
+  - Rear RH at speed
+  - '/html/body/u[39]'
+-
+  - AERO
+  - AERO CALCULATOR
+  - Front downforce
+  - '/html/body/u[40]'
+-
+  - AERO
+  - AERO CALCULATOR
+  - Downforce to drag
+  - '/html/body/u[41]'
+-
+  - CHASSIS
+  - GENERAL
+  - Cross weight
+  - '/html/body/u[59]'
+-
+  - CHASSIS
+  - GENERAL
+  - Nose weight
+  - '/html/body/u[58]'
+-
+  - CHASSIS
+  - GENERAL
+  - Ballast
+  - '/html/body/u[57]'
+-
+  - CHASSIS
+  - GENERAL
+  - Brake pressure
+  - '/html/body/u[60]'
+-
+  - CHASSIS
+  - GENERAL
+  - Base brake bias
+  - '/html/body/u[61]'
+-
+  - CHASSIS
+  - GENERAL
+  - Peak brake bias
+  - '/html/body/u[62]'
+-
+  - CHASSIS
+  - GENERAL
+  - Begin bias ramping
+  - '/html/body/u[63]'
+-
+  - CHASSIS
+  - FRONT
+  - ARB rate
+  - '/html/body/u[42]'
+-
+  - CHASSIS
+  - FRONT
+  - ARB preload
+  - '/html/body/u[43]'
+-
+  - CHASSIS
+  - FRONT
+  - Heave rate
+  - '/html/body/u[44]'
+-
+  - CHASSIS
+  - FRONT
+  - Heave perch offset
+  - '/html/body/u[45]'
+-
+  - CHASSIS
+  - FRONT
+  - Spring defl
+  - '/html/body/u[46]'
+-
+  - CHASSIS
+  - FRONT
+  - Spring defl (of)
+  - '/html/body/u[47]'
+-
+  - CHASSIS
+  - FRONT
+  - Toe-in
+  - '/html/body/u[48]'
+-
+  - CHASSIS
+  - LEFT FRONT
+  - Corner weight
+  - '/html/body/u[49]'
+-
+  - CHASSIS
+  - LEFT FRONT
+  - Ride height
+  - '/html/body/u[50]'
+-
+  - CHASSIS
+  - LEFT FRONT
+  - Torsion bar offset
+  - '/html/body/u[51]'
+-
+  - CHASSIS
+  - LEFT FRONT
+  - Torsion bar rate
+  - '/html/body/u[52]'
+-
+  - CHASSIS
+  - LEFT FRONT
+  - Camber
+  - '/html/body/u[53]'
+-
+  - CHASSIS
+  - RIGHT FRONT
+  - Corner weight
+  - '/html/body/u[64]'
+-
+  - CHASSIS
+  - RIGHT FRONT
+  - Ride height
+  - '/html/body/u[65]'
+-
+  - CHASSIS
+  - RIGHT FRONT
+  - Torsion bar offset
+  - '/html/body/u[66]'
+-
+  - CHASSIS
+  - RIGHT FRONT
+  - Torsion bar rate
+  - '/html/body/u[67]'
+-
+  - CHASSIS
+  - RIGHT FRONT
+  - Camber
+  - '/html/body/u[68]'
+-
+  - CHASSIS
+  - LEFT REAR
+  - Corner weight
+  - '/html/body/u[54]'
+-
+  - CHASSIS
+  - LEFT REAR
+  - Camber
+  - '/html/body/u[55]'
+-
+  - CHASSIS
+  - LEFT REAR
+  - Toe-in
+  - '/html/body/u[56]'
+-
+  - CHASSIS
+  - RIGHT REAR
+  - Corner weight
+  - '/html/body/u[69]'
+-
+  - CHASSIS
+  - RIGHT REAR
+  - Camber
+  - '/html/body/u[70]'
+-
+  - CHASSIS
+  - RIGHT REAR
+  - Toe-in
+  - '/html/body/u[71]'
+-
+  - CHASSIS
+  - REAR
+  - Fuel level
+  - '/html/body/u[72]'
+-
+  - CHASSIS
+  - REAR
+  - Ride height
+  - '/html/body/u[73]'
+-
+  - CHASSIS
+  - REAR
+  - ARB rate
+  - '/html/body/u[74]'
+-
+  - CHASSIS
+  - REAR
+  - ARB preload
+  - '/html/body/u[75]'
+-
+  - CHASSIS
+  - REAR
+  - Heave rate
+  - '/html/body/u[76]'
+-
+  - CHASSIS
+  - REAR
+  - Heave perch offset
+  - '/html/body/u[77]'
+-
+  - DAMPERS
+  - FRONT HEAVE
+  - Front bump stiffness
+  - '/html/body/u[78]'
+-
+  - DAMPERS
+  - FRONT HEAVE
+  - Front rebound stiffness
+  - '/html/body/u[79]'
+-
+  - DAMPERS
+  - FRONT HEAVE
+  - Front inerter mass
+  - '/html/body/u[80]'
+-
+  - DAMPERS
+  - LEFT FRONT
+  - Bump stiffness
+  - '/html/body/u[85]'
+-
+  - DAMPERS
+  - LEFT FRONT
+  - Rebound stiffness
+  - '/html/body/u[85]'
+-
+  - DAMPERS
+  - RIGHT FRONT
+  - Bump stiffness
+  - '/html/body/u[81]'
+-
+  - DAMPERS
+  - RIGHT FRONT
+  - Rebound stiffness
+  - '/html/body/u[82]'
+-
+  - DAMPERS
+  - LEFT REAR
+  - Bump stiffness
+  - '/html/body/u[87]'
+-
+  - DAMPERS
+  - LEFT REAR
+  - Rebound stiffness
+  - '/html/body/u[88]'
+-
+  - DAMPERS
+  - RIGHT REAR
+  - Bump stiffness
+  - '/html/body/u[83]'
+-
+  - DAMPERS
+  - RIGHT REAR
+  - Rebound stiffness
+  - '/html/body/u[84]'
+-
+  - DAMPERS
+  - REAR HEAVE
+  - Rear bump stiffness
+  - '/html/body/u[89]'
+-
+  - DAMPERS
+  - REAR HEAVE
+  - Rear rebound stiffness
+  - '/html/body/u[90]'
+-
+  - DAMPERS
+  - REAR HEAVE
+  - Rear inerter mass
+  - '/html/body/u[91]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Final Drive
+  - '/html/body/u[92]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - First gear
+  - '/html/body/u[93]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Second gear
+  - '/html/body/u[95]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Third gear
+  - '/html/body/u[97]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Fourth gear
+  - '/html/body/u[99]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Fifth gear
+  - '/html/body/u[101]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Sixth gear
+  - '/html/body/u[103]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Seventh gear
+  - '/html/body/u[105]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - First gear (speed)
+  - '/html/body/u[94]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Second gear (speed)
+  - '/html/body/u[96]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Third gear (speed)
+  - '/html/body/u[98]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Fourth gear (speed)
+  - '/html/body/u[100]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Fifth gear (speed)
+  - '/html/body/u[102]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Sixth gear (speed)
+  - '/html/body/u[104]'
+-
+  - DRIVE
+  - GEAR RATIOS
+  - Seventh gear (speed)
+  - '/html/body/u[106]'
+-
+  - DRIVE
+  - DIFF BUILD
+  - Entry preload
+  - '/html/body/u[107]'
+-
+  - DRIVE
+  - DIFF BUILD
+  - Entry
+  - '/html/body/u[108]'
+-
+  - DRIVE
+  - DIFF BUILD
+  - Middle
+  - '/html/body/u[109]'
+-
+  - DRIVE
+  - DIFF BUILD
+  - Exit
+  - '/html/body/u[110]'
+-
+  - DRIVE
+  - DIFF IN-CAR DIALS
+  - Entry
+  - '/html/body/u[111]'
+-
+  - DRIVE
+  - DIFF IN-CAR DIALS
+  - Middle
+  - '/html/body/u[112]'
+-
+  - DRIVE
+  - DIFF IN-CAR DIALS
+  - Exit
+  - '/html/body/u[113]'
+-
+  - ENGINE
+  - Engine IN-CAR DIALS
+  - Engine braking
+  - '/html/body/u[114]'
+-
+  - ENGINE
+  - Engine IN-CAR DIALS
+  - Engine power
+  - '/html/body/u[115]'
+-
+  - ENGINE
+  - Engine IN-CAR DIALS
+  - Fuel mixture
+  - '/html/body/u[116]'
+-
+  - ENGINE
+  - Engine IN-CAR DIALS
+  - Throttle shaping
+  - '/html/body/u[117]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Tread remaining O
+  - '/html/body/u[6]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Tread remaining M
+  - '/html/body/u[7]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Tread remaining I
+  - '/html/body/u[8]'
+-
+  - TIRE
+  - LEFT REAR
+  - Tread remaining O
+  - '/html/body/u[14]'
+-
+  - TIRE
+  - LEFT REAR
+  - Tread remaining M
+  - '/html/body/u[15]'
+-
+  - TIRE
+  - LEFT REAR
+  - Tread remaining I
+  - '/html/body/u[16]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Tread remaining I
+  - '/html/body/u[24]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Tread remaining M
+  - '/html/body/u[23]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Tread remaining O
+  - '/html/body/u[22]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Tread remaining I
+  - '/html/body/u[33]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Tread remaining M
+  - '/html/body/u[32]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Tread remaining O
+  - '/html/body/u[31]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Last temps O
+  - '/html/body/u[3]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Last temps M
+  - '/html/body/u[4]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Last temps I
+  - '/html/body/u[5]'
+-
+  - TIRE
+  - LEFT REAR
+  - Last temps O
+  - '/html/body/u[11]'
+-
+  - TIRE
+  - LEFT REAR
+  - Last temps M
+  - '/html/body/u[12]'
+-
+  - TIRE
+  - LEFT REAR
+  - Last temps I
+  - '/html/body/u[13]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Last temps I
+  - '/html/body/u[21]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Last temps M
+  - '/html/body/u[20]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Last temps O
+  - '/html/body/u[19]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Last temps I
+  - '/html/body/u[30]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Last temps M
+  - '/html/body/u[29]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Last temps O
+  - '/html/body/u[28]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Cold pressure
+  - '/html/body/u[1]'
+-
+  - TIRE
+  - LEFT REAR
+  - Cold pressure
+  - '/html/body/u[9]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Cold pressure
+  - '/html/body/u[17]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Cold pressure
+  - '/html/body/u[26]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Last hot pressure
+  - '/html/body/u[2]'
+-
+  - TIRE
+  - LEFT REAR
+  - Last hot pressure
+  - '/html/body/u[10]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Last hot pressure
+  - '/html/body/u[18]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Last hot pressure
+  - '/html/body/u[27]'

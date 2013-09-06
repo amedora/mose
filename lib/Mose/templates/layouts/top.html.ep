@@ -12,12 +12,14 @@
 		<link href="<%= url_for '/css/docs.css' %>" rel="stylesheet">
 		<link href="<%= url_for '/css/dataTables.bootstrap.css' %>" rel="stylesheet">
 		<link href="<%= url_for '/css/TableTools.css' %>" rel="stylesheet">
+		<link href="<%= url_for '/css/slider.css' %>" rel="stylesheet">
 
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/jquery.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/mose.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/highcharts.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/jquery.dataTables.min.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/bootstrap.min.js' %>"></script>
+		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/bootstrap-slider.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/ZeroClipboard.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/TableTools.min.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/dataTables.bootstrap.js' %>"></script>

@@ -24,7 +24,7 @@ sub analysis {
         );
     }
     $self->render(
-        "analysis/tab-analysis-$car",
+        "analysis/analysis/$car",
         car        => $car,
         graph_data => $graph_data,
 		setups     => \@setups

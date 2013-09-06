@@ -94,9 +94,12 @@ my $GraphData = {
     },
     rear_rideheight => sub {
         my $s = shift;
-        if ( $s->car_name == 'williamsfw31' ) {
-            return $s->data(
-                component => [ 'CHASSIS' => 'REAR' => 'Ride height' ] );
+        if ( $s->car_name eq 'williamsfw31' ) {
+            return (
+                $s->data(
+                    component => [ 'CHASSIS' => 'REAR' => 'Ride height' ]
+                )
+            );
         }
         else {
             return (
@@ -119,7 +122,7 @@ my $GraphData = {
               )
         ) / 2.000;
         my $rear;
-        if ( $s->car_name == 'williamsfw31' ) {
+        if ( $s->car_name eq 'williamsfw31' ) {
             $rear =
               $s->data( component => [ 'CHASSIS' => 'REAR' => 'Ride height' ] );
         }
@@ -262,7 +265,7 @@ my $GraphData = {
     ballast => sub {
         my $s = shift;
         my $ballast;
-        if ( $s->car_name == 'williamsfw31' ) {
+        if ( $s->car_name eq 'williamsfw31' ) {
             $ballast =
               $s->data( component => [ 'CHASSIS' => 'GENERAL' => 'Ballast' ] );
         }

@@ -9,16 +9,16 @@ use Mose::Util::LaptimeFile;
 
 our $VERSION = '0.2';
 
-sub production_mode {
-    my $log = "$FindBin::Bin/mose.log";
-    -f $log && unlink $log;
-    shift->log->path($log);
-}
-
 sub startup {
     my $self = shift;
 
     $self->secret('mose');
+
+    if ( $self->app->mode eq 'production' ) {
+        my $log = "$FindBin::Bin/mose.log";
+        -f $log && unlink $log;
+        $self->app->log->path($log);
+    }
 
     my $config =
       $self->plugin( 'Config', { file => "$FindBin::Bin/mose.ini" } );

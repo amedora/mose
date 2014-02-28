@@ -1,30 +1,34 @@
 %# vim:set ts=2 sw=2 ft=html:
-<div class="accordion" id="carlist">
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#ClassA">
-				Class A
-			</a>
+<div class="panel-group" id="carlist">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#carlist" href="#ClassA">
+					Class A
+				</a>
+			</h4>
 		</div>
-		<div id="ClassA" class="accordion-body collapse">
-			<div class="accordion-inner">
+		<div id="ClassA" class="panel-collapse collapse in">
+			<div class="panel-body">
 				<ul>
 					<li class="carname" name="stockcars chevyss"><a>Chevrolet SS Gen6</a></li>
 					<li class="carname" name="stockcars fordfusion"><a>Ford Fusion Gen6</a></li>
 					<li><a href="">Chevrolet Impala SS</a></li>
 					<li class="carname" name="williamsfw31"><a>Williams FW31</a></li>
 				</ul>
-			</div> <!-- accordion-inner -->
-		</div> <!-- accordion-body -->
-	</div> <!-- accordion-group -->
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#ClassB">
-				Class B
-			</a>
+			</div> <!-- panel-body -->
+		</div> <!-- panel-collapse -->
+	</div> <!-- panel -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#carlist" href="#ClassB">
+					Class B
+				</a>
+			</h4>
 		</div>
-		<div id="ClassB" class="accordion-body collapse">
-			<div class="accordion-inner">
+		<div id="ClassB" class="panel-collapse collapse">
+			<div class="panel-body">
 				<ul>
 					<li><a href="<%= url_for '/analysis/stockcars2%20chevy%20cot' %>">Chevrolet Impala SS B COT</a></li>
 					<li><a href="">Chevrolet Impala SS B Nationwide</a></li>
@@ -36,17 +40,19 @@
 					<li><a href="">Chevrolet Corvette C6R</a></li>
 					<li><a href="">Ford GT</a></li>
 				</ul>
-			</div> <!-- accordion-inner -->
-		</div> <!-- accordion-body -->
-	</div> <!-- accordion-group -->
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#ClassC">
-				Class C
-			</a>
+			</div> <!-- panel-body -->
+		</div> <!-- panel-collapse-->
+	</div> <!-- panel -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#carlist" href="#ClassC">
+					Class C
+				</a>
+			</h4>
 		</div>
-		<div id="ClassC" class="accordion-body collapse">
-			<div class="accordion-inner">
+		<div id="ClassC" class="panel-collapse collapse">
+			<div class="panel-body">
 				<ul>
 					<li><a href="">Chevrolet Silverado</a></li>
 					<li><a href="">Tour Modified</a></li>
@@ -54,34 +60,38 @@
 					<li><a href="">Ford Falcon V8 Supercar</a></li>
 					<li><a href="">Star Mazda</a></li>
 				</ul>
-			</div> <!-- accordion-inner -->
-		</div> <!-- accordion-body -->
-	</div> <!-- accordion-group -->
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#ClassD">
-				Class D
-			</a>
+			</div> <!-- panel-body -->
+		</div> <!-- panel-collapse -->
+	</div> <!-- panel -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#carlist" href="#ClassD">
+					Class D
+				</a>
+			</h4>
 		</div>
-		<div id="ClassD" class="accordion-body collapse">
-			<div class="accordion-inner">
+		<div id="ClassD" class="panel-collapse collapse">
+			<div class="panel-body">
 				<ul>
 					<li class="carname" name="latemodel"><a>Chevrolet Monte-Carlo SS</a></li>
 					<li><a href="">SK Modified</a></li>
 					<li><a href="">Ford Mustang</a></li>
 					<li><a href="">Skip Barber Formula 2000</a></li>
 				</ul>
-			</div> <!-- accordion-inner -->
-		</div> <!-- accordion-body -->
-	</div> <!-- accordion-group -->
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle" data-toggle="collapse" data-parent="#carlist" href="#Rookie">
-				Rookie
-			</a>
+			</div> <!-- panel-body -->
+		</div> <!-- panel-collapse -->
+	</div> <!-- panel -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#carlist" href="#Rookie">
+					Rookie
+				</a>
+			</h4>
 		</div>
-		<div id="Rookie" class="accordion-body collapse">
-			<div class="accordion-inner">
+		<div id="Rookie" class="panel-collapse collapse">
+			<div class="panel-body">
 				<ul>
 					<li><a href="">Legends Ford '34 Coupe</a></li>
 					<li><a href="">Street Stock</a></li>
@@ -89,8 +99,8 @@
 					<li><a href="">Pontiac Solstice</a></li>
 					<li><a href="">SCCA Spec Racer Ford</a></li>
 				</ul>
-			</div> <!-- accordion-inner -->
-		</div> <!-- accordion-body -->
-	</div> <!-- accordion-group -->
+			</div> <!-- panel-body -->
+		</div> <!-- panel-collapse -->
+	</div>
 </div> <!-- accordion -->
 

@@ -9,8 +9,8 @@
 <section id="chassis">
 	<h2>Chassis</h2>
 	<h3>Ride Height</h3>
-	<div class="row-fluid">
-		<div class="span6">
+	<div class="row">
+		<div class="col-md-6">
 			<div id="render_front_rideheight" style="height: 240px"></div>
 				<%= javascript begin %>
 					$('#render_front_rideheight').highcharts({
@@ -32,7 +32,7 @@
 					});
 				<% end %>
 		</div>
-		<div class="span6">
+		<div class="col-md-6">
 			<div id="render_rear_rideheight" style="height: 240px"></div>
 				<%= javascript begin %>
 					$('#render_rear_rideheight').highcharts({
@@ -55,8 +55,8 @@
 				<% end %>
 		</div>
 	</div>
-	<div class="row-fluid">
-		<div class="span6">
+	<div class="row">
+		<div class="col-md-6">
 			<div id="render_rideheight_relation" style="height: 240px"></div>
 				<%= javascript begin %>
 					$('#render_rideheight_relation').highcharts({
@@ -78,17 +78,17 @@
 					});
 				<% end %>
 		</div>
-		<div class="span6">
+		<div class="col-md-6">
 		</div>
 	</div>
 	<h3>Weight Distribution</h3>
-	<div class="row-fluid">
-		<div class="span8 offset2">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
 			%= include 'analysis/partial-data', components => [[CHASSIS => GENERAL => 'Cross weight'],[CHASSIS => GENERAL => 'Nose weight']]
 		</div>
 	</div>
-	<div class="row-fluid">
-		<div class="span4">
+	<div class="row">
+		<div class="col-md-4">
 			<div id="render_left_weight_dist" style="height: 360px"></div>
 				<%= javascript begin %>
 					$('#render_left_weight_dist').highcharts({
@@ -123,7 +123,7 @@
 					});
 				<% end %>
 		</div>
-		<div class="span4">
+		<div class="col-md-4">
 			<div id="render_ballast" style="height: 360px"></div>
 				<%= javascript begin %>
 					$('#render_ballast').highcharts({
@@ -148,7 +148,7 @@
 					});
 				<% end %>
 		</div>
-		<div class="span4">
+		<div class="col-md-4">
 			<div id="render_right_weight_dist" style="height: 360px"></div>
 				<%= javascript begin %>
 					$('#render_right_weight_dist').highcharts({

@@ -73,24 +73,22 @@ $(document).ready(function () {
 </script>
 
 <div class="row">
-	<div class="span12">
-		<div class="page-header">
-			<h1>Data & Analysis</h1>
-		</div>
+	<div class="col-md-12">
+		<h1 class="page-header">Data & Analysis</h1>
 	</div>
 </div>
 <div class="row">
-	<div class="span4">
+	<div class="col-md-4">
 		<%= include 'carlist' %>
 	</div>
-	<div class="span8">
+	<div class="col-md-8">
 		<div id="setuplist">
 			<pre>Please select the car.</pre>
 		</div>
 	</div>
 </div> <!-- row -->
 <div class="row">
-	<div class="span7 offset5">
+	<div class="col-md-7 col-md-offset-5">
 		<a class="btn btn-large btn-primary" id="show">SHOW</a>
 	</div>
 </div> <!-- row -->

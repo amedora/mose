@@ -7,15 +7,15 @@ $(document).ready(function () {
 		"iDisplayLength" : 150,
 		"aaSorting" : [],
 		/*
-		"sDom": "<'row'<'span12'T>><'row'<'span5'l><'span7'f>r>t<'row'<'span6'i><'span6'p>>",
+		"sDom": "<'row'<'col-md-12'T>><'row'<'col-md-5'l><'col-md-7'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
 		*/
-		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r><'row-fluid'<'span12't>><'row-fluid'<'span5'i><'span7'p>>",
+		"sDom": "<'row'<'col-md-4'l><'col-md-4'T><'col-md-4'f>r><'row'<'col-md-12't>><'row'<'col-md-5'i><'col-md-7'p>>",
 		"oTableTools": {
 			"sSwfPath": "<%= url_for '/swf/copy_csv_xls_pdf.swf' %>",
 			"aButtons": ['copy', 'csv', 'pdf', 'print']
 		},
 		/*
-		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+		"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
 		*/
 		"sPaginationType": "bootstrap",
 		"oLanguage": {

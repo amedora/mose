@@ -24,7 +24,7 @@
 </div>
 <%= javascript begin %>
 $('#tablesetup').dataTable({
-	"sDom": "<'row'<'span4'l><'span4'f>r>t<'row'<'span4'i><'span4'p>>",
+	"sDom": "<'row'<'col-md-4'l><'col-md-4'f>r>t<'row'<'col-md-4'i><'col-md-4'p>>",
 	"sPaginationType": "bootstrap",
 	"oLanguage": {
 		"sLengthMenu": "_MENU_ files per page"

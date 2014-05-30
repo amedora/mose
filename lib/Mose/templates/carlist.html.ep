@@ -13,6 +13,7 @@
 				<ul>
 					<li class="carname" name="stockcars chevyss"><a>Chevrolet SS Gen6</a></li>
 					<li class="carname" name="stockcars fordfusion"><a>Ford Fusion Gen6</a></li>
+					<li class="carname" name="stockcars toyotacamry"><a>Toyota Camry Gen6</a></li>
 					<li><a href="">Chevrolet Impala SS</a></li>
 					<li class="carname" name="williamsfw31"><a>Williams FW31</a></li>
 				</ul>

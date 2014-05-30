@@ -12,7 +12,7 @@ our $VERSION = '0.2';
 sub startup {
     my $self = shift;
 
-    $self->secret('mose');
+    $self->secrets(['mose']);
 
     if ( $self->app->mode eq 'production' ) {
         my $log = "$FindBin::Bin/mose.log";

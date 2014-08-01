@@ -18,9 +18,8 @@ sub analysis {
     push @setups, IRacing::Setup->new($_) foreach @files;
     my $graph_data = {};
     foreach my $graph_name ( Mose::Analysis::Graph::available_graph($car) ) {
-        $graph_data->{$graph_name} = $self->render(
+        $graph_data->{$graph_name} = $self->render_to_string(
             json    => Mose::Analysis::Graph::data( $graph_name, @setups ),
-            partial => 1
         );
     }
     $self->render(

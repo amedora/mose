@@ -5,26 +5,12 @@ use File::Basename;
 use File::Spec::Functions qw/catdir/;
 use FindBin;
 
-use Mose::Util::LaptimeFile;
-
 our $VERSION = '0.2';
 
 sub startup {
     my $self = shift;
 
-    $self->secrets(['mose']);
-
-    if ( $self->app->mode eq 'production' ) {
-        my $log = "$FindBin::Bin/mose.log";
-        -f $log && unlink $log;
-        $self->app->log->path($log);
-    }
-
-    my $config =
-      $self->plugin( 'Config', { file => "$FindBin::Bin/mose.ini" } );
-    $self->home->parse( catdir( dirname(__FILE__), 'Mose' ) );
-    $self->static->paths->[0]   = $self->home->rel_dir('public');
-    $self->renderer->paths->[0] = $self->home->rel_dir('templates');
+    $self->secrets( ['mose'] );
 
     #
     # Helpers
@@ -40,17 +26,6 @@ sub startup {
     $r->get('/analysis')->to('analysis#index');
     $r->get('/analysis/analysis/:car')->to('analysis#analysis');
     $r->get('/analysis/datatable')->to('analysis#datatable');
-
-    # Render
-    $r->get('/render/laptime/:car')->to('render#laptime');
-
-    # Laptime
-    $r->get('/laptime/manager/:car')->to('laptime#manager');
-    $r->get('/laptime/list')->to('laptime#list');
-
-    # Laptime gather
-    $r->post('/laptime/importer/prepare')->to('laptime-importer#prepare');
-    $r->get('/laptime/importer/import')->to('laptime-importer#import');
 }
 
 1;

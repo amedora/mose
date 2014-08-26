@@ -3,49 +3,12 @@
 use lib 'lib';
 use FindBin;
 use Mojolicious::Commands;
-use Win32::GUI();
 
 use strict;
 
-my $pid = fork();
-if ( $pid == 0 ) {
-    unless ( defined( $ENV{MOJO_MODE} )
-        && ( $ENV{MOJO_MODE} eq 'development' ) )
-    {
-        $ENV{MOJO_MODE} = 'production';
-    }
-    Mojolicious::Commands->start_app( 'Mose', 'daemon' );
+unless ( defined( $ENV{MOJO_MODE} )
+    && ( $ENV{MOJO_MODE} eq 'development' ) )
+{
+    $ENV{MOJO_MODE} = 'production';
 }
-else {
-    my $tray_icon = Win32::GUI::Icon->new( $FindBin::Bin . '\mose.ico' );
-    my $tray_win  = Win32::GUI::Window->new(
-        -name    => 'not needed',
-        -text    => 'not needed',
-        -width   => 20,
-        -height  => 20,
-        -visible => 0,
-    );
-    my $tray_menu = Win32::GUI::Menu->new(
-        ""      => "Options",
-        ">Exit" => {
-            -name    => "Exit",
-            -onClick => sub {
-                $tray_win->mose->Remove();
-                kill 9, $pid;
-                exit 1;
-              }
-        }
-    ) or die "Win32::GUI::Menu->new failed";
-    my $tray_notify;
-    $tray_notify = $tray_win->AddNotifyIcon(
-        -name         => "mose",
-        -icon         => $tray_icon,
-        -tip          => "mose",
-        -balloon_icon => "info",
-        -onRightClick => sub {
-            $tray_notify->Win32::GUI::TrackPopupMenu( $tray_menu->{Options} );
-            return 1;
-        }
-    );
-    Win32::GUI::Dialog();
-}
+Mojolicious::Commands->start_app( 'Mose', 'daemon' );

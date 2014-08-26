@@ -5,7 +5,6 @@ use base 'Exporter';
 
 our @EXPORT_OK = qw/
   graph_list
-  laptime_in_milisec
   /;
 
 my $graph_list = {
@@ -90,14 +89,6 @@ my $graph_list = {
 sub graph_list {
     my $car = shift;
     return @{ $graph_list->{$car} };
-}
-
-sub laptime_in_milisec {
-    my $format = shift;
-    my ( $min, $sec ) = split /:/, $format;
-    $min = $min * 60 * 1000;
-    $sec = $sec * 1000;
-    return $min + $sec;
 }
 
 1;

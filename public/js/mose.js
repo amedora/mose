@@ -1,67 +1,6 @@
 /* vim:set ts=4 sw=4: */
 var tableData;
-var tableLaptime;
 var opt_graph;
-$(function () {
-    opt_graph = {
-        laptime : {
-            chart : {
-                renderTo : 'render_laptime', defaultSeriesType : 'line'
-            }
-            , title : {
-                text : 'Lap Time'
-            }
-            , tooltip : {
-				formatter : function () {
-					var mil = this.point.y;
-					var min = Math.round(mil / 60000);
-					mil -= (min * 60000);
-					var sec = mil / 1000;
-					return '<b>' + this.series.name + '</b><br/>'
-						+ 'Lap: ' + this.point.x + '<br/>'
-						+ 'Time: ' + min + ':' + sec;
-				}
-			}
-            , xAxis : {
-				title : {
-					text : 'lap'
-				}
-			}
-            , yAxis : {
-                title : {
-                    text : 'time'
-                }
-				, labels : {
-					formatter : function () {
-						var mil = this.value;
-						var min = Math.round(mil / 60000);
-						mil -= (min * 60000);
-						var sec = mil / 1000;
-						return min + ':' + sec;
-					}
-				}
-				, minorTickInterval: 'auto'
-            }
-            , series : []
-        }
-    };
-}
-);
-
-function render_laptime(car) {
-    $.ajax({
-		type : 'GET',
-		dataType : 'json',
-		cache : false,
-		async : false,
-        url : '/render/laptime/' + car + '?' + $('#form_fileselect').serialize(),
-		success : function (json) {
-			$('#analysis-tab a[href="#tab-laptime"]').tab('show');
-            opt_graph['laptime'].series = json.series;
-			graph_laptime = new Highcharts.Chart(opt_graph['laptime']); 
-        }
-    });
-}
 
 function render(graph_type, car) {
     $.ajax({
@@ -97,33 +36,5 @@ function get_data() {
             }); 
         }
     });
-}
-
-function listlaptime() {
-	if (!!tableLaptime) {
-		tableLaptime.fnDestroy();
-	}
-    $.ajax({
-        url : '/laptime/list?' + $('#form_fileselect').serialize(),
-		success : function (html) {
-            $('#laptime-list').replaceWith('<div id="laptime-list">' + html + '</div>');
-			tableLaptime = $('#tablelaptime').dataTable({
-                "sDom" : "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
-				"sPaginationType" : "bootstrap", "oLanguage" : {
-                    "sLengthMenu" : "_MENU_ records per page"
-                }
-            }); 
-        }
-    });
-}
-
-function savemark() {
-    $.ajax({
-		type : 'GET',
-        url : '/laptime/savemark?' + $('#form_recordselect').serialize(),
-		success : function () {
-			alert("Done!");
-		}
-	});
 }
 

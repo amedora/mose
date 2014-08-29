@@ -23,20 +23,6 @@ $(document).ready(function () {
 		}
 	});
 
-	$('.carname').on('click', function () {
-		$.ajax({
-			type : 'GET',
-			dataType : 'html',
-			cache : false,
-			url : '<%= url_for("/ajax/setuplist")->to_abs %>'
-			    + '/' + $(this).attr('name')
-			    + '?st=checkbox',
-			success : function (html) {
-				$('#setuplist').replaceWith(html);
-			}
-		});
-	});
-
 	$('#show').on('click', function () {
     $.ajax({
 			type : 'GET',

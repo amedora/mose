@@ -1,7 +1,0 @@
-%# vim:set ts=2 sw=2 ft=html:
-<h2>Lap Time Comparison</h2>
-<div class="row">
-	<div class="col-md-8 col-md-offset-2">
-		<div id="render_laptime" style="height: 480px"></div>
-	</div>
-</div>

@@ -46,11 +46,10 @@
 						<li>
 							<a href="<%= url_for '/analysis' %>"><i class="icon-th-list icon-white"></i> Data & Analysis</a>
 						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a href="<%= url_for '/laptime/manager/latemodel' %>"><i class="icon-time icon-white"></i> Laptime Manager</a>
-						</li>
-						<li>
-							<a href="#contact"><i class="icon-cog icon-white"></i> Options</a>
+							<a href="#contact"><i class="icon-cog icon-white"></i> About</a>
 						</li>
 					</ul>
 				</div> <!-- nav-collapse -->

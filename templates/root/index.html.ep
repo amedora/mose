@@ -55,27 +55,51 @@ $(document).ready(function () {
 			$(table).dataTable().fnAdjustColumnSizing();
 		}
 	});
+
+	ko.applyBindings(new AppViewModel());
+
 });
+
+function AppViewModel() {
+    var self = this;
+ 
+    self.file = ko.observableArray([
+        { name: '' },
+        { name: '' }
+    ]);
+ 
+    self.addFile = function() {
+        self.file.push({ name: "New at " + new Date() });
+    };
+ 
+    self.removeFile = function() {
+        self.file.remove(this);
+    }
+}
+ 
 </script>
 
-<div class="row">
-	<div class="col-md-12">
-		<h1 class="page-header">Data & Analysis</h1>
-	</div>
-</div>
-<div class="row"> <!-- file selector -->
-	<div class="col-md-12">
-		<div>
-			<pre>Please select the car.</pre>
+<h3 class="page-header">Setup</h3>
+<div class="col-md-12">
+	<form class="form-horizontal" role="form" data-bind="foreach: file">
+		<div class="form-group">
+			<label class="col-md-1 col-md-offset-3">File <span data-bind="text: $index() + 1"> </span></label>
+			<input class="col-md-4" type="file">
+			<span class="col-md-3 glyphicon glyphicon-remove-circle"></span>
 		</div>
-	</div>
-</div> <!-- row -->
+	</form>
+</div>
+<div class="col-md-1 col-md-offset-3">
+	<button type="button" class="btn btn-default" data-bind="click: addFile">
+		<span class="glyphicon glyphicon-plus"></span> Add
+	</button>
+</div>
 <div class="row">
 	<div class="col-md-7 col-md-offset-5">
 		<a class="btn btn-large btn-primary" id="show">SHOW</a>
 	</div>
 </div> <!-- row -->
-<hr>
+<h3 class="page-header">Datasheet & Graph</h3>
 <div class="tabbable">
 	<ul class="nav nav-tabs" id="analysis-tab">
 		<li class="active"><a href="#tab-data" data-toggle="tab"><i class="icon-list"></i> Data</a></li>

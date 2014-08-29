@@ -2,6 +2,10 @@
 package Mose::Root;
 use Mojo::Base 'Mojolicious::Controller';
 
+sub index {
+	my $self = shift;
+}
+
 sub setuplist {
     my $self = shift;
 

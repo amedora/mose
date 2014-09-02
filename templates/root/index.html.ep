@@ -58,6 +58,8 @@ $(document).ready(function () {
 
 	ko.applyBindings(new AppViewModel());
 
+	$('.glyphicon-remove-circle').tooltip();
+
 });
 
 function AppViewModel() {
@@ -85,7 +87,9 @@ function AppViewModel() {
 		<div class="form-group">
 			<label class="col-md-1 col-md-offset-3">File <span data-bind="text: $index() + 1"> </span></label>
 			<input class="col-md-4" type="file">
-			<span class="col-md-3 glyphicon glyphicon-remove-circle"></span>
+			<div class="col-md-2">
+				<span class="glyphicon glyphicon-remove-circle" data-toggle="tooltip" data-placement="bottom" title="Remove this setup" data-bind="visible: $index(), click: $parent.removeFile"></span>
+			</div>
 		</div>
 	</form>
 </div>

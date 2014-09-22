@@ -18,12 +18,12 @@ sub startup {
     #
     # Routes
     my $r = $self->routes;
-    $r->get('/')->to('analysis#index');
+    $r->get('/')->to('root#index');
 
     $r->get('/ajax/setuplist/:car')->to('root#setuplist');
 
     # Analysis
-    $r->get('/analysis')->to('analysis#index');
+	#$r->get('/analysis')->to('analysis#index');
     $r->get('/analysis/analysis/:car')->to('analysis#analysis');
     $r->get('/analysis/datatable')->to('analysis#datatable');
 }

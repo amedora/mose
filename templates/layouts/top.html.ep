@@ -26,6 +26,7 @@
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/ZeroClipboard.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/TableTools.min.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/dataTables.bootstrap.js' %>"></script>
+		<script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js"></script>
   </head>
 
 	<body>

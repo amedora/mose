@@ -24,7 +24,8 @@ sub startup {
 
     # Analysis
 	#$r->get('/analysis')->to('analysis#index');
-    $r->get('/analysis/analysis/:car')->to('analysis#analysis');
+    $r->post('/analysis/analysis')->to('analysis#analyze');
+	#$r->get('/analysis/analysis/:car')->to('analysis#analysis');
     $r->get('/analysis/datatable')->to('analysis#datatable');
 }
 

@@ -5,7 +5,10 @@ BEGIN { use_ok('IRacing::Setup'); }
 
 use strict;
 my $f = File::Spec->catfile( $Bin, 'dover_fixed.htm' );
-my $s = IRacing::Setup->new($f);
+open my $fh, '<', $f or die "Can't open file $f: $!";
+my $content = do {local $/; <$fh>};
+close $fh;
+my $s = IRacing::Setup->new($content);
 ok( $s, 'loading setup file' );
 is( $s->car_name,  'stockcars fordfusion', 'car name that setup file has' );
 is( $s->file_name, 'dover_fixed.htm',      'file name that setup file has' );

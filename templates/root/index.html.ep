@@ -24,14 +24,16 @@ $(document).ready(function () {
 	});
 
 	$('#show').on('click', function () {
+		var fd = new FormData($('#setupfile').get(0));
     $.ajax({
-			type : 'GET',
+			type : 'POST',
+			contentType: false,
+			processData: false,
+			data: fd,
 			dataType : 'html',
 			cache : false,
 			async : false,
-			url : '/analysis/analysis/'
-		      + $("[name='car']").val()
-			    + '?' + $('#form_fileselect').serialize(),
+			url : '/analysis/analysis',
 			success : function (html) {
 				$('#analysis-tab a[href="#tab-analysis"]').tab('show');
 				$('#tab-analysis').replaceWith(html);
@@ -83,10 +85,10 @@ function AppViewModel() {
 
 <h3 class="page-header">Setup</h3>
 <div class="col-md-12">
-	<form class="form-horizontal" role="form" data-bind="foreach: file">
+	<form id="setupfile" class="form-horizontal" role="form" data-bind="foreach: file">
 		<div class="form-group">
 			<label class="col-md-1 col-md-offset-3">File <span data-bind="text: $index() + 1"> </span></label>
-			<input class="col-md-4" type="file">
+			<input class="col-md-4" type="file" data-bind="attr: {name: 'file' + $index()}">
 			<div class="col-md-2">
 				<span class="glyphicon glyphicon-remove-circle" data-toggle="tooltip" data-placement="bottom" title="Remove this setup" data-bind="visible: $index(), click: $parent.removeFile"></span>
 			</div>

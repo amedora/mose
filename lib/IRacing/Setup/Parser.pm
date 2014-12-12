@@ -6,7 +6,7 @@ use Web::Scraper;
 use YAML;
 
 sub new {
-    my ( $class, $file ) = @_;
+    my ( $class, $content ) = @_;
 
     my $self = {
         car_name  => '',
@@ -16,10 +16,6 @@ sub new {
         data      => [],
     };
     bless $self, $class;
-
-    open my $fh, '<', $file or die "Can't open file: $!";
-    my $content = do { local $/; <$fh> };
-    close $fh;
 
     $self->_build_treebuilder($content);
     $self->_build_scraper();

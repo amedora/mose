@@ -27,6 +27,7 @@ sub new {
 sub _parse {
     my $self = shift;
     $self->{car_name} = $self->{parser}->car_name;
+    $self->{file_name} = $self->{parser}->file_name;
     $self->{data}     = $self->{parser}->data;
     $self->{unit}     = $self->_get_unit;
 }

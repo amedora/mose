@@ -11,7 +11,7 @@ close $fh;
 my $s = IRacing::Setup->new($content);
 ok( $s, 'loading setup file' );
 is( $s->car_name,  'stockcars fordfusion', 'car name that setup file has' );
-is( $s->file_name, 'dover_fixed.htm',      'file name that setup file has' );
+is( $s->file_name, '<dover_fixed>',      'file name that setup file has' );
 is(
     $s->data(
         component => [ 'CHASSIS' => 'FRONT' => 'Front brake bias' ],

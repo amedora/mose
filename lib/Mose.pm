@@ -12,6 +12,13 @@ sub startup {
     #
     # Helpers
     $self->plugin('Mose::Helper');
+    $self->helper(
+        psession => sub {
+            my $self = shift;
+            my $env  = $self->req->env;
+            return $env->{'psgix.session'};
+        }
+    );
     #
     # Routes
     my $r = $self->routes;

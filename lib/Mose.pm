@@ -1,9 +1,6 @@
 # vim:set sw=4 ts=4 ft=perl:
 package Mose;
 use Mojo::Base 'Mojolicious';
-#use File::Basename;
-#use File::Spec::Functions qw/catdir/;
-#use FindBin;
 
 our $VERSION = '0.2';
 
@@ -20,12 +17,8 @@ sub startup {
     my $r = $self->routes;
     $r->get('/')->to('root#index');
 
-    $r->get('/ajax/setuplist/:car')->to('root#setuplist');
-
     # Analysis
-	#$r->get('/analysis')->to('analysis#index');
     $r->post('/analysis/analysis')->to('analysis#analyze');
-	#$r->get('/analysis/analysis/:car')->to('analysis#analysis');
     $r->get('/analysis/datatable')->to('analysis#datatable');
 }
 

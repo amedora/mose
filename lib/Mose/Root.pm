@@ -6,15 +6,4 @@ sub index {
 	my $self = shift;
 }
 
-sub setuplist {
-    my $self = shift;
-
-    $self->render(
-        'setuplist',
-		car    => $self->param('car'),
-        setups => $self->app->setupfiles_by_car( $self->param('car') ),
-        st     => $self->param('st')
-    );
-}
-
 1;

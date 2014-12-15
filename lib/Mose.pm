@@ -1,9 +1,9 @@
 # vim:set sw=4 ts=4 ft=perl:
 package Mose;
 use Mojo::Base 'Mojolicious';
-use File::Basename;
-use File::Spec::Functions qw/catdir/;
-use FindBin;
+#use File::Basename;
+#use File::Spec::Functions qw/catdir/;
+#use FindBin;
 
 our $VERSION = '0.2';
 

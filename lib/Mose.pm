@@ -24,9 +24,12 @@ sub startup {
     my $r = $self->routes;
     $r->get('/')->to('root#index');
 
+	#
     # Analysis
-    $r->post('/analysis/analysis')->to('analysis#analyze');
-    $r->get('/analysis/datatable')->to('analysis#datatable');
+    $r->post('/analyze')->to('analysis#analyze_from_file');
+    $r->get('/analyze/:id')->to('analysis#analyze_from_db');
+    $r->get('/datasheet')->to('analysis#datasheet');
+    $r->get('/graph')->to('analysis#graph');
 }
 
 1;

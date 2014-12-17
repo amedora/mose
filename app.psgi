@@ -7,6 +7,8 @@ use Mose;
 
 use strict;
 
+$ENV{MOJO_MAX_MESSAGE_SIZE} = 10_000_000;
+
 my $psgi = Mojo::Server::PSGI->new( app => Mose->new );
 
 builder {

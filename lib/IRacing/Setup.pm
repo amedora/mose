@@ -7,20 +7,17 @@ use IRacing::Setup::Parser;
 my $Cache = {};
 
 sub new {
-    my ( $class, $file ) = @_;
-    my $f = basename($file);
-    return $Cache->{$f} if $Cache->{$f};
+    my ( $class, $file_content ) = @_;
     my $self = {
         car_name  => '',
-        file_name => $f,
+        file_name => '',
         data      => [],
-        parser    => IRacing::Setup::Parser->new($file),
+        parser    => IRacing::Setup::Parser->new($file_content),
     };
     bless $self, $class;
 
     $self->_parse();
     $self->_analyze();
-    $Cache->{$f} = $self;
     return $self;
 }
 
@@ -156,6 +153,24 @@ sub data {
     else {
         return $value;
     }
+}
+
+sub is_same_cars {
+	my @setups = @_;
+
+	for (@setups) {
+		return 0 if ref $_ ne 'IRacing::Setup';
+	}
+
+	return 0 unless my $car_name = $setups[0]->car_name;
+	return 0 unless my $unit = $setups[0]->unit;
+
+	foreach my $setup (@setups) {
+		return 0 unless $car_name eq $setup->car_name;
+		return 0 unless $unit eq $setup->unit;
+	}
+	
+	return 1;
 }
 
 1;

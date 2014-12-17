@@ -5,32 +5,50 @@ use Mose::Analysis::Graph;
 use IRacing::Setup;
 use Data::Dumper;
 
-sub index {
-    my $self = shift;
-}
-
-sub analyze {
-    my $self  = shift;
+sub analyze_from_file {
+    my $c     = shift;
     my @files = ();
 
+    # get content of all files
     foreach my $i ( 0 .. 2 ) {
-        if ( my $s = $self->param( "file" . $i ) ) {
+        if ( my $s = $c->param( "file" . $i ) ) {
             if ( $s->asset->{content} ) {
                 push @files, $s;
             }
         }
     }
 
-    unless (@files) {
+    return $c->render( 'root/index',
+        error_message => "No files are specified." )
+      unless @files;
 
-        # TODO: no files specified
-        $self->app->log->debug("no files specified");
+    # convert them to IRacing::Setup
+    my @setups;
+    foreach my $file (@files) {
+        my $setup = IRacing::Setup->new( $file->asset->{content} );
+        if ( !$setup ) {
+            return $c->render( 'root/index',
+                error_message => $file->filename . " is invalid." );
+        }
+        push @setups, $setup;
     }
-	my @setups;
-	foreach (@files) {
-		push @setups, IRacing::Setup->new($_);
-	}
-    $self->render('root/index');
+
+    return $c->render( 'root/index',
+        error_message => "Not same cars are specified." )
+      unless IRacing::Setup::is_same_cars(@setups);
+
+    $c->render('root/index');
+
+}
+
+sub analyze_from_db {
+    my $self = shift;
+}
+
+sub analyze {
+    my $self = shift;
+
+    my @setups;
 
   #    my $car        = $self->param('car');
   #    my @files = map {

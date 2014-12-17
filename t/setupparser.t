@@ -28,5 +28,6 @@ is(
     'Front brake bias without unit'
 );
 is($s->unit, 'ENGLISH', 'the setup has English unit');
+ok(IRacing::Setup::is_same_cars($s, $s), 'All setups has same car/unit');
 done_testing();
 

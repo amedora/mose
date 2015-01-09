@@ -30,18 +30,25 @@ $(document).ready(function () {
 			contentType: false,
 			processData: false,
 			data: fd,
-			dataType : 'html',
+			dataType : 'json',
 			cache : false,
 			async : false,
-			url : '/analysis/analysis',
-			success : function (html) {
+			url : '/analyze',
+			success : function (json) {
+				if ('error' in json) {
+					ViewModel.message(json.error.message);
+					alert(json.error.message);
+				}
+				/*
 				$('#analysis-tab a[href="#tab-analysis"]').tab('show');
 				$('#tab-analysis').replaceWith(html);
+				*/
 			}
 		});
-
+		/*
 		get_data();
 		render_laptime($("[name='car']").val());
+		*/
 		$('#analysis-tab a[href="#tab-analysis"]').tab('show');
 	});
 
@@ -58,7 +65,8 @@ $(document).ready(function () {
 		}
 	});
 
-	ko.applyBindings(new AppViewModel());
+	var ViewModel = new AppViewModel();
+	ko.applyBindings(ViewModel);
 
 	$('.glyphicon-remove-circle').tooltip();
 
@@ -66,7 +74,9 @@ $(document).ready(function () {
 
 function AppViewModel() {
     var self = this;
- 
+
+		self.message = ko.observable('');
+
     self.file = ko.observableArray([
         { name: '' },
         { name: '' }
@@ -105,6 +115,9 @@ function AppViewModel() {
 		<a class="btn btn-large btn-primary" id="show">SHOW</a>
 	</div>
 </div> <!-- row -->
+<div class="row">
+	<span data-bind="text: message"></span>
+</div>
 <h3 class="page-header">Datasheet & Graph</h3>
 <div class="tabbable">
 	<ul class="nav nav-tabs" id="analysis-tab">

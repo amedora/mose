@@ -18,24 +18,37 @@ sub analyze_from_file {
         }
     }
 
-    return $c->render( 'root/index',
-        error_message => "No files are specified." )
-      unless @files;
+    return $c->render(
+        json => {
+            message => "No files are specified.",
+        },
+        status => 400,
+    ) unless @files;
 
     # convert them to IRacing::Setup
     my @setups;
     foreach my $file (@files) {
         my $setup = IRacing::Setup->new( $file->asset->{content} );
         if ( !$setup ) {
-            return $c->render( 'root/index',
-                error_message => $file->filename . " is invalid." );
+            return $c->render(
+                json => {
+					error => {
+						message => $file->filename . " is invalid.",
+						code => 400,
+					}
+                },
+				#status => 400,
+            );
         }
         push @setups, $setup;
     }
 
-    return $c->render( 'root/index',
-        error_message => "Not same cars are specified." )
-      unless IRacing::Setup::is_same_cars(@setups);
+    return $c->render(
+        json => {
+            message => "Not same cars are specified.",
+        },
+        status => 400,
+    ) unless IRacing::Setup::is_same_cars(@setups);
 
     $c->render('root/index');
 

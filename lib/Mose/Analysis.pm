@@ -1,6 +1,7 @@
 # vim:set sw=4 ts=4 ft=perl:
 package Mose::Analysis;
 use Mojo::Base 'Mojolicious::Controller';
+use Mojo::JSON;
 use Mose::Analysis::Graph;
 use IRacing::Setup;
 use Data::Dumper;
@@ -20,9 +21,12 @@ sub analyze_from_file {
 
     return $c->render(
         json => {
-            message => "No files are specified.",
+			error => {
+				message => "No files are specified.",
+				code => 400,
+			},
         },
-        status => 400,
+		#status => 400,
     ) unless @files;
 
     # convert them to IRacing::Setup
@@ -45,12 +49,22 @@ sub analyze_from_file {
 
     return $c->render(
         json => {
-            message => "Not same cars are specified.",
+			error => {
+				message => "Not same cars are specified.",
+				code => 400,
+			},
         },
-        status => 400,
+		#status => 400,
     ) unless IRacing::Setup::is_same_cars(@setups);
 
-    $c->render('root/index');
+	my $response = {data => []};
+	foreach my $setup (@setups) {
+		push @{$response->{data}}, +{file_name => $setup->file_name, data => $setup->data};
+	}
+	$c->render(
+		json => $response
+	);
+	#$c->render('root/index');
 
 }
 

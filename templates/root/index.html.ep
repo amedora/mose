@@ -3,93 +3,31 @@
 % layout 'top';
 <script type="text/javascript">
 $(document).ready(function () {
-	tableData = $('#tabledata').dataTable({
-		"iDisplayLength" : 150,
-		"aaSorting" : [],
-		/*
-		"sDom": "<'row'<'col-md-12'T>><'row'<'col-md-5'l><'col-md-7'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
-		*/
-		"sDom": "<'row'<'col-md-4'l><'col-md-4'T><'col-md-4'f>r><'row'<'col-md-12't>><'row'<'col-md-5'i><'col-md-7'p>>",
-		"oTableTools": {
-			"sSwfPath": "<%= url_for '/swf/copy_csv_xls_pdf.swf' %>",
-			"aButtons": ['copy', 'csv', 'pdf', 'print']
-		},
-		/*
-		"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
-		*/
-		"sPaginationType": "bootstrap",
-		"oLanguage": {
-			"sLengthMenu": "_MENU_ components per page"
-		}
-	});
+		var viewModel = new mose.viewModel();
+		ko.applyBindings(viewModel);
 
-	$('#show').on('click', function () {
-		var fd = new FormData($('#setupfile').get(0));
-    $.ajax({
-			type : 'POST',
-			contentType: false,
-			processData: false,
-			data: fd,
-			dataType : 'json',
-			cache : false,
-			async : false,
-			url : '/analyze',
-			success : function (json) {
-				if ('error' in json) {
-					ViewModel.message(json.error.message);
-					alert(json.error.message);
-				}
-				/*
-				$('#analysis-tab a[href="#tab-analysis"]').tab('show');
-				$('#tab-analysis').replaceWith(html);
-				*/
-			}
+		mose.initSetupSheet('#setupsheet');
+
+		$('#show').on('click', function() {
+				mose.show(new FormData($('#setupfile').get(0)), viewModel)
 		});
-		/*
-		get_data();
-		render_laptime($("[name='car']").val());
-		*/
-		$('#analysis-tab a[href="#tab-analysis"]').tab('show');
-	});
 
-	/* Trick for TableTools */
-	$('.nav-tabs a[data-toggle="tab"]').on('shown', function(e) {
-    var ttInstances = TableTools.fnGetMasters();
-    for (var i in ttInstances) {
-			if (ttInstances[i].fnResizeRequired())
-				ttInstances[i].fnResizeButtons();
-    }
-		var table = $.fn.dataTable.fnTables(true);
-		if (table.length > 0) {
-			$(table).dataTable().fnAdjustColumnSizing();
-		}
-	});
+		/* Trick for TableTools */
+		$('.nav-tabs a[data-toggle="tab"]').on('shown', function(e) {
+				var ttInstances = TableTools.fnGetMasters();
+				for (var i in ttInstances) {
+						if (ttInstances[i].fnResizeRequired()) ttInstances[i].fnResizeButtons();
+				}
+				var table = $.fn.dataTable.fnTables(true);
+				if (table.length > 0) {
+						$(table).dataTable().fnAdjustColumnSizing();
+				}
+		});
 
-	var ViewModel = new AppViewModel();
-	ko.applyBindings(ViewModel);
-
-	$('.glyphicon-remove-circle').tooltip();
+		$('.glyphicon-remove-circle').tooltip();
 
 });
 
-function AppViewModel() {
-    var self = this;
-
-		self.message = ko.observable('');
-
-    self.file = ko.observableArray([
-        { name: '' },
-        { name: '' }
-    ]);
- 
-    self.addFile = function() {
-        self.file.push({ name: "New at " + new Date() });
-    };
- 
-    self.removeFile = function() {
-        self.file.remove(this);
-    }
-}
  
 </script>
 
@@ -131,7 +69,7 @@ function AppViewModel() {
 	</style>
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab-data">
-			<table class="table table-striped table-bordered" id="tabledata">
+			<table class="table table-striped table-bordered" id="setupsheet">
 				<thead>
 					<tr>
 						<th>Category</th>

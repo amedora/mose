@@ -21,12 +21,13 @@ sub analyze_from_file {
 
     return $c->render(
         json => {
-			error => {
-				message => "No files are specified.",
-				code => 400,
-			},
+            error => {
+                message => "No files are specified.",
+                code    => 400,
+            },
         },
-		#status => 400,
+
+        #status => 400,
     ) unless @files;
 
     # convert them to IRacing::Setup
@@ -36,12 +37,13 @@ sub analyze_from_file {
         if ( !$setup ) {
             return $c->render(
                 json => {
-					error => {
-						message => $file->filename . " is invalid.",
-						code => 400,
-					}
+                    error => {
+                        message => $file->filename . " is invalid.",
+                        code    => 400,
+                    }
                 },
-				#status => 400,
+
+                #status => 400,
             );
         }
         push @setups, $setup;
@@ -49,23 +51,36 @@ sub analyze_from_file {
 
     return $c->render(
         json => {
-			error => {
-				message => "Not same cars are specified.",
-				code => 400,
-			},
+            error => {
+                message => "Not same cars are specified.",
+                code    => 400,
+            },
         },
-		#status => 400,
+
+        #status => 400,
     ) unless IRacing::Setup::is_same_cars(@setups);
 
-	my $response = {data => []};
-	foreach my $setup (@setups) {
-		push @{$response->{data}}, +{file_name => $setup->file_name, data => $setup->data};
-	}
-	$c->render(
-		json => $response
-	);
-	#$c->render('root/index');
+    # We have to set the first row as column header.
+    my $response = { data => [ [ 'Category', 'Section', 'Component' ] ] };
+    foreach my $setup (@setups) {
+        push @{ $response->{data}->[0] }, $setup->file_name;
+    }
 
+    for ( my $i_setup = 0 ; $i_setup <= $#setups ; $i_setup++ ) {
+        for ( my $i_row = 0 ; $i_row < $setups[$i_setup]->num_rows ; $i_row++ )
+        {
+            if ( $i_setup == 0 ) {
+                push @{ $response->{data} }, $setups[$i_setup]->data->[$i_row];
+            }
+            else {
+                # Remember, the first row is a column header.
+                push @{ $response->{data}->[ $i_row + 1 ] },
+                  $setups[$i_setup]->data->[$i_row]->[3];
+            }
+        }
+    }
+
+    $c->render( json => $response );
 }
 
 sub analyze_from_db {
@@ -95,16 +110,6 @@ sub analyze {
   #        graph_data => $graph_data,
   #		setups     => \@setups
   #    );
-}
-
-sub datatable {
-    my $self  = shift;
-    my @files = map {
-        $self->stash->{config}->{setupdir} . '/' . $self->param('car') . $_;
-    } $self->param('file_selected');
-    my @setups;
-    push @setups, IRacing::Setup->new($_) foreach @files;
-    $self->stash->{setups} = \@setups;
 }
 
 1;

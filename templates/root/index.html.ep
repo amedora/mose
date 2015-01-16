@@ -12,18 +12,6 @@ $(document).ready(function () {
 				mose.show(new FormData($('#setupfile').get(0)), viewModel)
 		});
 
-		/* Trick for TableTools */
-		$('.nav-tabs a[data-toggle="tab"]').on('shown', function(e) {
-				var ttInstances = TableTools.fnGetMasters();
-				for (var i in ttInstances) {
-						if (ttInstances[i].fnResizeRequired()) ttInstances[i].fnResizeButtons();
-				}
-				var table = $.fn.dataTable.fnTables(true);
-				if (table.length > 0) {
-						$(table).dataTable().fnAdjustColumnSizing();
-				}
-		});
-
 		$('.glyphicon-remove-circle').tooltip();
 
 });
@@ -72,9 +60,6 @@ $(document).ready(function () {
 			<table class="table table-striped table-bordered" id="setupsheet">
 				<thead>
 					<tr>
-						<th>Category</th>
-						<th>Section</th>
-						<th>Component</th>
 					</tr>
 				</thead>
 				<tbody>

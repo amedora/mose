@@ -124,6 +124,12 @@ sub unit {
     return $self->{unit};
 }
 
+sub num_rows {
+	my $self = shift;
+
+	return $#{$self->{data}} + 1;
+}
+
 sub data {
     my $self = shift;
 

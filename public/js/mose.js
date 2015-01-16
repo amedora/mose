@@ -1,47 +1,45 @@
 /* vim:set ts=4 sw=4: */
 var mose = mose || {};
 (function(app) {
-	var viewModel;
     var setupSheet;
     var opt_graph;
 
     app.initSetupSheet = function(selector) {
-        setupSheet = $(selector).DataTable();
+        setupSheet = $(selector).DataTable({
+            "columns": [{
+                "title": "Category"
+            },
+            {
+                "title": "Section"
+            },
+            {
+                "title": "Component"
+            }]
+        });
     };
 
     app.show = function(formData, viewModel) {
-		var id = $(setupSheet.table().node()).attr('id');
-		setupSheet.destroy();
-		setupSheet = $('#' + id).DataTable({
-			"serverSide": true,
-			"processing": true,
-			"ajax" : {
-				type: 'POST',
-				contentType: false,
-				processData: false,
-				data: formData,
-				dataType: 'json',
-				cache: false,
-				async: false,
-				url: '/analyze',
-				success: function(json) {
-					if ('error' in json) {
-						viewModel.message(json.error.message);
-						alert(json.error.message);
-					}
-					/*
-					$('#analysis-tab a[href="#tab-analysis"]').tab('show');
-					$('#tab-analysis').replaceWith(html);
-					*/
-				}
-			}
-		});
+        $.ajax({
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            dataType: 'json',
+            cache: false,
+            async: false,
+            url: '/analyze',
+            success: function(json) {
+                if ('error' in json) {
+                    viewModel.message(json.error.message);
+                    alert(json.error.message);
+                }
+                updateSetupSheet(json);
+            }
+        });
 
         /*
-		get_data();
-		render_laptime($("[name='car']").val());
-		*/
         $('#analysis-tab a[href="#tab-analysis"]').tab('show');
+		*/
     };
 
     app.viewModel = function() {
@@ -65,6 +63,33 @@ var mose = mose || {};
         self.removeFile = function() {
             self.file.remove(this);
         }
+    }
+
+    function updateSetupSheet(json) {
+        var id = $(setupSheet.table().node()).attr('id');
+        setupSheet.destroy();
+        $('#' + id).empty();
+
+        /* The first row in json.data is a column header */
+        var columnHeader = json.data.shift().map(function(column_name) {
+            return {
+                "title": column_name.replace('<', '&lt').replace('>', '&gt')
+            };
+        });
+        setupSheet = $('#' + id).DataTable({
+            "processing": true,
+            "paging": false,
+            "columns": columnHeader,
+            "data": json.data,
+			"createdRow": function(row, data, dataIndex) {
+				var isSame = data.slice(3).every(function(elem) {
+					return (elem === data[3]);
+				});
+				if (!isSame) {
+					$(row).css("color", "#B94A48");
+				}
+			}
+        });
     }
 
     function render(graph_type, car) {

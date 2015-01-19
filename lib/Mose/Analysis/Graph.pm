@@ -372,9 +372,11 @@ sub data {
     my ( $graph_name, @setups ) = @_;
     my $ret = [];
     foreach my $s (@setups) {
+		my $name = $s->file_name;
+		$name =~ tr/<>//d;	#XXX: dirty hack
         push @{$ret},
           +{
-            name => $s->file_name,
+            name => $name,
             data => [ $GraphData->{$graph_name}->($s) ],
           };
     }

@@ -113,8 +113,11 @@ sub _generate_graphhtml {
             json => Mose::Analysis::Graph::data( $graph_name, @setups ), );
     }
 
-    return $c->render_to_string( "analysis/analysis/$car",
-        graph_data => $graph_data, setups => \@setups);
+    return $c->render_to_string(
+        "analysis/analysis/$car",
+        graph_data => $graph_data,
+        setups     => \@setups
+    );
 }
 
 1;

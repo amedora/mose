@@ -99,14 +99,4 @@ var mose = mose || {};
 		$('#tab-analysis').replaceWith(graphhtml);
 	}
 
-    function render(graph_type, car) {
-        $.ajax({
-            url: '/render/graph/' + graph_type + '/' + car + '?' + $('#form_fileselect').serialize(),
-            success: function(json) {
-                opt_graph[graph_type].series = json.series;
-                this["graph_" + graph_type] = new Highcharts.Chart(opt_graph[graph_type]);
-            }
-        });
-    }
-
 })(mose);

@@ -61,55 +61,60 @@ sub analyze_from_file {
     ) unless IRacing::Setup::is_same_cars(@setups);
 
     # We have to set the first row as column header.
-    my $response = { data => [ [ 'Category', 'Section', 'Component' ] ] };
+    my $sheetdata = [ [ 'Category', 'Section', 'Component' ] ];
     foreach my $setup (@setups) {
-        push @{ $response->{data}->[0] }, $setup->file_name;
+        push @{ $sheetdata->[0] }, $setup->file_name;
     }
 
     for ( my $i_setup = 0 ; $i_setup <= $#setups ; $i_setup++ ) {
         for ( my $i_row = 0 ; $i_row < $setups[$i_setup]->num_rows ; $i_row++ )
         {
             if ( $i_setup == 0 ) {
-                push @{ $response->{data} }, $setups[$i_setup]->data->[$i_row];
+                push @{$sheetdata}, $setups[$i_setup]->data->[$i_row];
             }
             else {
                 # Remember, the first row is a column header.
-                push @{ $response->{data}->[ $i_row + 1 ] },
+                push @{ $sheetdata->[ $i_row + 1 ] },
                   $setups[$i_setup]->data->[$i_row]->[3];
             }
         }
     }
 
-    $c->render( json => $response );
+    my $graphhtml = $c->_generate_graphhtml(@setups);
+    unless ($graphhtml) {
+        return $c->render(
+            json => {
+                error => {
+                    message => "Can't anayze your setup.",
+                    code    => 400,
+                },
+            },
+
+            #status => 400,
+        );
+    }
+
+    $c->render( json =>
+          { data => { sheetdata => $sheetdata, graphhtml => $graphhtml } } );
 }
 
 sub analyze_from_db {
     my $self = shift;
 }
 
-sub analyze {
-    my $self = shift;
+sub _generate_graphhtml {
+    my $c      = shift;
+    my @setups = @_;
 
-    my @setups;
+    my $car        = $setups[0]->car_name;
+    my $graph_data = {};
+    foreach my $graph_name ( Mose::Analysis::Graph::available_graph($car) ) {
+        $graph_data->{$graph_name} = $c->render_to_string(
+            json => Mose::Analysis::Graph::data( $graph_name, @setups ), );
+    }
 
-  #    my $car        = $self->param('car');
-  #    my @files = map {
-  #        $self->stash->{config}->{setupdir} . '/' . $self->param('car') . $_;
-  #    } $self->param('file_selected');
-  #    my @setups;
-  #    push @setups, IRacing::Setup->new($_) foreach @files;
-  #    my $graph_data = {};
-  #    foreach my $graph_name ( Mose::Analysis::Graph::available_graph($car) ) {
-  #        $graph_data->{$graph_name} = $self->render_to_string(
-  #            json    => Mose::Analysis::Graph::data( $graph_name, @setups ),
-  #        );
-  #    }
-  #    $self->render(
-  #        "analysis/analysis/$car",
-  #        car        => $car,
-  #        graph_data => $graph_data,
-  #		setups     => \@setups
-  #    );
+    return $c->render_to_string( "analysis/analysis/$car",
+        graph_data => $graph_data, setups => \@setups);
 }
 
 1;

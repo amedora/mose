@@ -33,7 +33,10 @@ var mose = mose || {};
                     viewModel.message(json.error.message);
                     alert(json.error.message);
                 }
-                updateSetupSheet(json);
+				/* First, update the setup sheet. */
+                updateSetupSheet(json.data.sheetdata);
+				/* Second, update graphs. */
+				updateGraphs(json.data.graphhtml);
             }
         });
 
@@ -65,13 +68,13 @@ var mose = mose || {};
         }
     }
 
-    function updateSetupSheet(json) {
+    function updateSetupSheet(sheetdata) {
         var id = $(setupSheet.table().node()).attr('id');
         setupSheet.destroy();
         $('#' + id).empty();
 
-        /* The first row in json.data is a column header */
-        var columnHeader = json.data.shift().map(function(column_name) {
+        /* The first row in sheetdata is a column header */
+        var columnHeader = sheetdata.shift().map(function(column_name) {
             return {
                 "title": column_name.replace('<', '&lt').replace('>', '&gt')
             };
@@ -80,7 +83,7 @@ var mose = mose || {};
             "processing": true,
             "paging": false,
             "columns": columnHeader,
-            "data": json.data,
+            "data": sheetdata,
 			"createdRow": function(row, data, dataIndex) {
 				var isSame = data.slice(3).every(function(elem) {
 					return (elem === data[3]);
@@ -91,6 +94,10 @@ var mose = mose || {};
 			}
         });
     }
+
+	function updateGraphs(graphhtml) {
+		$('#tab-analysis').replaceWith(graphhtml);
+	}
 
     function render(graph_type, car) {
         $.ajax({

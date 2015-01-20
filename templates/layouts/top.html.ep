@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="http://cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
 		<link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
 		<link rel="stylesheet" href="<%= url_for '/css/bootstrap-slider.css' %>">
@@ -50,7 +50,7 @@
 			<%= content %>
     </div> <!-- /container -->
 		<script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js"></script>
-		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="http://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/bootstrap-slider.js' %>"></script>

@@ -89,7 +89,7 @@ var mose = mose || {};
 					return (elem === data[3]);
 				});
 				if (!isSame) {
-					$(row).css("color", "#B94A48");
+					$(row).addClass('danger');
 				}
 			}
         });

@@ -7,9 +7,12 @@ $(document).ready(function () {
 		ko.applyBindings(viewModel);
 
 		mose.initSetupSheet('#setupsheet');
-
 		$('#show').on('click', function() {
-				mose.show(new FormData($('#setupfile').get(0)), viewModel)
+				var btn = $(this).button('loading');
+				setTimeout(function() {
+					mose.show(new FormData($('#setupfile').get(0)), viewModel);
+					btn.button('reset');
+				}, 100); /* XXX: We need some wait for .button('loading) is applied? */
 		});
 
 		$('.glyphicon-remove-circle').tooltip();
@@ -38,7 +41,7 @@ $(document).ready(function () {
 </div>
 <div class="row">
 	<div class="col-md-7 col-md-offset-5">
-		<a class="btn btn-large btn-primary" id="show">SHOW</a>
+		<button type="button" id="show" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">SHOW</button>
 	</div>
 </div> <!-- row -->
 <div class="row">

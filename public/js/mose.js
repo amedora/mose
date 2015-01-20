@@ -32,11 +32,12 @@ var mose = mose || {};
                 if ('error' in json) {
                     viewModel.message(json.error.message);
                     alert(json.error.message);
-                }
-				/* First, update the setup sheet. */
-                updateSetupSheet(json.data.sheetdata);
-				/* Second, update graphs. */
-				updateGraphs(json.data.graphhtml);
+                } else {
+					/* First, update the setup sheet. */
+					updateSetupSheet(json.data.sheetdata);
+					/* Second, update graphs. */
+					updateGraphs(json.data.graphhtml);
+				}
             }
         });
 

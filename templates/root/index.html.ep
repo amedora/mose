@@ -8,6 +8,7 @@ $(document).ready(function () {
 
 		mose.initSetupSheet('#setupsheet');
 		$('#show').on('click', function() {
+				viewModel.message('');
 				var btn = $(this).button('loading');
 				setTimeout(function() {
 					mose.show(new FormData($('#setupfile').get(0)), viewModel);
@@ -45,7 +46,11 @@ $(document).ready(function () {
 	</div>
 </div> <!-- row -->
 <div class="row">
-	<span data-bind="text: message"></span>
+	<div class="col-md-6 col-md-offset-3">
+		<!-- ko if: message -->
+		<p class="bg-danger"><span data-bind="text: message"></span></p>
+		<!-- /ko -->
+	</div>
 </div>
 <h3 class="page-header">Datasheet & Graph</h3>
 <div class="tabbable">

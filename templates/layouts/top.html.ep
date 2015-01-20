@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="http://cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
 		<link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
+		<link rel="stylesheet" href="http://cdn.datatables.net/tabletools/2.2.3/css/dataTables.tableTools.css">
 		<link rel="stylesheet" href="<%= url_for '/css/bootstrap-slider.css' %>">
 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -52,6 +53,7 @@
 		<script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js"></script>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="http://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="http:////cdn.datatables.net/tabletools/2.2.3/js/dataTables.tableTools.min.js"></script>
 		<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/bootstrap-slider.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/mose.js' %>"></script>

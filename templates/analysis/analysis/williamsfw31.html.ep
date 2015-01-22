@@ -1,5 +1,5 @@
 %# vim:set ts=2 sw=2 ft=html:
-<div class="tab-pane active" id="tab-analysis">
+<div role="tabpanel" class="tab-pane" id="tab-analysis">
 <div class="subnav">
 	<ul class="nav nav-pills">
 		<li><a href="#chassis">Chassis</a></li>

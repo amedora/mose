@@ -14,7 +14,10 @@
 		<link rel="stylesheet" href="http://cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
 		<link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
 		<link rel="stylesheet" href="http://cdn.datatables.net/tabletools/2.2.3/css/dataTables.tableTools.css">
+		<!--
 		<link rel="stylesheet" href="http://cdn.datatables.net/fixedheader/2.1.2/css/dataTables.fixedHeader.css">
+		-->
+		<link rel="stylesheet" href="http:////datatables.net/download/build/dataTables.fixedHeader.nightly.css?_=89fcfc0e0d5de89565e85821f69e2a4f">
 		<link rel="stylesheet" href="<%= url_for '/css/bootstrap-slider.css' %>">
 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -55,7 +58,10 @@
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="http://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript" src="http://cdn.datatables.net/tabletools/2.2.3/js/dataTables.tableTools.min.js"></script>
+		<!--
 		<script type="text/javascript" src="http://cdn.datatables.net/fixedheader/2.1.2/js/dataTables.fixedHeader.min.js"></script>
+		-->
+		<script type="text/javascript" src="http://datatables.net/download/build/dataTables.fixedHeader.nightly.min.js?_=5c4cbf40ee0707032ffaf5477034b0ca"></script>
 		<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/bootstrap-slider.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/mose.js' %>"></script>

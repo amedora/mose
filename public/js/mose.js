@@ -69,6 +69,12 @@ var mose = mose || {};
         }
     }
 
+	app.enableFixedHeader = function () {
+	};
+
+	app.disableFixedHeader = function () {
+	};
+
     function updateSetupSheet(sheetdata) {
         var id = $(setupSheet.table().node()).attr('id');
         setupSheet.destroy();
@@ -95,7 +101,13 @@ var mose = mose || {};
 			}
         });
 		/* Initialize FixedHeader */
-		new $.fn.dataTable.FixedHeader(setupSheet);
+		var fh = new $.fn.dataTable.FixedHeader(setupSheet);
+		app.enableFixedHeader = function() {
+			fh.fnEnable();
+		};
+		app.disableFixedHeader = function() {
+			fh.fnDisable();
+		};
 
 		/* Initialize TableTools */
 		var tt = new $.fn.dataTable.TableTools(setupSheet);

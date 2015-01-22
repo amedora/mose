@@ -69,12 +69,12 @@ $(document).ready(function () {
 <h3 class="page-header">Datasheet & Graph</h3>
 <div role="tabpanel">
 	<!-- Nav tabs -->
-	<ul class="nav nav-tabs" role="tablist" id="tab">
+	<ul class="nav nav-tabs nav-justified" role="tablist" id="tab">
 		<li role="presentation" class="active">
-			<a href="#tab-data" aria-controls="tab-data" role="tab" data-toggle="tab"><i class="icon-list"></i> Data</a>
+			<a href="#tab-data" aria-controls="tab-data" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list"></span> Data Sheet</a>
 		</li>
 		<li role="presentation">
-			<a href="#tab-analysis" aria-controls="tab-analysis" role="tab" data-toggle="tab"><i class="icon-signal"></i> Analysis</a>
+			<a href="#tab-analysis" aria-controls="tab-analysis" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-signal"></span> Graphs</a>
 		</li>
 	</ul>
 	<!--

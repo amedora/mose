@@ -1,5 +1,5 @@
 %# vim:set ts=2 sw=2 ft=html:
-% title 'Data & Analysis';
+% title 'Data Sheet & Graphs';
 % layout 'top';
 <script type="text/javascript">
 $(document).ready(function () {
@@ -34,7 +34,6 @@ $(document).ready(function () {
 
 });
 
- 
 </script>
 
 <h3 class="page-header">Setup</h3>
@@ -66,7 +65,7 @@ $(document).ready(function () {
 		<!-- /ko -->
 	</div>
 </div>
-<h3 class="page-header">Datasheet & Graph</h3>
+<h3 class="page-header">Data Sheet & Graph</h3>
 <div role="tabpanel">
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs nav-justified" role="tablist" id="tab">
@@ -77,13 +76,6 @@ $(document).ready(function () {
 			<a href="#tab-analysis" aria-controls="tab-analysis" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-signal"></span> Graphs</a>
 		</li>
 	</ul>
-	<!--
-	<style>
-		.tab-content {
-			overflow: visible;
-		}
-	</style>
-	-->
 	<div class="tab-content" style="margin-top:20px">
 		<div role="tabpanel" class="tab-pane active" id="tab-data">
 			<table class="table table-striped table-bordered" id="setupsheet">

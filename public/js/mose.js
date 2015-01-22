@@ -94,6 +94,9 @@ var mose = mose || {};
 				}
 			}
         });
+		/* Initialize FixedHeader */
+		new $.fn.dataTable.FixedHeader(setupSheet);
+
 		/* Initialize TableTools */
 		var tt = new $.fn.dataTable.TableTools(setupSheet);
 		$( tt.fnContainer() ).insertBefore('div.dataTables_wrapper');

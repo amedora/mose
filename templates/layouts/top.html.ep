@@ -14,13 +14,14 @@
 		<link rel="stylesheet" href="http://cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
 		<link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
 		<link rel="stylesheet" href="http://cdn.datatables.net/tabletools/2.2.3/css/dataTables.tableTools.css">
+		<link rel="stylesheet" href="http://cdn.datatables.net/fixedheader/2.1.2/css/dataTables.fixedHeader.css">
 		<link rel="stylesheet" href="<%= url_for '/css/bootstrap-slider.css' %>">
 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   </head>
 
 	<body>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -53,7 +54,8 @@
 		<script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js"></script>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="http://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
-		<script type="text/javascript" src="http:////cdn.datatables.net/tabletools/2.2.3/js/dataTables.tableTools.min.js"></script>
+		<script type="text/javascript" src="http://cdn.datatables.net/tabletools/2.2.3/js/dataTables.tableTools.min.js"></script>
+		<script type="text/javascript" src="http://cdn.datatables.net/fixedheader/2.1.2/js/dataTables.fixedHeader.min.js"></script>
 		<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/bootstrap-slider.js' %>"></script>
 		<script type="text/javascript" charset="utf-8" src="<%= url_for '/js/mose.js' %>"></script>

@@ -11,7 +11,7 @@ sub analyze_from_file {
     my @files = ();
 
     # get content of all files
-    foreach my $i ( 0 .. 2 ) {
+    foreach my $i ( 0 .. 4 ) {
         if ( my $s = $c->param( "file" . $i ) ) {
             if ( $s->asset->{content} ) {
                 push @files, $s;

@@ -41,21 +41,29 @@ var mose = mose || {};
         });
     };
 
+	app.applyFileStyle = function(element, data) {
+		var fileInput = $(element).find(':file');
+		fileInput.filestyle({
+			size: 'sm',
+			buttonBefore: true
+		});
+	};
+
     app.viewModel = function() {
         var self = this;
 
         self.message = ko.observable('');
 
         self.file = ko.observableArray([{
-            name: ''
+            name: 'Setup 1'
         },
         {
-            name: ''
+            name: 'Setup 2'
         }]);
 
         self.addFile = function() {
             self.file.push({
-                name: "New at " + new Date()
+                name: 'Setup ' + self.file().length
             });
         };
 

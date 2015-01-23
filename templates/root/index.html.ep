@@ -10,12 +10,12 @@ $(document).ready(function() {
     $('#show').on('click', function() {
         viewModel.message('');
         var btn = $(this).button('loading');
+        /* XXX: We need some wait for .button('loading) is applied? */
         setTimeout(function() {
             mose.show(new FormData($('#setupfile').get(0)), viewModel);
             btn.button('reset');
         },
         100);
-        /* XXX: We need some wait for .button('loading) is applied? */
         $('#tab a:first').tab('show');
     });
 
@@ -38,31 +38,33 @@ $(document).ready(function() {
 </script>
 
 <h3 class="page-header">Setup</h3>
-<div class="col-md-12">
-	<form id="setupfile" class="form-horizontal" role="form" data-bind="foreach: file">
-		<div class="form-group">
-			<label class="col-md-1 col-md-offset-3">File <span data-bind="text: $index() + 1"> </span></label>
-			<input class="col-md-4" type="file" data-bind="attr: {name: 'file' + $index()}">
-			<div class="col-md-2">
-				<span class="glyphicon glyphicon-remove-circle" data-toggle="tooltip" data-placement="bottom" title="Remove this setup" data-bind="visible: $index(), click: $parent.removeFile"></span>
-			</div>
+<form id="setupfile" class="form-horizontal" role="form" data-bind="foreach: {data: file, afterRender: mose.applyFileStyle}">
+	<div class="form-group">
+		<label class="col-md-2 col-md-offset-1 control-label">Setup <span data-bind="text: $index() + 1"> </span></label>
+		<div class="col-md-5">
+			<input type="file" data-bind="attr: {name: 'file' + $index()}">
 		</div>
-	</form>
+		<div class="col-md-4">
+			<span class="glyphicon glyphicon-remove-circle" data-toggle="tooltip" data-placement="bottom" title="Remove this setup" data-bind="visible: $index(), click: $parent.removeFile"></span>
+		</div>
+	</div> <!-- form-group -->
+</form>
+<div class="col-md-9 col-md-offset-3">
+	<p>
+		<button id="add" type="button" class="btn btn-default" data-bind="click: addFile, enable: file().length < 5">
+			<span class="glyphicon glyphicon-plus"></span> Add
+		</button>
+	</p>
 </div>
-<div class="col-md-1 col-md-offset-3">
-	<button type="button" class="btn btn-default" data-bind="click: addFile, enable: file().length < 5">
-		<span class="glyphicon glyphicon-plus"></span> Add
-	</button>
-</div>
-<div class="row">
-	<div class="col-md-7 col-md-offset-5">
+<div class="col-md-9 col-md-offset-3">
+	<p>
 		<button type="button" id="show" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">SHOW</button>
-	</div>
-</div> <!-- row -->
+	</p>
+</div>
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 		<!-- ko if: message -->
-		<p class="bg-danger"><span data-bind="text: message"></span></p>
+		<p class="bg-danger" style="padding: 15px"><span data-bind="text: message"></span></p>
 		<!-- /ko -->
 	</div>
 </div>

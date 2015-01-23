@@ -34,6 +34,7 @@ sub _analyze {
     my @analyzed_data;
     my %temp;
     my %avgtemp;
+	my $unit = $self->unit eq 'ENGLISH' ? 'F' : 'C';
     #
     # Tire temps
 
@@ -52,14 +53,14 @@ sub _analyze {
             ) / 3
         );
         push @analyzed_data,
-          [ 'ANALYSIS', 'Avg. temps', $tire, $temp{$tire} . 'F' ];
+          [ 'ANALYSIS', 'Avg. temps', $tire, $temp{$tire} . $unit ];
     }
 
     foreach my $side ( ( 'LEFT', 'RIGHT' ) ) {
         my $avgtemp = int(
             ( ( $temp{ $side . ' FRONT' } + $temp{ $side . ' REAR' } ) ) / 2 );
         push @analyzed_data,
-          [ 'ANALYSIS', 'Avg. temps', $side . ' SIDE', $avgtemp . 'F' ];
+          [ 'ANALYSIS', 'Avg. temps', $side . ' SIDE', $avgtemp . $unit ];
     }
     #
     # available shock/spring travel

@@ -4,6 +4,177 @@ package Mose::Analysis::Graph;
 use IRacing::Setup;
 use strict;
 
+my $common_top_oval = {
+    front_rideheight => {
+        unit => {
+            ENGLISH => 'inch',
+            METRIC  => 'mm',
+        },
+        min => {},
+        max => {},
+    },
+    rear_rideheight => {
+        unit => {
+            ENGLISH => 'inch',
+            METRIC  => 'mm',
+        },
+        min => {},
+        max => {},
+    },
+    rideheight_relation => {
+        unit => {
+            ENGLISH => 'inch',
+            METRIC  => 'mm',
+        },
+        min => {},
+        max => {},
+    },
+    trackbar_height => {
+        unit => {
+            ENGLISH => 'inch',
+            METRIC  => 'mm',
+        },
+        min => {},
+        max => {},
+    },
+    left_weight_dist => {
+        unit => {
+            ENGLISH => 'lbs.',
+            METRIC  => 'N',
+        },
+        min => {},
+        max => {},
+    },
+    ballast => {
+        unit => {
+            ENGLISH => 'inch',
+            METRIC  => 'mm',
+        },
+        min               => {},
+        max               => {},
+        tickInterval      => {},
+        minorTickInterval => {},
+    },
+    right_weight_dist => {
+        unit => {
+            ENGLISH => 'lbs.',
+            METRIC  => 'N',
+        },
+        min => {},
+        max => {},
+    },
+    left_spring_package => {
+        unit => {
+            ENGLISH => 'lbs/in',
+            METRIC  => 'N/mm',
+        },
+        min => {
+            ENGLISH => 100,
+            METRIC  => 9999    #TODO
+        },
+        max => {
+            ENGLISH => 500,
+            METRIC  => 9999    #TODO
+        },
+        minorTickInterval => {
+            ENGLISH => 25,
+            METRIC  => 9999    #TODO
+        },
+    },
+    right_spring_package => {
+        unit => {
+            ENGLISH => 'lbs/in',
+            METRIC  => 'N/mm',
+        },
+        min => {
+            ENGLISH => 100,
+            METRIC  => 9999    #TODO
+        },
+        max => {
+            ENGLISH => 500,
+            METRIC  => 9999    #TODO
+        },
+        minorTickInterval => {
+            ENGLISH => 25,
+            METRIC  => 9999    #TODO
+        },
+    },
+    front_tiretemp => {
+        unit => {
+            ENGLISH => 'F',
+            METRIC  => 'C',
+        },
+        min => {
+            ENGLISH => 100,
+            METRIC  => 9999    #TODO
+        },
+        max => {
+            ENGLISH => 300,
+            METRIC  => 9999    #TODO
+        },
+        minorTickInterval => {
+            ENGLISH => 10,
+            METRIC  => 9999    #TODO
+        },
+    },
+    left_tiretemp_avg => {
+        unit => {
+            ENGLISH => 'F',
+            METRIC  => 'C',
+        },
+        min => {
+            ENGLISH => 100,
+            METRIC  => 9999    #TODO
+        },
+        max => {
+            ENGLISH => 300,
+            METRIC  => 9999    #TODO
+        },
+        minorTickInterval => {
+            ENGLISH => 10,
+            METRIC  => 9999    #TODO
+        },
+    },
+    rear_tiretemp => {
+        unit => {
+            ENGLISH => 'F',
+            METRIC  => 'C',
+        },
+        min => {
+            ENGLISH => 100,
+            METRIC  => 9999    #TODO
+        },
+        max => {
+            ENGLISH => 300,
+            METRIC  => 9999    #TODO
+        },
+        minorTickInterval => {
+            ENGLISH => 10,
+            METRIC  => 9999    #TODO
+        },
+    },
+    right_tiretemp_avg => {
+        unit => {
+            ENGLISH => 'F',
+            METRIC  => 'C',
+        },
+        min => {
+            ENGLISH => 100,
+            METRIC  => 9999    #TODO
+        },
+        max => {
+            ENGLISH => 300,
+            METRIC  => 9999    #TODO
+        },
+        minorTickInterval => {
+            ENGLISH => 10,
+            METRIC  => 9999    #TODO
+        },
+    },
+    front_tread => {},
+    rear_tread  => {},
+};
+
 my $GraphList = {
     latemodel => [
         qw/
@@ -24,63 +195,15 @@ my $GraphList = {
           trackbar_height
           /
     ],
-    'stockcars chevyss' => [
-        qw/
-          ballast
-          front_rideheight
-          front_tiretemp
-          front_tread
-          left_spring_package
-          left_tiretemp_avg
-          left_weight_dist
-          rear_rideheight
-          rear_tiretemp
-          rear_tread
-          rideheight_relation
-          right_spring_package
-          right_tiretemp_avg
-          right_weight_dist
-          trackbar_height
-          /
-    ],
-    'stockcars fordfusion' => [
-        qw/
-          ballast
-          front_rideheight
-          front_tiretemp
-          front_tread
-          left_spring_package
-          left_tiretemp_avg
-          left_weight_dist
-          rear_rideheight
-          rear_tiretemp
-          rear_tread
-          rideheight_relation
-          right_spring_package
-          right_tiretemp_avg
-          right_weight_dist
-          trackbar_height
-          /
-    ],
-    'stockcars toyotacamry' => [
-        qw/
-          ballast
-          front_rideheight
-          front_tiretemp
-          front_tread
-          left_spring_package
-          left_tiretemp_avg
-          left_weight_dist
-          rear_rideheight
-          rear_tiretemp
-          rear_tread
-          rideheight_relation
-          right_spring_package
-          right_tiretemp_avg
-          right_weight_dist
-          trackbar_height
-          /
-    ],
+    'stockcars chevyss' => {
+		%$common_top_oval,
+    },
+    'stockcars fordfusion' => {
+		%$common_top_oval,
+    },
+    'stockcars toyotacamry' => {
+		%$common_top_oval,
+    },
     williamsfw31 => [
         qw/
           ballast
@@ -365,15 +488,16 @@ my $GraphData = {
 
 sub available_graph {
     my $car = shift;
-    return @{ $GraphList->{$car} };
+	return keys %{$GraphList->{$car}};
+	#return @{ $GraphList->{$car} };
 }
 
 sub data {
     my ( $graph_name, @setups ) = @_;
     my $ret = [];
     foreach my $s (@setups) {
-		my $name = $s->file_name;
-		$name =~ tr/<>//d;	#XXX: dirty hack
+        my $name = $s->file_name;
+        $name =~ tr/<>//d;    #XXX: dirty hack
         push @{$ret},
           +{
             name => $name,

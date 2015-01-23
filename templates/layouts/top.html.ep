@@ -19,6 +19,7 @@
 		-->
 		<link rel="stylesheet" href="http:////datatables.net/download/build/dataTables.fixedHeader.nightly.css?_=89fcfc0e0d5de89565e85821f69e2a4f">
 		<link rel="stylesheet" href="<%= url_for '/css/bootstrap-slider.css' %>">
+		<link rel="stylesheet" href="<%= url_for '/css/mose.css' %>">
 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   </head>

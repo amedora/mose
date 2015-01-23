@@ -31,19 +31,14 @@ var mose = mose || {};
             success: function(json) {
                 if ('error' in json) {
                     viewModel.message(json.error.message);
-                    alert(json.error.message);
                 } else {
-					/* First, update the setup sheet. */
-					updateSetupSheet(json.data.sheetdata);
-					/* Second, update graphs. */
-					updateGraphs(json.data.graphhtml);
-				}
+                    /* First, update the setup sheet. */
+                    updateSetupSheet(json.data.sheetdata);
+                    /* Second, update graphs. */
+                    updateGraphs(json.data.graphhtml);
+                }
             }
         });
-
-        /*
-        $('#analysis-tab a[href="#tab-analysis"]').tab('show');
-		*/
     };
 
     app.viewModel = function() {
@@ -69,11 +64,9 @@ var mose = mose || {};
         }
     }
 
-	app.enableFixedHeader = function () {
-	};
+    app.enableFixedHeader = function() {};
 
-	app.disableFixedHeader = function () {
-	};
+    app.disableFixedHeader = function() {};
 
     function updateSetupSheet(sheetdata) {
         var id = $(setupSheet.table().node()).attr('id');
@@ -91,31 +84,31 @@ var mose = mose || {};
             "paging": false,
             "columns": columnHeader,
             "data": sheetdata,
-			"createdRow": function(row, data, dataIndex) {
-				var isSame = data.slice(3).every(function(elem) {
-					return (elem === data[3]);
-				});
-				if (!isSame) {
-					$(row).addClass('danger');
-				}
-			}
+            "createdRow": function(row, data, dataIndex) {
+                var isSame = data.slice(3).every(function(elem) {
+                    return (elem === data[3]);
+                });
+                if (!isSame) {
+                    $(row).addClass('danger');
+                }
+            }
         });
-		/* Initialize FixedHeader */
-		var fh = new $.fn.dataTable.FixedHeader(setupSheet);
-		app.enableFixedHeader = function() {
-			fh.fnEnable();
-		};
-		app.disableFixedHeader = function() {
-			fh.fnDisable();
-		};
+        /* Initialize FixedHeader */
+        var fh = new $.fn.dataTable.FixedHeader(setupSheet);
+        app.enableFixedHeader = function() {
+            fh.fnEnable();
+        };
+        app.disableFixedHeader = function() {
+            fh.fnDisable();
+        };
 
-		/* Initialize TableTools */
-		var tt = new $.fn.dataTable.TableTools(setupSheet);
-		$( tt.fnContainer() ).insertBefore('div.dataTables_wrapper');
+        /* Initialize TableTools */
+        var tt = new $.fn.dataTable.TableTools(setupSheet);
+        $(tt.fnContainer()).insertBefore('div.dataTables_wrapper');
     }
 
-	function updateGraphs(graphhtml) {
-		$('#tab-analysis').replaceWith(graphhtml);
-	}
+    function updateGraphs(graphhtml) {
+        $('#tab-analysis').replaceWith(graphhtml);
+    }
 
 })(mose);

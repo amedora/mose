@@ -2,38 +2,39 @@
 % title 'Data Sheet & Graphs';
 % layout 'top';
 <script type="text/javascript">
-$(document).ready(function () {
-		var viewModel = new mose.viewModel();
-		ko.applyBindings(viewModel);
+$(document).ready(function() {
+    var viewModel = new mose.viewModel();
+    ko.applyBindings(viewModel);
 
-		mose.initSetupSheet('#setupsheet');
-		$('#show').on('click', function() {
-				viewModel.message('');
-				var btn = $(this).button('loading');
-				setTimeout(function() {
-					mose.show(new FormData($('#setupfile').get(0)), viewModel);
-					btn.button('reset');
-				}, 100); /* XXX: We need some wait for .button('loading) is applied? */
-				$('#tab a:first').tab('show');
-		});
+    mose.initSetupSheet('#setupsheet');
+    $('#show').on('click', function() {
+        viewModel.message('');
+        var btn = $(this).button('loading');
+        setTimeout(function() {
+            mose.show(new FormData($('#setupfile').get(0)), viewModel);
+            btn.button('reset');
+        },
+        100);
+        /* XXX: We need some wait for .button('loading) is applied? */
+        $('#tab a:first').tab('show');
+    });
 
-		$('.glyphicon-remove-circle').tooltip();
+    $('.glyphicon-remove-circle').tooltip();
 
-		$('#tab a[href="#tab-data"]').click(function(e) {
-			e.preventDefault();
-			mose.enableFixedHeader();
-			$(this).tab('show');
-			mose.enableFixedHeader();
-		});
+    $('#tab a[href="#tab-data"]').click(function(e) {
+        e.preventDefault();
+        mose.enableFixedHeader();
+        $(this).tab('show');
+        mose.enableFixedHeader();
+    });
 
-		$('#tab a[href="#tab-analysis"]').click(function(e) {
-			e.preventDefault();
-			mose.disableFixedHeader();
-			$(this).tab('show');
-		});
+    $('#tab a[href="#tab-analysis"]').click(function(e) {
+        e.preventDefault();
+        mose.disableFixedHeader();
+        $(this).tab('show');
+    });
 
 });
-
 </script>
 
 <h3 class="page-header">Setup</h3>

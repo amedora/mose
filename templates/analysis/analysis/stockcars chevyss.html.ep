@@ -25,7 +25,7 @@
             }
             , yAxis : {
                 title : {
-                    text : 'inch'
+									text : '<%= $graphopt->('front_rideheight', 'unit') %>'
                 }
             }
 						, series : <%= $graph_data->{front_rideheight} %>
@@ -47,7 +47,7 @@
             }
             , yAxis : {
                 title : {
-                    text : 'inch'
+									text : '<%= $graphopt->('rear_rideheight', 'unit') %>'
                 }
             }
 						, series : <%= $graph_data->{rear_rideheight} %>
@@ -71,7 +71,7 @@
             }
             , yAxis : {
                 title : {
-                    text : 'inch'
+									text : '<%= $graphopt->('rideheight_relation', 'unit') %>'
                 }
             }
 						, series : <%= $graph_data->{rideheight_relation} %>
@@ -93,7 +93,7 @@
             }
             , yAxis : {
                 title : {
-                    text : 'inch'
+									text : '<%= $graphopt->('trackbar_height', 'unit') %>'
                 }
             }
 						, series : <%= $graph_data->{trackbar_height} %>
@@ -124,9 +124,9 @@
             }
             , yAxis : {
                 title : {
-                    text : 'lbs.'
+									text : '<%= $graphopt->('left_weight_dist', 'unit') %>'
                 },
-                minorTickInterval : 50,
+								minorTickInterval : <%= $graphopt->('left_weight_dist', 'minorTickInterval') %>,
                 reversed: true
             }
 						, plotOptions: {
@@ -157,7 +157,7 @@
             }
             , yAxis : {
                 title : {
-                    text : 'inch'
+									text : '<%= $graphopt->('ballast', 'unit') %>'
                 },
 								min : -20,
 								max : 20,
@@ -183,9 +183,9 @@
             }
             , yAxis : {
                 title : {
-                    text : 'lbs.'
+									text : '<%= $graphopt->('right_weight_dist', 'unit') %>'
                 },
-								minorTickInterval : 50,
+								minorTickInterval : <%= $graphopt->('right_weight_dist', 'minorTickInterval') %>,
             }
 						, plotOptions: {
 								series: {
@@ -220,11 +220,11 @@
             }
             , yAxis : {
                 title : {
-                    text : 'lbs/in'
+									text : '<%= $graphopt->('left_spring_package', 'unit') %>'
                 },
-								min : 100,
-								max : 500,
-								minorTickInterval : 25,
+								min : <%= $graphopt->('left_spring_package', 'min') %>,
+								max : <%= $graphopt->('left_spring_package', 'max') %>,
+								minorTickInterval : <%= $graphopt->('left_spring_package', 'minorTickInterval') %>,
 								reversed: true
             }
 						, plotOptions: {
@@ -256,11 +256,11 @@
             }
             , yAxis : {
                 title : {
-                    text : 'lbs/in'
+									text : '<%= $graphopt->('right_spring_package', 'unit') %>'
                 },
-								min : 100,
-								max : 500,
-								minorTickInterval : 25,
+								min : <%= $graphopt->('right_spring_package', 'min') %>,
+								max : <%= $graphopt->('right_spring_package', 'max') %>,
+								minorTickInterval : <%= $graphopt->('right_spring_package', 'minorTickInterval') %>
             }
 						, plotOptions: {
 								series: {

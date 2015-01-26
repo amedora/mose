@@ -44,6 +44,10 @@ my $common_top_oval = {
         },
         min => {},
         max => {},
+        minorTickInterval => {
+			ENGLISH => 50,
+			METRIC => 50,	# TODO
+		},
     },
     ballast => {
         unit => {
@@ -62,6 +66,10 @@ my $common_top_oval = {
         },
         min => {},
         max => {},
+        minorTickInterval => {
+			ENGLISH => 50,
+			METRIC => 50,	# TODO
+		},
     },
     left_spring_package => {
         unit => {
@@ -195,16 +203,10 @@ my $GraphList = {
           trackbar_height
           /
     ],
-    'stockcars chevyss' => {
-		%$common_top_oval,
-    },
-    'stockcars fordfusion' => {
-		%$common_top_oval,
-    },
-    'stockcars toyotacamry' => {
-		%$common_top_oval,
-    },
-    williamsfw31 => [
+    'stockcars chevyss'     => { %$common_top_oval, },
+    'stockcars fordfusion'  => { %$common_top_oval, },
+    'stockcars toyotacamry' => { %$common_top_oval, },
+    williamsfw31            => [
         qw/
           ballast
           front_rideheight
@@ -488,8 +490,9 @@ my $GraphData = {
 
 sub available_graph {
     my $car = shift;
-	return keys %{$GraphList->{$car}};
-	#return @{ $GraphList->{$car} };
+    return keys %{ $GraphList->{$car} };
+
+    #return @{ $GraphList->{$car} };
 }
 
 sub data {
@@ -505,6 +508,14 @@ sub data {
           };
     }
     return $ret;
+}
+
+sub GraphOption {
+    my ( $car, $unit ) = @_;
+    return sub {
+        my ( $graph, $option ) = @_;
+        return $GraphList->{$car}->{$graph}->{$option}->{$unit};
+    };
 }
 
 1;

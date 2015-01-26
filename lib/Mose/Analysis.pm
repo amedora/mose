@@ -107,6 +107,7 @@ sub _generate_graphhtml {
     my @setups = @_;
 
     my $car        = $setups[0]->car_name;
+    my $unit       = $setups[0]->unit;
     my $graph_data = {};
     foreach my $graph_name ( Mose::Analysis::Graph::available_graph($car) ) {
         $graph_data->{$graph_name} = $c->render_to_string(
@@ -116,7 +117,8 @@ sub _generate_graphhtml {
     return $c->render_to_string(
         "analysis/analysis/$car",
         graph_data => $graph_data,
-        setups     => \@setups
+        setups     => \@setups,
+        graphopt   => Mose::Analysis::Graph::GraphOption( $car, $unit )
     );
 }
 

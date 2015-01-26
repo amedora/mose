@@ -6,9 +6,10 @@
 		<div class="col-md-6 col-md-offset-3">
 			<div class="well">
 				Tire temperature range: 
-				<b>100F</b>
-				<input id="slider_temp" type="text" data-slider-min="100" data-slider-max="300" data-slider-step="10" data-slider-value="[100, 300]" data-slider-selection="after">
-				<b>300F</b>
+				<% my $min = $graphopt->('front_tiretemp', 'min'); my $max = $graphopt->('front_tiretemp', 'max'); my $tick = $graphopt->('front_tiretemp', 'minorTickInterval'); %>
+				<b><%= $min %></b>
+				<input id="slider_temp" type="text" data-slider-min="<%= $min %>" data-slider-max="<%= $max %>" data-slider-step="<%= $tick %>" data-slider-value="[<%= $min %>, <%= $max %>]" data-slider-selection="after">
+				<b><%= $max %></b>
 			</div>
 			<%= javascript begin %>
 			var tempUpdate = function(){
@@ -39,11 +40,11 @@
             }
             , yAxis : {
                 title : {
-                    text : 'F'
+									text : '<%= $graphopt->('front_tiretemp', 'unit') %>'
                 },
-								min : 100,
-								max : 300,
-								minorTickInterval : 10
+								min : <%= $min %>,
+								max : <%= $max %>,
+								minorTickInterval : <%= $tick %>
             }
 						, plotOptions: {
 								series: {
@@ -78,11 +79,11 @@
             }
             , yAxis : {
                 title : {
-                    text : 'F'
+									text : '<%= $graphopt->('rear_tiretemp', 'unit') %>'
                 },
-								min : 100,
-								max : 300,
-								minorTickInterval : 10
+								min : <%= $min %>,
+								max : <%= $max %>,
+								minorTickInterval : <%= $tick %>
             }
 						, plotOptions: {
 								series: {
@@ -118,11 +119,11 @@
             }
             , yAxis : {
                 title : {
-                    text : 'F'
+									text : '<%= $graphopt->('left_tiretemp_avg', 'unit') %>'
                 },
-								min : 100,
-								max : 300,
-								minorTickInterval : 10,
+								min : <%= $min %>,
+								max : <%= $max %>,
+								minorTickInterval : <%= $tick %>,
 								reversed: true
             }
 						, plotOptions: {
@@ -154,11 +155,11 @@
             }
             , yAxis : {
                 title : {
-                    text : 'F'
+									text : '<%= $graphopt->('right_tiretemp_avg', 'unit') %>'
                 },
-								min : 100,
-								max : 300,
-								minorTickInterval : 10,
+								min : <%= $min %>,
+								max : <%= $max %>,
+								minorTickInterval : <%= $tick %>,
             }
 						, plotOptions: {
 								series: {

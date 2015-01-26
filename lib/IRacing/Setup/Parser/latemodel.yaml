@@ -1,14 +1,174 @@
 ---
 -
-  - CHASSIS
-  - FRONT
-  - Cross weight
-  - '/html/body/u[37]'
+  - TIRE
+  - LEFT FRONT
+  - Cold pressure
+  - '/html/body/u[1]'
 -
-  - CHASSIS
-  - FRONT
-  - Nose weight
-  - '/html/body/u[36]'
+  - TIRE
+  - LEFT FRONT
+  - Last hot pressure
+  - '/html/body/u[2]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Last temps O
+  - '/html/body/u[3]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Last temps M
+  - '/html/body/u[4]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Last temps I
+  - '/html/body/u[5]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Tread remaining O
+  - '/html/body/u[6]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Tread remaining M
+  - '/html/body/u[7]'
+-
+  - TIRE
+  - LEFT FRONT
+  - Tread remaining I
+  - '/html/body/u[8]'
+-
+  - TIRE
+  - LEFT REAR
+  - Cold pressure
+  - '/html/body/u[9]'
+-
+  - TIRE
+  - LEFT REAR
+  - Last hot pressure
+  - '/html/body/u[10]'
+-
+  - TIRE
+  - LEFT REAR
+  - Last temps O
+  - '/html/body/u[11]'
+-
+  - TIRE
+  - LEFT REAR
+  - Last temps M
+  - '/html/body/u[12]'
+-
+  - TIRE
+  - LEFT REAR
+  - Last temps I
+  - '/html/body/u[13]'
+-
+  - TIRE
+  - LEFT REAR
+  - Tread remaining O
+  - '/html/body/u[14]'
+-
+  - TIRE
+  - LEFT REAR
+  - Tread remaining M
+  - '/html/body/u[15]'
+-
+  - TIRE
+  - LEFT REAR
+  - Tread remaining I
+  - '/html/body/u[16]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Cold pressure
+  - '/html/body/u[17]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Last hot pressure
+  - '/html/body/u[18]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Last temps O
+  - '/html/body/u[19]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Last temps M
+  - '/html/body/u[20]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Last temps I
+  - '/html/body/u[21]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Tread remaining O
+  - '/html/body/u[22]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Tread remaining M
+  - '/html/body/u[23]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Tread remaining I
+  - '/html/body/u[24]'
+-
+  - TIRE
+  - RIGHT FRONT
+  - Stagger
+  - '/html/body/u[25]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Cold pressure
+  - '/html/body/u[26]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Last hot pressure
+  - '/html/body/u[27]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Last temps O
+  - '/html/body/u[28]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Last temps M
+  - '/html/body/u[29]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Last temps I
+  - '/html/body/u[30]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Tread remaining O
+  - '/html/body/u[31]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Tread remaining M
+  - '/html/body/u[32]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Tread remaining I
+  - '/html/body/u[33]'
+-
+  - TIRE
+  - RIGHT REAR
+  - Stagger
+  - '/html/body/u[34]'
 -
   - CHASSIS
   - FRONT
@@ -17,8 +177,18 @@
 -
   - CHASSIS
   - FRONT
-  - Tape Configuration
-  - '/html/body/u[45]'
+  - Nose weight
+  - '/html/body/u[36]'
+-
+  - CHASSIS
+  - FRONT
+  - Cross weight
+  - '/html/body/u[37]'
+-
+  - CHASSIS
+  - FRONT
+  - Toe-in
+  - '/html/body/u[38]'
 -
   - CHASSIS
   - FRONT
@@ -52,8 +222,8 @@
 -
   - CHASSIS
   - FRONT
-  - Toe-in
-  - '/html/body/u[38]'
+  - Tape Configuration
+  - '/html/body/u[45]'
 -
   - CHASSIS
   - LEFT FRONT
@@ -87,13 +257,53 @@
 -
   - CHASSIS
   - LEFT FRONT
+  - Camber
+  - '/html/body/u[52]'
+-
+  - CHASSIS
+  - LEFT FRONT
   - Caster
   - '/html/body/u[53]'
 -
   - CHASSIS
-  - LEFT FRONT
-  - Camber
-  - '/html/body/u[52]'
+  - LEFT REAR
+  - Corner weight
+  - '/html/body/u[54]'
+-
+  - CHASSIS
+  - LEFT REAR
+  - Ride height
+  - '/html/body/u[55]'
+-
+  - CHASSIS
+  - LEFT REAR
+  - Shock collar offset
+  - '/html/body/u[56]'
+-
+  - CHASSIS
+  - LEFT REAR
+  - Spring rate
+  - '/html/body/u[57]'
+-
+  - CHASSIS
+  - LEFT REAR
+  - Bump stiffness
+  - '/html/body/u[58]'
+-
+  - CHASSIS
+  - LEFT REAR
+  - Rebound stiffness
+  - '/html/body/u[59]'
+-
+  - CHASSIS
+  - LEFT REAR
+  - Track bar height
+  - '/html/body/u[60]'
+-
+  - CHASSIS
+  - LEFT REAR
+  - Truck arm mount
+  - '/html/body/u[61]'
 -
   - CHASSIS
   - RIGHT FRONT
@@ -127,43 +337,13 @@
 -
   - CHASSIS
   - RIGHT FRONT
-  - Caster
-  - '/html/body/u[69]'
--
-  - CHASSIS
-  - RIGHT FRONT
   - Camber
   - '/html/body/u[68]'
 -
   - CHASSIS
-  - LEFT REAR
-  - Corner weight
-  - '/html/body/u[54]'
--
-  - CHASSIS
-  - LEFT REAR
-  - Ride height
-  - '/html/body/u[55]'
--
-  - CHASSIS
-  - LEFT REAR
-  - Shock collar offset
-  - '/html/body/u[56]'
--
-  - CHASSIS
-  - LEFT REAR
-  - Spring rate
-  - '/html/body/u[57]'
--
-  - CHASSIS
-  - LEFT REAR
-  - Bump stiffness
-  - '/html/body/u[58]'
--
-  - CHASSIS
-  - LEFT REAR
-  - Rebound stiffness
-  - '/html/body/u[59]'
+  - RIGHT FRONT
+  - Caster
+  - '/html/body/u[69]'
 -
   - CHASSIS
   - RIGHT REAR
@@ -196,19 +376,9 @@
   - '/html/body/u[75]'
 -
   - CHASSIS
-  - LEFT REAR
-  - Track bar height
-  - '/html/body/u[60]'
--
-  - CHASSIS
   - RIGHT REAR
   - Track bar height
   - '/html/body/u[76]'
--
-  - CHASSIS
-  - LEFT REAR
-  - Truck arm mount
-  - '/html/body/u[61]'
 -
   - CHASSIS
   - RIGHT REAR
@@ -220,182 +390,12 @@
   - Truck arm preload
   - '/html/body/u[78]'
 -
-  - TIRE
-  - RIGHT FRONT
-  - Stagger
-  - '/html/body/u[25]'
--
-  - TIRE
-  - RIGHT REAR
-  - Stagger
-  - '/html/body/u[34]'
--
-  - CHASSIS
-  - REAR
-  - Rear end ratio
-  - '/html/body/u[80]'
--
   - CHASSIS
   - REAR
   - Fuel Fill To
   - '/html/body/u[79]'
 -
-  - TIRE
-  - LEFT FRONT
-  - Tread remaining O
-  - '/html/body/u[6]'
--
-  - TIRE
-  - LEFT FRONT
-  - Tread remaining M
-  - '/html/body/u[7]'
--
-  - TIRE
-  - LEFT FRONT
-  - Tread remaining I
-  - '/html/body/u[8]'
--
-  - TIRE
-  - LEFT REAR
-  - Tread remaining O
-  - '/html/body/u[14]'
--
-  - TIRE
-  - LEFT REAR
-  - Tread remaining M
-  - '/html/body/u[15]'
--
-  - TIRE
-  - LEFT REAR
-  - Tread remaining I
-  - '/html/body/u[16]'
--
-  - TIRE
-  - RIGHT FRONT
-  - Tread remaining I
-  - '/html/body/u[24]'
--
-  - TIRE
-  - RIGHT FRONT
-  - Tread remaining M
-  - '/html/body/u[23]'
--
-  - TIRE
-  - RIGHT FRONT
-  - Tread remaining O
-  - '/html/body/u[22]'
--
-  - TIRE
-  - RIGHT REAR
-  - Tread remaining I
-  - '/html/body/u[33]'
--
-  - TIRE
-  - RIGHT REAR
-  - Tread remaining M
-  - '/html/body/u[32]'
--
-  - TIRE
-  - RIGHT REAR
-  - Tread remaining O
-  - '/html/body/u[31]'
--
-  - TIRE
-  - LEFT FRONT
-  - Last temps O
-  - '/html/body/u[3]'
--
-  - TIRE
-  - LEFT FRONT
-  - Last temps M
-  - '/html/body/u[4]'
--
-  - TIRE
-  - LEFT FRONT
-  - Last temps I
-  - '/html/body/u[5]'
--
-  - TIRE
-  - LEFT REAR
-  - Last temps O
-  - '/html/body/u[11]'
--
-  - TIRE
-  - LEFT REAR
-  - Last temps M
-  - '/html/body/u[12]'
--
-  - TIRE
-  - LEFT REAR
-  - Last temps I
-  - '/html/body/u[13]'
--
-  - TIRE
-  - RIGHT FRONT
-  - Last temps I
-  - '/html/body/u[21]'
--
-  - TIRE
-  - RIGHT FRONT
-  - Last temps M
-  - '/html/body/u[20]'
--
-  - TIRE
-  - RIGHT FRONT
-  - Last temps O
-  - '/html/body/u[19]'
--
-  - TIRE
-  - RIGHT REAR
-  - Last temps I
-  - '/html/body/u[30]'
--
-  - TIRE
-  - RIGHT REAR
-  - Last temps M
-  - '/html/body/u[29]'
--
-  - TIRE
-  - RIGHT REAR
-  - Last temps O
-  - '/html/body/u[28]'
--
-  - TIRE
-  - LEFT FRONT
-  - Cold pressure
-  - '/html/body/u[1]'
--
-  - TIRE
-  - LEFT REAR
-  - Cold pressure
-  - '/html/body/u[9]'
--
-  - TIRE
-  - RIGHT FRONT
-  - Cold pressure
-  - '/html/body/u[17]'
--
-  - TIRE
-  - RIGHT REAR
-  - Cold pressure
-  - '/html/body/u[26]'
--
-  - TIRE
-  - LEFT FRONT
-  - Last hot pressure
-  - '/html/body/u[2]'
--
-  - TIRE
-  - LEFT REAR
-  - Last hot pressure
-  - '/html/body/u[10]'
--
-  - TIRE
-  - RIGHT FRONT
-  - Last hot pressure
-  - '/html/body/u[18]'
--
-  - TIRE
-  - RIGHT REAR
-  - Last hot pressure
-  - '/html/body/u[27]'
+  - CHASSIS
+  - REAR
+  - Rear end ratio
+  - '/html/body/u[80]'

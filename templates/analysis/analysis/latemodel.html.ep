@@ -25,8 +25,10 @@
             }
             , yAxis : {
                 title : {
-                    text : 'inch'
-                }
+									text : '<%= $graphopt->('front_rideheight', 'unit') %>'
+                },
+								min : <%= $graphopt->('front_rideheight', 'min') %>,
+								max : <%= $graphopt->('front_rideheight', 'max') %>
             }
 						, series : <%= $graph_data->{front_rideheight} %>
 					});
@@ -47,8 +49,10 @@
             }
             , yAxis : {
                 title : {
-                    text : 'inch'
-                }
+                    text : '<%= $graphopt->('rear_rideheight', 'unit') %>'
+                },
+								min : <%= $graphopt->('rear_rideheight', 'min') %>,
+								max : <%= $graphopt->('rear_rideheight', 'max') %>
             }
 						, series : <%= $graph_data->{rear_rideheight} %>
 					});
@@ -71,8 +75,10 @@
             }
             , yAxis : {
                 title : {
-                    text : 'inch'
-                }
+									text : '<%= $graphopt->('rideheight_relation', 'unit') %>'
+                },
+								min : <%= $graphopt->('rideheight_relation', 'min') %>,
+								max : <%= $graphopt->('rideheight_relation', 'max') %>
             }
 						, series : <%= $graph_data->{rideheight_relation} %>
 					});
@@ -93,8 +99,10 @@
             }
             , yAxis : {
                 title : {
-                    text : 'inch'
-                }
+									text : '<%= $graphopt->('trackbar_height', 'unit') %>'
+                },
+								min : <%= $graphopt->('trackbar_height', 'min') %>,
+								max : <%= $graphopt->('trackbar_height', 'max') %>
             }
 						, series : <%= $graph_data->{trackbar_height} %>
 					});
@@ -124,9 +132,11 @@
             }
             , yAxis : {
                 title : {
-                    text : 'lbs.'
+									text : '<%= $graphopt->('left_weight_dist', 'unit') %>'
                 },
-                minorTickInterval : 50,
+								min : <%= $graphopt->('left_weight_dist', 'min') %>,
+								max : <%= $graphopt->('left_weight_dist', 'max') %>,
+								minorTickInterval : <%= $graphopt->('left_weight_dist', 'minorTickInterval') %>,
                 reversed: true
             }
 						, plotOptions: {
@@ -157,10 +167,10 @@
             }
             , yAxis : {
                 title : {
-                    text : 'inch'
+									text : '<%= $graphopt->('ballast', 'unit') %>'
                 },
-								min : -20,
-								max : 20,
+								min : <%= $graphopt->('ballast', 'min') %>,
+								max : <%= $graphopt->('ballast', 'max') %>,
 								tickInterval : 5,
 								minorTickInterval : 1
             }
@@ -183,9 +193,11 @@
             }
             , yAxis : {
                 title : {
-                    text : 'lbs.'
+									text : '<%= $graphopt->('right_weight_dist', 'unit') %>'
                 },
-								minorTickInterval : 50,
+								min : <%= $graphopt->('right_weight_dist', 'min') %>,
+								max : <%= $graphopt->('right_weight_dist', 'max') %>,
+								minorTickInterval : <%= $graphopt->('right_weight_dist', 'minorTickInterval') %>,
             }
 						, plotOptions: {
 								series: {
@@ -220,11 +232,11 @@
             }
             , yAxis : {
                 title : {
-                    text : 'lbs/in'
+									text : '<%= $graphopt->('left_spring_package', 'unit') %>'
                 },
-								min : 100,
-								max : 500,
-								minorTickInterval : 25,
+								min : <%= $graphopt->('left_spring_package', 'min') %>,
+								max : <%= $graphopt->('left_spring_package', 'max') %>,
+								minorTickInterval : <%= $graphopt->('left_spring_package', 'minorTickInterval') %>,
 								reversed: true
             }
 						, plotOptions: {
@@ -256,11 +268,11 @@
             }
             , yAxis : {
                 title : {
-                    text : 'lbs/in'
+										text : '<%= $graphopt->('right_spring_package', 'unit') %>'
                 },
-								min : 100,
-								max : 500,
-								minorTickInterval : 25,
+								min : <%= $graphopt->('right_spring_package', 'min') %>,
+								max : <%= $graphopt->('right_spring_package', 'max') %>,
+								minorTickInterval : <%= $graphopt->('right_spring_package', 'minorTickInterval') %>
             }
 						, plotOptions: {
 								series: {

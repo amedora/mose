@@ -42,12 +42,12 @@ my $common_top_oval = {
             ENGLISH => 'lbs.',
             METRIC  => 'N',
         },
-        min => {},
-        max => {},
+        min               => {},
+        max               => {},
         minorTickInterval => {
-			ENGLISH => 50,
-			METRIC => 50,	# TODO
-		},
+            ENGLISH => 50,
+            METRIC  => 50,    # TODO
+        },
     },
     ballast => {
         unit => {
@@ -64,12 +64,12 @@ my $common_top_oval = {
             ENGLISH => 'lbs.',
             METRIC  => 'N',
         },
-        min => {},
-        max => {},
+        min               => {},
+        max               => {},
         minorTickInterval => {
-			ENGLISH => 50,
-			METRIC => 50,	# TODO
-		},
+            ENGLISH => 50,
+            METRIC  => 50,    # TODO
+        },
     },
     left_spring_package => {
         unit => {
@@ -184,25 +184,224 @@ my $common_top_oval = {
 };
 
 my $GraphList = {
-    latemodel => [
-        qw/
-          ballast
-          front_rideheight
-          front_tiretemp
-          front_tread
-          left_spring_package
-          left_tiretemp_avg
-          left_weight_dist
-          rear_rideheight
-          rear_tiretemp
-          rear_tread
-          rideheight_relation
-          right_spring_package
-          right_tiretemp_avg
-          right_weight_dist
-          trackbar_height
-          /
-    ],
+    latemodel => {
+        front_rideheight => {
+            unit => {
+                ENGLISH => 'inch',
+                METRIC  => 'mm',
+            },
+            min => {
+                ENGLISH => 3.95,
+                METRIC  => 100,
+            },
+            max => {
+                ENGLISH => 4.55,
+                METRIC  => 115,
+            },
+        },
+        rear_rideheight => {
+            unit => {
+                ENGLISH => 'inch',
+                METRIC  => 'mm',
+            },
+            min => {
+                ENGLISH => 3.95,
+                METRIC  => 100,
+            },
+            max => {
+                ENGLISH => 4.55,
+                METRIC  => 115,
+            },
+        },
+        rideheight_relation => {
+            unit => {
+                ENGLISH => 'inch',
+                METRIC  => 'mm',
+            },
+            min => {
+                ENGLISH => 3.95,
+                METRIC  => 100,
+            },
+            max => {
+                ENGLISH => 4.55,
+                METRIC  => 115,
+            },
+        },
+        trackbar_height => {
+            unit => {
+                ENGLISH => 'inch',
+                METRIC  => 'mm',
+            },
+            min => {
+                ENGLISH => 6,
+                METRIC  => 150,
+            },
+            max => {
+                ENGLISH => 15,
+                METRIC  => 435,
+            },
+        },
+        left_weight_dist => {
+            unit => {
+                ENGLISH => 'lbs.',
+                METRIC  => 'N',
+            },
+            min => {
+                ENGLISH => 650,
+                METRIC  => 2500,
+            },
+            max => {
+                ENGLISH => 1000,
+                METRIC  => 4500,
+            },
+            minorTickInterval => {
+                ENGLISH => 50,
+                METRIC  => 100,
+            },
+        },
+        ballast => {
+            unit => {
+                ENGLISH => 'inch',
+                METRIC  => 'mm',
+            },
+            min => {
+                ENGLISH => -24,
+                METRIC  => -1,    # XXX: seems iRacing bug
+            },
+            max => {
+                ENGLISH => 36,
+                METRIC  => 1,
+            },
+        },
+        right_weight_dist => {
+            unit => {
+                ENGLISH => 'lbs.',
+                METRIC  => 'N',
+            },
+            min => {
+                ENGLISH => 650,
+                METRIC  => 2500,
+            },
+            max => {
+                ENGLISH => 1000,
+                METRIC  => 4500,
+            },
+            minorTickInterval => {
+                ENGLISH => 50,
+                METRIC  => 100,
+            },
+        },
+        left_spring_package => {
+            unit => {
+                ENGLISH => 'lbs/in',
+                METRIC  => 'N/mm',
+            },
+            min => {
+                ENGLISH => 100,
+                METRIC  => 18,
+            },
+            max => {
+                ENGLISH => 1000,
+                METRIC  => 175,
+            },
+            minorTickInterval => {
+                ENGLISH => 25,
+                METRIC  => 5,
+            },
+        },
+        right_spring_package => {
+            unit => {
+                ENGLISH => 'lbs/in',
+                METRIC  => 'N/mm',
+            },
+            min => {
+                ENGLISH => 100,
+                METRIC  => 18,
+            },
+            max => {
+                ENGLISH => 1000,
+                METRIC  => 175,
+            },
+            minorTickInterval => {
+                ENGLISH => 25,
+                METRIC  => 5,
+            },
+        },
+        front_tiretemp => {
+            unit => {
+                ENGLISH => 'F',
+                METRIC  => 'C',
+            },
+            min => {
+                ENGLISH => 100,
+                METRIC  => 35,
+            },
+            max => {
+                ENGLISH => 275,
+                METRIC  => 140,
+            },
+			minorTickInterval => {
+				ENGLISH => 10,
+				METRIC  => 5,
+			},
+        },
+        left_tiretemp_avg => {
+            unit => {
+                ENGLISH => 'F',
+                METRIC  => 'C',
+            },
+            min => {
+                ENGLISH => 100,
+                METRIC  => 35,
+            },
+            max => {
+                ENGLISH => 275,
+                METRIC  => 140,
+            },
+			minorTickInterval => {
+				ENGLISH => 10,
+				METRIC  => 5,
+			},
+        },
+        rear_tiretemp => {
+            unit => {
+                ENGLISH => 'F',
+                METRIC  => 'C',
+            },
+            min => {
+                ENGLISH => 100,
+                METRIC  => 35,
+            },
+            max => {
+                ENGLISH => 275,
+                METRIC  => 140,
+            },
+			minorTickInterval => {
+				ENGLISH => 10,
+				METRIC  => 5,
+			},
+        },
+        right_tiretemp_avg => {
+            unit => {
+                ENGLISH => 'F',
+                METRIC  => 'C',
+            },
+            min => {
+                ENGLISH => 100,
+                METRIC  => 35,
+            },
+            max => {
+                ENGLISH => 275,
+                METRIC  => 140,
+            },
+			minorTickInterval => {
+				ENGLISH => 10,
+				METRIC  => 5,
+			},
+        },
+        front_tread => {},
+        rear_tread  => {},
+    },
     'stockcars chevyss'     => { %$common_top_oval, },
     'stockcars fordfusion'  => { %$common_top_oval, },
     'stockcars toyotacamry' => { %$common_top_oval, },

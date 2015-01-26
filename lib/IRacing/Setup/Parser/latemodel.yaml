@@ -92,7 +92,7 @@
 -
   - TIRE
   - RIGHT FRONT
-  - Last temps O
+  - Last temps I
   - '/html/body/u[19]'
 -
   - TIRE
@@ -102,12 +102,12 @@
 -
   - TIRE
   - RIGHT FRONT
-  - Last temps I
+  - Last temps O
   - '/html/body/u[21]'
 -
   - TIRE
   - RIGHT FRONT
-  - Tread remaining O
+  - Tread remaining I
   - '/html/body/u[22]'
 -
   - TIRE
@@ -117,7 +117,7 @@
 -
   - TIRE
   - RIGHT FRONT
-  - Tread remaining I
+  - Tread remaining O
   - '/html/body/u[24]'
 -
   - TIRE
@@ -137,7 +137,7 @@
 -
   - TIRE
   - RIGHT REAR
-  - Last temps O
+  - Last temps I
   - '/html/body/u[28]'
 -
   - TIRE
@@ -147,12 +147,12 @@
 -
   - TIRE
   - RIGHT REAR
-  - Last temps I
+  - Last temps O
   - '/html/body/u[30]'
 -
   - TIRE
   - RIGHT REAR
-  - Tread remaining O
+  - Tread remaining I
   - '/html/body/u[31]'
 -
   - TIRE
@@ -162,7 +162,7 @@
 -
   - TIRE
   - RIGHT REAR
-  - Tread remaining I
+  - Tread remaining O
   - '/html/body/u[33]'
 -
   - TIRE
@@ -197,205 +197,210 @@
 -
   - CHASSIS
   - FRONT
-  - Front brake bias
+  - Steering offset
   - '/html/body/u[40]'
 -
   - CHASSIS
   - FRONT
-  - Sway bar size
+  - Brake balance bar
   - '/html/body/u[41]'
 -
   - CHASSIS
   - FRONT
-  - Sway bar arm length
+  - Sway bar size
   - '/html/body/u[42]'
 -
   - CHASSIS
   - FRONT
-  - Left bar end clearance
+  - Sway bar arm length
   - '/html/body/u[43]'
 -
   - CHASSIS
   - FRONT
-  - Attach left side
+  - Left bar end clearance
   - '/html/body/u[44]'
 -
   - CHASSIS
   - FRONT
-  - Tape Configuration
+  - Attach left side
   - '/html/body/u[45]'
 -
   - CHASSIS
-  - LEFT FRONT
-  - Corner weight
+  - FRONT
+  - Tape Configuration
   - '/html/body/u[46]'
 -
   - CHASSIS
   - LEFT FRONT
-  - Ride height
+  - Corner weight
   - '/html/body/u[47]'
 -
   - CHASSIS
   - LEFT FRONT
-  - Shock collar offset
+  - Ride height
   - '/html/body/u[48]'
 -
   - CHASSIS
   - LEFT FRONT
-  - Spring rate
+  - Spring perch
   - '/html/body/u[49]'
 -
   - CHASSIS
   - LEFT FRONT
-  - Bump stiffness
+  - Spring rate
   - '/html/body/u[50]'
 -
   - CHASSIS
   - LEFT FRONT
-  - Rebound stiffness
+  - Bump stiffness
   - '/html/body/u[51]'
 -
   - CHASSIS
   - LEFT FRONT
-  - Camber
+  - Rebound stiffness
   - '/html/body/u[52]'
 -
   - CHASSIS
   - LEFT FRONT
-  - Caster
+  - Camber
   - '/html/body/u[53]'
 -
   - CHASSIS
-  - LEFT REAR
-  - Corner weight
+  - LEFT FRONT
+  - Caster
   - '/html/body/u[54]'
 -
   - CHASSIS
   - LEFT REAR
-  - Ride height
+  - Corner weight
   - '/html/body/u[55]'
 -
   - CHASSIS
   - LEFT REAR
-  - Shock collar offset
+  - Ride height
   - '/html/body/u[56]'
 -
   - CHASSIS
   - LEFT REAR
-  - Spring rate
+  - Spring perch
   - '/html/body/u[57]'
 -
   - CHASSIS
   - LEFT REAR
-  - Bump stiffness
+  - Spring rate
   - '/html/body/u[58]'
 -
   - CHASSIS
   - LEFT REAR
-  - Rebound stiffness
+  - Bump stiffness
   - '/html/body/u[59]'
 -
   - CHASSIS
   - LEFT REAR
-  - Track bar height
+  - Rebound stiffness
   - '/html/body/u[60]'
 -
   - CHASSIS
   - LEFT REAR
-  - Truck arm mount
+  - Track bar height
   - '/html/body/u[61]'
 -
   - CHASSIS
-  - RIGHT FRONT
-  - Corner weight
+  - LEFT REAR
+  - Truck arm mount
   - '/html/body/u[62]'
 -
   - CHASSIS
   - RIGHT FRONT
-  - Ride height
+  - Corner weight
   - '/html/body/u[63]'
 -
   - CHASSIS
   - RIGHT FRONT
-  - Shock collar offset
+  - Ride height
   - '/html/body/u[64]'
 -
   - CHASSIS
   - RIGHT FRONT
-  - Spring rate
+  - Spring perch
   - '/html/body/u[65]'
 -
   - CHASSIS
   - RIGHT FRONT
-  - Bump stiffness
+  - Spring rate
   - '/html/body/u[66]'
 -
   - CHASSIS
   - RIGHT FRONT
-  - Rebound stiffness
+  - Bump stiffness
   - '/html/body/u[67]'
 -
   - CHASSIS
   - RIGHT FRONT
-  - Camber
+  - Rebound stiffness
   - '/html/body/u[68]'
 -
   - CHASSIS
   - RIGHT FRONT
-  - Caster
+  - Camber
   - '/html/body/u[69]'
 -
   - CHASSIS
-  - RIGHT REAR
-  - Corner weight
+  - RIGHT FRONT
+  - Caster
   - '/html/body/u[70]'
 -
   - CHASSIS
   - RIGHT REAR
-  - Ride height
+  - Corner weight
   - '/html/body/u[71]'
 -
   - CHASSIS
   - RIGHT REAR
-  - Shock collar offset
+  - Ride height
   - '/html/body/u[72]'
 -
   - CHASSIS
   - RIGHT REAR
-  - Spring rate
+  - Spring perch
   - '/html/body/u[73]'
 -
   - CHASSIS
   - RIGHT REAR
-  - Bump stiffness
+  - Spring rate
   - '/html/body/u[74]'
 -
   - CHASSIS
   - RIGHT REAR
-  - Rebound stiffness
+  - Bump stiffness
   - '/html/body/u[75]'
 -
   - CHASSIS
   - RIGHT REAR
-  - Track bar height
+  - Rebound stiffness
   - '/html/body/u[76]'
 -
   - CHASSIS
   - RIGHT REAR
-  - Truck arm mount
+  - Track bar height
   - '/html/body/u[77]'
 -
   - CHASSIS
   - RIGHT REAR
-  - Truck arm preload
+  - Truck arm mount
   - '/html/body/u[78]'
 -
   - CHASSIS
-  - REAR
-  - Fuel Fill To
+  - RIGHT REAR
+  - Truck arm preload
   - '/html/body/u[79]'
 -
   - CHASSIS
   - REAR
-  - Rear end ratio
+  - Fuel Fill To
   - '/html/body/u[80]'
+-
+  - CHASSIS
+  - REAR
+  - Rear end ratio
+  - '/html/body/u[81]'

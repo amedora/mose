@@ -1,0 +1,22 @@
+<div id="render_front_rideheight" style="height: 240px"></div>
+<%= javascript begin %>
+  $('#render_front_rideheight').highcharts({
+      chart: {
+          defaultSeriesType: 'line'
+      },
+      title: {
+          text: 'Front Ride Height'
+      },
+      xAxis: {
+          categories: ['LF', 'RF']
+      },
+      yAxis: {
+          title: {
+              text: '<%= $graphopt->('front_rideheight', 'unit') %>'
+          },
+          min: <%= $graphopt->('front_rideheight', 'min') %>,
+          max: <%= $graphopt->('front_rideheight', 'max') %>
+      },
+      series: <%= $graph_data->{front_rideheight} %>
+  });
+<% end %>

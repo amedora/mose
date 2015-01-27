@@ -115,7 +115,7 @@ sub _generate_graphhtml {
     }
 
     return $c->render_to_string(
-        "analysis/analysis/$car",
+        "analysis/car/$car",
         graph_data => $graph_data,
         setups     => \@setups,
         graphopt   => Mose::Analysis::Graph::GraphOption( $car, $unit )

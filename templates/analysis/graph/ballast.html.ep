@@ -1,0 +1,23 @@
+<div id="render_ballast" style="height: 360px"></div>
+<%= javascript begin %>
+  $('#render_ballast').highcharts({
+    chart : {
+        defaultSeriesType : 'scatter'
+    }
+    , title : {
+        text : 'Ballast Forward'
+    }
+    , xAxis : {
+    }
+    , yAxis : {
+        title : {
+          text : '<%= $graphopt->('ballast', 'unit') %>'
+        },
+        min : <%= $graphopt->('ballast', 'min') %>,
+        max : <%= $graphopt->('ballast', 'max') %>,
+        tickInterval : 5,
+        minorTickInterval : 1
+    }
+    , series : <%= $graph_data->{ballast} %>
+  });
+<% end %>

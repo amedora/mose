@@ -1,0 +1,33 @@
+<div id="render_right_spring_package" style="height: 360px"></div>
+<%= javascript begin %>
+  $('#render_right_spring_package').highcharts({
+    chart : {
+        defaultSeriesType : 'bar'
+    }
+    , title : {
+        text : 'Spring Rate (Right Side)'
+    }
+    , xAxis : {
+        categories : ['Front', 'Rear']
+    }
+    , yAxis : {
+        title : {
+            text : '<%= $graphopt->('right_spring_package', 'unit') %>'
+        },
+        min : <%= $graphopt->('right_spring_package', 'min') %>,
+        max : <%= $graphopt->('right_spring_package', 'max') %>,
+        minorTickInterval : <%= $graphopt->('right_spring_package', 'minorTickInterval') %>
+    }
+    , plotOptions: {
+        series: {
+          dataLabels: {
+              enabled: true,
+              align: 'right',
+              color: 'white',
+              crop: false
+          }
+        }
+    }
+    , series : <%= $graph_data->{right_spring_package} %>
+  });
+<% end %>

@@ -1,0 +1,35 @@
+<div id="render_left_weight_dist" style="height: 360px"></div>
+<%= javascript begin %>
+  $('#render_left_weight_dist').highcharts({
+    chart : {
+        defaultSeriesType : 'bar'
+    }
+    , title : {
+        text : 'Left Side Weight'
+    }
+    , xAxis : {
+        categories : ['Front', 'Rear'],
+        opposite: true
+    }
+    , yAxis : {
+        title : {
+          text : '<%= $graphopt->('left_weight_dist', 'unit') %>'
+        },
+        min : <%= $graphopt->('left_weight_dist', 'min') %>,
+        max : <%= $graphopt->('left_weight_dist', 'max') %>,
+        minorTickInterval : <%= $graphopt->('left_weight_dist', 'minorTickInterval') %>,
+        reversed: true
+    }
+    , plotOptions: {
+        series: {
+          dataLabels: {
+              enabled: true,
+              align: 'left',
+              color: 'white',
+              crop: false
+          }
+        }
+    }
+    , series : <%= $graph_data->{left_weight_dist} %>
+  });
+<% end %>

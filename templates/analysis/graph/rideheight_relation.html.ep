@@ -1,0 +1,22 @@
+<div id="render_rideheight_relation" style="height: 240px"></div>
+<%= javascript begin %>
+  $('#render_rideheight_relation').highcharts({
+    chart : {
+        defaultSeriesType : 'line'
+    }
+    , title : {
+        text : 'Front Ride Height Avg. vs Rear Ride Height Avg.'
+    }
+    , xAxis : {
+        categories : ['Front', 'Rear']
+    }
+    , yAxis : {
+        title : {
+          text : '<%= $graphopt->('rideheight_relation', 'unit') %>'
+        },
+        min : <%= $graphopt->('rideheight_relation', 'min') %>,
+        max : <%= $graphopt->('rideheight_relation', 'max') %>
+    }
+    , series : <%= $graph_data->{rideheight_relation} %>
+  });
+<% end %>

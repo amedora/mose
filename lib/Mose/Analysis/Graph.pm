@@ -10,43 +10,73 @@ my $common_top_oval = {
             ENGLISH => 'inch',
             METRIC  => 'mm',
         },
-        min => {},
-        max => {},
+        min => {
+            ENGLISH => 2,     #TODO
+            METRIC  => 40,    #TODO
+        },
+        max => {
+            ENGLISH => 10,     #TODO
+            METRIC  => 200,    #TODO
+        },
     },
     rear_rideheight => {
         unit => {
             ENGLISH => 'inch',
             METRIC  => 'mm',
         },
-        min => {},
-        max => {},
+        min => {
+            ENGLISH => 2,      #TODO
+            METRIC  => 40,     #TODO
+        },
+        max => {
+            ENGLISH => 10,     #TODO
+            METRIC  => 200,    #TODO
+        },
     },
     rideheight_relation => {
         unit => {
             ENGLISH => 'inch',
             METRIC  => 'mm',
         },
-        min => {},
-        max => {},
+        min => {
+            ENGLISH => 2,      #TODO
+            METRIC  => 40,     #TODO
+        },
+        max => {
+            ENGLISH => 10,     #TODO
+            METRIC  => 200,    #TODO
+        },
     },
     trackbar_height => {
         unit => {
             ENGLISH => 'inch',
             METRIC  => 'mm',
         },
-        min => {},
-        max => {},
+        min => {
+            ENGLISH => 2,      #TODO
+            METRIC  => 40,     #TODO
+        },
+        max => {
+            ENGLISH => 2,      #TODO
+            METRIC  => 40,     #TODO
+        },
     },
     left_weight_dist => {
         unit => {
             ENGLISH => 'lbs.',
             METRIC  => 'N',
         },
-        min               => {},
-        max               => {},
+        min => {
+            ENGLISH => 500,    #TODO
+            METRIC  => 500,    #TODO
+        },
+        max => {
+            ENGLISH => 2000,    #TODO
+            METRIC  => 2000,    #TODO
+        },
         minorTickInterval => {
             ENGLISH => 50,
-            METRIC  => 50,    # TODO
+            METRIC  => 50,      # TODO
         },
     },
     ballast => {
@@ -54,21 +84,39 @@ my $common_top_oval = {
             ENGLISH => 'inch',
             METRIC  => 'mm',
         },
-        min               => {},
-        max               => {},
-        tickInterval      => {},
-        minorTickInterval => {},
+        min => {
+            ENGLISH => 0,
+            METRIC  => 0,
+        },
+        max => {
+            ENGLISH => 10,
+            METRIC  => 10,
+        },
+        tickInterval => {
+            ENGLISH => 10,
+            METRIC  => 10,
+        },
+        minorTickInterval => {
+            ENGLISH => 5,
+            METRIC  => 5,
+        },
     },
     right_weight_dist => {
         unit => {
             ENGLISH => 'lbs.',
             METRIC  => 'N',
         },
-        min               => {},
-        max               => {},
+        min => {
+            ENGLISH => 500,    #TODO
+            METRIC  => 500,    #TODO
+        },
+        max => {
+            ENGLISH => 2000,    #TODO
+            METRIC  => 2000,    #TODO
+        },
         minorTickInterval => {
             ENGLISH => 50,
-            METRIC  => 50,    # TODO
+            METRIC  => 50,      # TODO
         },
     },
     left_spring_package => {
@@ -78,15 +126,15 @@ my $common_top_oval = {
         },
         min => {
             ENGLISH => 100,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         max => {
             ENGLISH => 500,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         minorTickInterval => {
             ENGLISH => 25,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
     },
     right_spring_package => {
@@ -96,15 +144,15 @@ my $common_top_oval = {
         },
         min => {
             ENGLISH => 100,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         max => {
             ENGLISH => 500,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         minorTickInterval => {
             ENGLISH => 25,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
     },
     front_tiretemp => {
@@ -114,15 +162,15 @@ my $common_top_oval = {
         },
         min => {
             ENGLISH => 100,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         max => {
             ENGLISH => 300,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         minorTickInterval => {
             ENGLISH => 10,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
     },
     left_tiretemp_avg => {
@@ -132,15 +180,15 @@ my $common_top_oval = {
         },
         min => {
             ENGLISH => 100,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         max => {
             ENGLISH => 300,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         minorTickInterval => {
             ENGLISH => 10,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
     },
     rear_tiretemp => {
@@ -150,15 +198,15 @@ my $common_top_oval = {
         },
         min => {
             ENGLISH => 100,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         max => {
             ENGLISH => 300,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         minorTickInterval => {
             ENGLISH => 10,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
     },
     right_tiretemp_avg => {
@@ -168,15 +216,15 @@ my $common_top_oval = {
         },
         min => {
             ENGLISH => 100,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         max => {
             ENGLISH => 300,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
         minorTickInterval => {
             ENGLISH => 10,
-            METRIC  => 9999    #TODO
+            METRIC  => 9999     #TODO
         },
     },
     front_tread => {},
@@ -340,10 +388,10 @@ my $GraphList = {
                 ENGLISH => 275,
                 METRIC  => 140,
             },
-			minorTickInterval => {
-				ENGLISH => 10,
-				METRIC  => 5,
-			},
+            minorTickInterval => {
+                ENGLISH => 10,
+                METRIC  => 5,
+            },
         },
         left_tiretemp_avg => {
             unit => {
@@ -358,10 +406,10 @@ my $GraphList = {
                 ENGLISH => 275,
                 METRIC  => 140,
             },
-			minorTickInterval => {
-				ENGLISH => 10,
-				METRIC  => 5,
-			},
+            minorTickInterval => {
+                ENGLISH => 10,
+                METRIC  => 5,
+            },
         },
         rear_tiretemp => {
             unit => {
@@ -376,10 +424,10 @@ my $GraphList = {
                 ENGLISH => 275,
                 METRIC  => 140,
             },
-			minorTickInterval => {
-				ENGLISH => 10,
-				METRIC  => 5,
-			},
+            minorTickInterval => {
+                ENGLISH => 10,
+                METRIC  => 5,
+            },
         },
         right_tiretemp_avg => {
             unit => {
@@ -394,10 +442,10 @@ my $GraphList = {
                 ENGLISH => 275,
                 METRIC  => 140,
             },
-			minorTickInterval => {
-				ENGLISH => 10,
-				METRIC  => 5,
-			},
+            minorTickInterval => {
+                ENGLISH => 10,
+                METRIC  => 5,
+            },
         },
         front_tread => {},
         rear_tread  => {},

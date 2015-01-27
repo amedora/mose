@@ -1,0 +1,23 @@
+<div id="render_rear_rideheight" style="height: 240px"></div>
+<%= javascript begin %>
+  $('#render_rear_rideheight').highcharts({
+    chart : {
+        defaultSeriesType : 'line'
+    }
+    , title : {
+        text : 'Rear Ride Height'
+    }
+    , xAxis : {
+        categories : ['LR', 'RR']
+    }
+    , yAxis : {
+        title : {
+            text : '<%= $graphopt->('rear_rideheight', 'unit') %>'
+        },
+        min : <%= $graphopt->('rear_rideheight', 'min') %>,
+        max : <%= $graphopt->('rear_rideheight', 'max') %>
+    }
+    , series : <%= $graph_data->{rear_rideheight} %>
+  });
+<% end %>
+

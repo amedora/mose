@@ -1,0 +1,33 @@
+<div id="render_right_weight_dist" style="height: 360px"></div>
+<%= javascript begin %>
+  $('#render_right_weight_dist').highcharts({
+    chart : {
+        defaultSeriesType : 'bar'
+    }
+    , title : {
+        text : 'Right Side Weight'
+    }
+    , xAxis : {
+        categories : ['Front', 'Rear']
+    }
+    , yAxis : {
+        title : {
+          text : '<%= $graphopt->('right_weight_dist', 'unit') %>'
+        },
+        min : <%= $graphopt->('right_weight_dist', 'min') %>,
+        max : <%= $graphopt->('right_weight_dist', 'max') %>,
+        minorTickInterval : <%= $graphopt->('right_weight_dist', 'minorTickInterval') %>,
+    }
+    , plotOptions: {
+        series: {
+          dataLabels: {
+              enabled: true,
+              align: 'right',
+              color: 'white',
+              crop: false
+          }
+        }
+    }
+    , series : <%= $graph_data->{right_weight_dist} %>
+  });
+<% end %>

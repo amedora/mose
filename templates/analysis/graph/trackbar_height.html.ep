@@ -1,0 +1,22 @@
+<div id="render_trackbar_height" style="height: 240px"></div>
+<%= javascript begin %>
+  $('#render_trackbar_height').highcharts({
+    chart : {
+        defaultSeriesType : 'line'
+    }
+    , title : {
+        text : 'Trackbar Height'
+    }
+    , xAxis : {
+        categories : ['LR', 'RR']
+    }
+    , yAxis : {
+        title : {
+          text : '<%= $graphopt->('trackbar_height', 'unit') %>'
+        },
+        min : <%= $graphopt->('trackbar_height', 'min') %>,
+        max : <%= $graphopt->('trackbar_height', 'max') %>
+    }
+    , series : <%= $graph_data->{trackbar_height} %>
+  });
+<% end %>

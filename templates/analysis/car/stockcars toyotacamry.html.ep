@@ -1,0 +1,56 @@
+%# vim:set ts=2 sw=2 ft=html:
+<div role="tabpanel" class="tab-pane" id="tab-analysis">
+<div class="subnav">
+	<ul class="nav nav-pills">
+		<li><a href="#chassis">Chassis</a></li>
+		<li><a href="#tire">Tire</a></li>
+	</ul>
+</div>
+<section id="chassis">
+	<h2>Chassis</h2>
+	<h3>Ride Height</h3>
+	<div class="row">
+		<div class="col-md-6">
+			<%= include 'analysis/graph/front_rideheight' %>
+		</div>
+		<div class="col-md-6">
+			<%= include 'analysis/graph/rear_rideheight' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<%= include 'analysis/graph/rideheight_relation' %>
+		</div>
+		<div class="col-md-6">
+			<%= include 'analysis/graph/trackbar_height' %>
+		</div>
+	</div>
+	<h3>Weight Distribution</h3>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			%= include 'analysis/partial-data', components => [[CHASSIS => FRONT => 'Cross weight'],[CHASSIS => FRONT => 'Nose weight']]
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<%= include 'analysis/graph/left_weight_dist' %>
+		</div>
+		<div class="col-md-4">
+			<%= include 'analysis/graph/ballast' %>
+		</div>
+		<div class="col-md-4">
+			<%= include 'analysis/graph/right_weight_dist' %>
+		</div>
+	</div>
+	<h3>Spring Package</h3>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<%= include 'analysis/graph/left_spring_package' %>
+		</div>
+		<div class="col-md-4">
+			<%= include 'analysis/graph/right_spring_package' %>
+		</div>
+	</div>
+</section>
+<%= include 'analysis/car/comm-section-tire' %>
+</div>

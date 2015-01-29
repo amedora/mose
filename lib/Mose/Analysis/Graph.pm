@@ -173,7 +173,7 @@ my $common_top_oval = {
             METRIC  => 9999     #TODO
         },
     },
-    left_tiretemp_avg => {
+    rear_tiretemp => {
         unit => {
             ENGLISH => 'F',
             METRIC  => 'C',
@@ -191,7 +191,7 @@ my $common_top_oval = {
             METRIC  => 9999     #TODO
         },
     },
-    rear_tiretemp => {
+    left_tiretemp_avg => {
         unit => {
             ENGLISH => 'F',
             METRIC  => 'C',
@@ -738,8 +738,6 @@ my $GraphData = {
 sub available_graph {
     my $car = shift;
     return keys %{ $GraphList->{$car} };
-
-    #return @{ $GraphList->{$car} };
 }
 
 sub data {

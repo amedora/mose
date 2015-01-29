@@ -173,6 +173,24 @@ my $common_top_oval = {
             METRIC  => 9999     #TODO
         },
     },
+    front_camber => {
+        unit => {
+            ENGLISH => 'deg.',
+            METRIC  => 'deg.',
+        },
+        min => {
+            ENGLISH => -10,
+            METRIC  => -10,
+        },
+        max => {
+            ENGLISH => 10,
+            METRIC  => 10,
+        },
+        minorTickInterval => {
+            ENGLISH => 1,
+            METRIC  => 1,
+        },
+    },
     rear_tiretemp => {
         unit => {
             ENGLISH => 'F',
@@ -180,15 +198,33 @@ my $common_top_oval = {
         },
         min => {
             ENGLISH => 100,
-            METRIC  => 9999     #TODO
+            METRIC  => 9999    #TODO
         },
         max => {
             ENGLISH => 300,
-            METRIC  => 9999     #TODO
+            METRIC  => 9999    #TODO
         },
         minorTickInterval => {
             ENGLISH => 10,
-            METRIC  => 9999     #TODO
+            METRIC  => 9999    #TODO
+        },
+    },
+    rear_camber => {
+        unit => {
+            ENGLISH => 'deg.',
+            METRIC  => 'deg.',
+        },
+        min => {
+            ENGLISH => -10,
+            METRIC  => -10,
+        },
+        max => {
+            ENGLISH => 10,
+            METRIC  => 10,
+        },
+        minorTickInterval => {
+            ENGLISH => 1,
+            METRIC  => 1,
         },
     },
     left_tiretemp_avg => {
@@ -198,15 +234,15 @@ my $common_top_oval = {
         },
         min => {
             ENGLISH => 100,
-            METRIC  => 9999     #TODO
+            METRIC  => 9999    #TODO
         },
         max => {
             ENGLISH => 300,
-            METRIC  => 9999     #TODO
+            METRIC  => 9999    #TODO
         },
         minorTickInterval => {
             ENGLISH => 10,
-            METRIC  => 9999     #TODO
+            METRIC  => 9999    #TODO
         },
     },
     right_tiretemp_avg => {
@@ -216,15 +252,15 @@ my $common_top_oval = {
         },
         min => {
             ENGLISH => 100,
-            METRIC  => 9999     #TODO
+            METRIC  => 9999    #TODO
         },
         max => {
             ENGLISH => 300,
-            METRIC  => 9999     #TODO
+            METRIC  => 9999    #TODO
         },
         minorTickInterval => {
             ENGLISH => 10,
-            METRIC  => 9999     #TODO
+            METRIC  => 9999    #TODO
         },
     },
     front_tread => {},
@@ -562,6 +598,17 @@ my $GraphData = {
             )
         );
     },
+    front_camber => sub {
+        my $s = shift;
+        return (
+            $s->data(
+                component => [ 'CHASSIS' => 'LEFT FRONT' => 'Camber' ]
+            ),
+            $s->data(
+                component => [ 'CHASSIS' => 'RIGHT FRONT' => 'Camber' ]
+            ),
+        );
+    },
     rear_tiretemp => sub {
         my $s = shift;
         return (
@@ -583,6 +630,17 @@ my $GraphData = {
             $s->data(
                 component => [ 'TIRE' => 'RIGHT REAR' => 'Last temps O' ]
             )
+        );
+    },
+    rear_camber => sub {
+        my $s = shift;
+        return (
+            $s->data(
+                component => [ 'CHASSIS' => 'LEFT REAR' => 'Camber' ]
+            ),
+            $s->data(
+                component => [ 'CHASSIS' => 'RIGHT REAR' => 'Camber' ]
+            ),
         );
     },
     front_tread => sub {

@@ -1,10 +1,10 @@
 # vim:set sw=4 ts=4 ft=perl:
 package Mose::Analysis;
 use Mojo::Base 'Mojolicious::Controller';
+use Mojo::IOLoop;
 use Mojo::JSON;
 use Mose::Analysis::Graph;
 use IRacing::Setup;
-use Data::Dumper;
 
 sub analyze_from_file {
     my $c = shift;
@@ -29,14 +29,35 @@ sub analyze_from_file {
         json => _error_json('Not same cars or units are specified.') )
       unless IRacing::Setup::is_same_cars(@setups);
 
-    my $sheetdata = _generate_sheethtml(@setups);
-    my $graphhtml = $c->_generate_graphhtml(@setups);
+    $c->delay(
+        sub {
+            my $delay    = shift;
+            my $cb_sheet = $delay->begin(0);
+            my $cb_graph = $delay->begin(0);
+            Mojo::IOLoop->timer(
+                0 => sub {
+                    $cb_sheet->( _generate_sheethtml(@setups) );
+                }
+            );
+            Mojo::IOLoop->timer(
+                0 => sub {
+                    $cb_graph->( $c->_generate_graphhtml(@setups) );
+                }
+            );
+        },
+        sub {
+            my $delay = shift;
+            my ( $sheet, $graph ) = @_;
 
-    return $c->render( json => _error_json("Can't analyze your setup.") )
-      unless $graphhtml;
+            return $c->render(
+                json => _error_json("Can't analyze your setup.") )
+              unless $graph;
 
-    $c->render( json =>
-          { data => { sheetdata => $sheetdata, graphhtml => $graphhtml } } );
+            $c->render( json =>
+                  { data => { sheetdata => $sheet, graphhtml => $graph } } );
+        },
+    );
+
 }
 
 sub analyze_from_db {

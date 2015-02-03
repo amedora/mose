@@ -1,3 +1,4 @@
+requires 'CHI';
 requires 'HTML::TreeBuilder';
 requires 'Mojolicious';
 requires 'Plack';

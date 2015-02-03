@@ -129,7 +129,7 @@ my $common_top_oval = {
             METRIC  => 35,
         },
         max => {
-            ENGLISH => 3000,	# actual max is 10,000.
+            ENGLISH => 10000,	# actual max is 10,000.
             METRIC  => 1750,
         },
         minorTickInterval => {
@@ -147,7 +147,7 @@ my $common_top_oval = {
             METRIC  => 35,
         },
         max => {
-            ENGLISH => 3000,	# actual max is 10,000.
+            ENGLISH => 10000,	# actual max is 10,000.
             METRIC  => 1750,
         },
         minorTickInterval => {

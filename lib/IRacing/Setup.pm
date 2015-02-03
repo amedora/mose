@@ -4,8 +4,6 @@ package IRacing::Setup;
 use File::Basename qw/basename/;
 use IRacing::Setup::Parser;
 
-my $Cache = {};
-
 sub new {
     my ( $class, $file_content ) = @_;
     my $self = {

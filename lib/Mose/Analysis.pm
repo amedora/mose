@@ -7,92 +7,33 @@ use IRacing::Setup;
 use Data::Dumper;
 
 sub analyze_from_file {
-    my $c     = shift;
-    my @files = ();
+    my $c = shift;
 
-    # get content of all files
-    foreach my $i ( 0 .. 4 ) {
-        if ( my $s = $c->param( "file" . $i ) ) {
-            if ( $s->asset->{content} ) {
-                push @files, $s;
-            }
-        }
-    }
-
-    return $c->render(
-        json => {
-            error => {
-                message => "No files are specified.",
-                code    => 400,
-            },
-        },
-
-        #status => 400,
-    ) unless @files;
+    my @files =
+      _get_all_contents( $c->param( [qw/file0 file1 file2 file3 file4/] ) );
+    return $c->render( json => _error_json('No files are specified') )
+      unless @files;
 
     # convert them to IRacing::Setup
     my @setups;
     foreach my $file (@files) {
-        my $setup = IRacing::Setup->new( $file->asset->{content} );
-        if ( !$setup ) {
-            return $c->render(
-                json => {
-                    error => {
-                        message => $file->filename . " is invalid.",
-                        code    => 400,
-                    }
-                },
-
-                #status => 400,
-            );
-        }
+        my $setup;
+        eval { $setup = IRacing::Setup->new( $file->asset->{content} ); };
+        return $c->render(
+            json => _error_json( $file->filename . ' is invalid.' ) )
+          if $@;
         push @setups, $setup;
     }
 
     return $c->render(
-        json => {
-            error => {
-                message => "Not same cars are specified.",
-                code    => 400,
-            },
-        },
+        json => _error_json('Not same cars or units are specified.') )
+      unless IRacing::Setup::is_same_cars(@setups);
 
-        #status => 400,
-    ) unless IRacing::Setup::is_same_cars(@setups);
-
-    # We have to set the first row as column header.
-    my $sheetdata = [ [ 'Category', 'Section', 'Component' ] ];
-    foreach my $setup (@setups) {
-        push @{ $sheetdata->[0] }, $setup->file_name;
-    }
-
-    for ( my $i_setup = 0 ; $i_setup <= $#setups ; $i_setup++ ) {
-        for ( my $i_row = 0 ; $i_row < $setups[$i_setup]->num_rows ; $i_row++ )
-        {
-            if ( $i_setup == 0 ) {
-                push @{$sheetdata}, $setups[$i_setup]->data->[$i_row];
-            }
-            else {
-                # Remember, the first row is a column header.
-                push @{ $sheetdata->[ $i_row + 1 ] },
-                  $setups[$i_setup]->data->[$i_row]->[3];
-            }
-        }
-    }
-
+    my $sheetdata = _generate_sheethtml(@setups);
     my $graphhtml = $c->_generate_graphhtml(@setups);
-    unless ($graphhtml) {
-        return $c->render(
-            json => {
-                error => {
-                    message => "Can't anayze your setup.",
-                    code    => 400,
-                },
-            },
 
-            #status => 400,
-        );
-    }
+    return $c->render( json => _error_json("Can't analyze your setup.") )
+      unless $graphhtml;
 
     $c->render( json =>
           { data => { sheetdata => $sheetdata, graphhtml => $graphhtml } } );
@@ -100,6 +41,50 @@ sub analyze_from_file {
 
 sub analyze_from_db {
     my $self = shift;
+}
+
+sub _get_all_contents {
+    my @params       = @_;
+    my @uploaded_obj = ();
+
+    foreach my $p (@params) {
+        last unless ref $p eq 'Mojo::Upload';
+        last unless $p->asset->{content};
+        push @uploaded_obj, $p;
+    }
+
+    return @uploaded_obj;
+}
+
+sub _error_json {
+    my $errmsg = shift;
+    return +{ error => { message => $errmsg, code => 400 } };
+}
+
+sub _generate_sheethtml {
+    my @setups = @_;
+
+    # We have to set the first row as column header.
+    my $sheet = [ [ 'Category', 'Section', 'Component' ] ];
+    foreach my $setup (@setups) {
+        push @{ $sheet->[0] }, $setup->file_name;
+    }
+
+    for ( my $i_setup = 0 ; $i_setup <= $#setups ; $i_setup++ ) {
+        for ( my $i_row = 0 ; $i_row < $setups[$i_setup]->num_rows ; $i_row++ )
+        {
+            if ( $i_setup == 0 ) {
+                push @{$sheet}, $setups[$i_setup]->data->[$i_row];
+            }
+            else {
+                # Remember, the first row is a column header.
+                push @{ $sheet->[ $i_row + 1 ] },
+                  $setups[$i_setup]->data->[$i_row]->[3];
+            }
+        }
+    }
+
+    return $sheet;
 }
 
 sub _generate_graphhtml {

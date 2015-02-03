@@ -11,7 +11,6 @@ sub startup {
 
     #
     # Helpers
-    $self->plugin('Mose::Helper');
     $self->helper(
         psession => sub {
             my $self = shift;

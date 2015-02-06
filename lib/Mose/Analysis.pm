@@ -86,10 +86,7 @@ sub _generate_sheethtml {
     my @setups = @_;
 
     # We have to set the first row as column header.
-    my $sheet = [ [ 'Category', 'Section', 'Component' ] ];
-    foreach my $setup (@setups) {
-        push @{ $sheet->[0] }, $setup->file_name;
-    }
+    my $sheet = [ [ 'Category', 'Section', 'Component', map {$_->file_name} @setups ] ];
 
     for ( my $i_setup = 0 ; $i_setup <= $#setups ; $i_setup++ ) {
         for ( my $i_row = 0 ; $i_row < $setups[$i_setup]->num_rows ; $i_row++ )
